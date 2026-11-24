@@ -378,4 +378,3 @@
 - [ ] **Step 7: Commit final verification changes**
 
   Commit with message `chore(front): verify responsive states and document setup`.
-
