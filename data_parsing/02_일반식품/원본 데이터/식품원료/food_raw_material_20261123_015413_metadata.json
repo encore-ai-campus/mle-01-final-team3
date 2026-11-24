@@ -1,0 +1,18 @@
+{
+  "collected_at": "2026-11-23T01:54:14+09:00",
+  "record_count": 13880,
+  "api_total_count": 18650,
+  "columns": [
+    "LCLAS_NM",
+    "MLSFC_NM",
+    "RPRSNT_RAWMTRL_NM",
+    "RAWMTRL_NCKNM",
+    "ENG_NM",
+    "SCNM",
+    "REGN_CD_NM",
+    "RAWMTRL_STATS_CD_NM",
+    "USE_CND_NM"
+  ],
+  "filter": "LCLAS_NM == \"식품원료(A코드)\"",
+  "source_endpoint": "https://apis.data.go.kr/1471000/FoodRwmatrInfoService01/getFoodRwmatrList01"
+}

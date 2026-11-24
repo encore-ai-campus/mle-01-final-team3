@@ -1,0 +1,763 @@
+[
+  {
+    "id": "khff_pl_001",
+    "domain": "건강기능식품_표시광고_사전심의",
+    "doc_type": "playlist_video_guide",
+    "category": "심의신청_사전안내",
+    "topic": "심의 신청 전 필수 확인 사항(부적합, 반려, 일정, 통보서, 이행판정)",
+    "title": "[건강기능식품 표시·광고 심의] 심의 신청 전 꼭! 봐야하는 영상",
+    "duration": "02:26",
+    "upload_age": "3년 전",
+    "detailed_content": "심의 신청 전 꼭 확인해야 할 핵심 운영 기준을 다룬다. 부적합 판정을 받으면 광고물 전체 사용이 불가하므로 기존 광고물을 폐기하고 새 광고물을 작성해 수수료를 다시 납부한 뒤 신규심의를 접수해야 하며, 심의 수수료는 심의 행위 자체에 대한 비용이므로 환불되지 않는다. 반려는 접수 취소 및 환불 후 다음 회차 재신청으로 일정이 약 1주일 지연되며, 접수 양식 미준수나 기획전·카탈로그 등 단일 광고물이 아닌데 여러 제품을 한 심의 번호로 신청할 때 주로 발생한다. 신규심의 결과는 보통 접수 다음 주 금요일 오후 2시에 일괄 통보되며 조기 수령은 불가하고, 수정통보서·변경통보서는 접수일 다음 날부터 영업일 7일(접수일·공휴일 제외)이 소요된다. 이행 판정 결과 PDF에 수정사항이 체크되어 있으면 반영 후 바로 광고 가능하고 수정사항이 없으면 즉시 광고할 수 있으며, 통보서 범위는 홈페이지 심의방법 메뉴(수정통보란·변경통보란) 확인 및 광고심의부(031-628-2300) 문의를 통해 확인할 수 있다.",
+    "key_rules": [
+      "부적합 시 광고물 전체 사용 불가, 폐기 후 수수료 재납부 및 신규심의 재접수 필요",
+      "심의 수수료는 심의 행위 비용으로 부적합 시 환불 불가",
+      "반려 시 재신청으로 약 1주일 지연, 접수 양식 준수 및 단일 광고물 외 다중 제품 일괄 접수 금지",
+      "신규심의 결과는 보통 다음 주 금요일 오후 2시 일괄 통보, 수정·변경통보서는 접수일 제외 영업일 7일 소요",
+      "이행 판정 PDF 수정사항 반영(또는 미체크 시) 즉시 광고 가능"
+    ],
+    "caveats_and_limits": [
+      "신규심의 결과 조기 통보 불가",
+      "공휴일이 끼는 경우 수정·변경통보서 처리 일정 여유 확보 필요"
+    ],
+    "related_stages": ["심의접수", "부적합", "반려", "수정통보서", "변경통보서", "이행판정"],
+    "source": {
+      "platform": "youtube",
+      "playlist_title": "[영상으로 보는 협회 서비스] 심의 담당자가 직접 알려주는 광고심의",
+      "playlist_url": "https://www.youtube.com/playlist?list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y",
+      "channel": "KHFF TV 한국건강기능식품협회",
+      "video_ref": "https://www.youtube.com/watch?v=V979AWEcq9o&list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y&index=1&pp=iAQB"
+    }
+  },
+  {
+    "id": "khff_pl_002",
+    "domain": "건강기능식품_표시광고_사전심의",
+    "doc_type": "playlist_video_guide",
+    "category": "AI_검토시스템",
+    "topic": "AI 광고문구 간단 검토 기능 안내",
+    "title": "[AI 검토시스템 안내] AI 광고문구 간단 검토",
+    "duration": "01:29",
+    "upload_age": "3년 전",
+    "detailed_content": "광고심의 홈페이지 로그인 후 'AI 광고문구 간단검토' 메뉴에서 기존 심의 사례에서 자주 시정되는 특정 단어를 빠르게 점검하는 방법을 안내한다. 입력 방식은 '원료명/광고문구' 형태로 작성하며, 원료가 여러 개일 때는 원료 사이에 쉼표(,)를 넣어 구분한다. 슬래시(/) 앞 원료명에 오타가 있으면 안내 메시지가 표시되므로 메시지의 파란색 링크를 눌러 정확한 원료명을 복사한 뒤 채팅창에 적용해야 한다. 기술적 한계로 인해 실제 심의 결과와 다를 수 있으므로 참고용으로만 활용해야 한다.",
+    "key_rules": [
+      "입력 형식: '원료명/광고문구' (다중 원료 시 쉼표로 구분)",
+      "원료명 오타 발생 시 파란색 안내 항목을 클릭해 정확한 원료명 복사 후 재입력",
+      "기존 심의 사례에서 자주 시정되는 특정 단어 검출 목적의 참고용 도구"
+    ],
+    "caveats_and_limits": [
+      "실제 심의 결과와 다를 수 있어 참고용으로만 활용 가능",
+      "원료명 오타 시 정상 검토 불가"
+    ],
+    "related_stages": ["사전점검", "AI검토", "광고문구"],
+    "source": {
+      "platform": "youtube",
+      "playlist_title": "[영상으로 보는 협회 서비스] 심의 담당자가 직접 알려주는 광고심의",
+      "playlist_url": "https://www.youtube.com/playlist?list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y",
+      "channel": "KHFF TV 한국건강기능식품협회",
+      "video_ref": "https://www.youtube.com/watch?v=8dkiVYUDD-w&list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y&index=2&pp=iAQB"
+    }
+  },
+  {
+    "id": "khff_pl_003",
+    "domain": "건강기능식품_표시광고_사전심의",
+    "doc_type": "playlist_video_guide",
+    "category": "AI_검토시스템",
+    "topic": "AI 사전 검토 기능 활용 안내",
+    "title": "[AI 검토시스템 안내] AI 사전 검토",
+    "duration": "04:42",
+    "upload_age": "3년 전",
+    "detailed_content": "심의 신청서 작성 후 제출 단계에서 'AI 검토 접수'를 선택해 업로드한 PDF 광고물의 텍스트를 자동 검토하는 서비스다(건너뛰기 시 결제 페이지로 이동). AI가 이미지화된 PDF 내 텍스트를 인식해 자주 시정되는 단어를 체크해주며, 완료 시 문자로 안내되고 '나의 신청현황'에서 'AI 검토 결과 확인' 버튼으로 결과를 본 뒤 필요 시 '신청서 수정'으로 파일을 교체하고 결제한다. 주당 이용 한도는 광고물 10개로 제한되며, 검토 소요 시간은 최소 약 10분이다.",
+    "key_rules": [
+      "신청서 제출 후 'AI 검토 접수' 선택 시 업로드 PDF 텍스트 검토(미사용 시 건너뛰기로 결제 이동)",
+      "검토 완료 문자 수신 후 '나의 신청현황' > 'AI 검토 결과 확인' 조회 및 필요 시 '신청서 수정'으로 파일 교체",
+      "이용 한도: 주당 광고물 10개 제한, 최소 약 10분 소요"
+    ],
+    "caveats_and_limits": [
+      "텍스트가 없는 이미지 광고물은 검토 불가",
+      "광고문구(제품 정보) 중심 학습으로 건강 정보·시험 내용 등은 참고하기 어렵고, 카탈로그 등 다중 원료 광고물은 정확도가 낮아질 수 있음",
+      "정식 심의 절차가 아니며 결과 관련 유선상담 불가, 매주 금요일 14:00~18:00 트래픽 급증 시간대 미제공(해당 시간대에는 AI 광고문구 간단검토 이용 안내)"
+    ],
+    "related_stages": ["사전점검", "AI검토"],
+    "source": {
+      "platform": "youtube",
+      "playlist_title": "[영상으로 보는 협회 서비스] 심의 담당자가 직접 알려주는 광고심의",
+      "playlist_url": "https://www.youtube.com/playlist?list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y",
+      "channel": "KHFF TV 한국건강기능식품협회",
+      "video_ref": "https://www.youtube.com/watch?v=T6T-vc8ZV9c&list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y&index=3&pp=iAQB"
+    }
+  },
+  {
+    "id": "khff_pl_004",
+    "domain": "건강기능식품_표시광고_사전심의",
+    "doc_type": "playlist_video_guide",
+    "category": "AI_검토시스템",
+    "topic": "AI 검토시스템 전체 개요",
+    "title": "[AI 검토시스템 안내] 개요 편",
+    "duration": "01:31",
+    "upload_age": "3년 전",
+    "detailed_content": "건강기능식품 광고에서 사용 불가한 표현(예: 효능 단정, 변비, 사망률 등)을 처음 접하는 영업자가 사전에 파악할 수 있도록 도입된 AI 검토시스템의 목적과 장단점을 설명한다. 심의 신청 전 문제 표현을 미리 확인해 시간적·금전적 기회비용을 줄일 수 있다는 장점이 있으나, 단어 간 맥락을 사람처럼 완벽히 파악하는 데에는 기술적 한계가 있어 현재는 자주 시정되는 특정 단어를 검출하는 수준으로 운영된다.",
+    "key_rules": [
+      "사전 문구 점검을 통한 시간·비용 기회비용 절감 목적",
+      "자주 시정되는 특정 단어 검출 중심으로 운영"
+    ],
+    "caveats_and_limits": [
+      "단어 간 문맥을 사람처럼 완벽하게 해석하는 데 한계가 있으므로 실제 심의 결과와 다를 수 있음(참고용 활용)"
+    ],
+    "related_stages": ["사전점검", "AI검토", "시스템개요"],
+    "source": {
+      "platform": "youtube",
+      "playlist_title": "[영상으로 보는 협회 서비스] 심의 담당자가 직접 알려주는 광고심의",
+      "playlist_url": "https://www.youtube.com/playlist?list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y",
+      "channel": "KHFF TV 한국건강기능식품협회",
+      "video_ref": "https://www.youtube.com/watch?v=C3IR70RmlAY&list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y&index=4&pp=iAQB"
+    }
+  },
+  {
+    "id": "khff_pl_005",
+    "domain": "건강기능식품_표시광고_사전심의",
+    "doc_type": "playlist_video_guide",
+    "category": "AI_검토시스템",
+    "topic": "AI 검토시스템 내 광고물 비율 확인",
+    "title": "[AI 검토시스템 안내] 광고물 비율 확인",
+    "duration": "00:53",
+    "upload_age": "3년 전",
+    "detailed_content": "패키지 매체를 제외한 광고물에 A4 용지 비율 준수 여부를 자동으로 감지해 경고 메시지를 띄워주는 '반려 위험 광고물 자동 감지 서비스'를 안내한다. 비율에 맞지 않는 광고물을 접수할 경우 경고 메시지가 표시되며, '신청서 수정' 버튼을 눌러 적합한 비율의 광고물로 교체할 수 있다. 이 기능은 AI 검토 옵션을 선택하지 않아도 자동으로 작동한다.",
+    "key_rules": [
+      "패키지 매체 제외 광고물의 A4 비율 미준수 자동 감지 및 경고 메시지 제공",
+      "경고 발생 시 '신청서 수정'으로 광고물 파일 교체 가능",
+      "AI 검토 미선택 시에도 자동 작동"
+    ],
+    "caveats_and_limits": [
+      "패키지 매체는 A4 비율 적용 대상에서 제외"
+    ],
+    "related_stages": ["사전점검", "AI검토", "비율확인"],
+    "source": {
+      "platform": "youtube",
+      "playlist_title": "[영상으로 보는 협회 서비스] 심의 담당자가 직접 알려주는 광고심의",
+      "playlist_url": "https://www.youtube.com/playlist?list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y",
+      "channel": "KHFF TV 한국건강기능식품협회",
+      "video_ref": "https://www.youtube.com/watch?v=82eoufLAvng&list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y&index=5&pp=iAQB0gcJCQ4IAYcqIYzv"
+    }
+  },
+  {
+    "id": "khff_pl_006",
+    "domain": "건강기능식품_표시광고_사전심의",
+    "doc_type": "playlist_video_guide",
+    "category": "AI_검토시스템",
+    "topic": "AI 검토시스템을 통한 패키지 법적표시사항 검토",
+    "title": "[AI 검토시스템 안내] 패키지 법적표시사항 검토",
+    "duration": "01:52",
+    "upload_age": "3년 전",
+    "detailed_content": "패키지 매체 신청 시 법적 표시사항(보관방법, 원료별 섭취 시 주의사항 등) 누락 여부를 간단히 확인해주는 추가 서비스다. 실제 심의 접수용 분할 파일과 달리 패키지의 모든 면이 한 페이지에 보이도록 구성된 '한 장짜리 PDF 파일'을 별도로 업로드해 검사하며, 원치 않을 경우 건너뛰기가 가능하다.",
+    "key_rules": [
+      "패키지 매체 대상 법적 표시사항 포함(존재) 여부 간단 점검",
+      "패키지 전 면이 한 페이지에 보이는 한 장짜리 PDF 별도 업로드 필요(건너뛰기 가능)"
+    ],
+    "caveats_and_limits": [
+      "단순 존재 여부만 확인하며 품목 제조신고증 내용 일치 여부나 건강기능식품 마크 15mm·글자 크기 10mm 등 치수·크기 기준은 검토하지 않음",
+      "법적 표시사항은 협회 심의 대상이 아니므로 결과 관련 상담 불가"
+    ],
+    "related_stages": ["사전점검", "AI검토", "패키지표시", "법적표시사항"],
+    "source": {
+      "platform": "youtube",
+      "playlist_title": "[영상으로 보는 협회 서비스] 심의 담당자가 직접 알려주는 광고심의",
+      "playlist_url": "https://www.youtube.com/playlist?list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y",
+      "channel": "KHFF TV 한국건강기능식품협회",
+      "video_ref": "https://www.youtube.com/watch?v=23nBczmO_2c&list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y&index=6&pp=iAQB"
+    }
+  },
+  {
+    "id": "khff_pl_007",
+    "domain": "건강기능식품_표시광고_사전심의",
+    "doc_type": "playlist_video_guide",
+    "category": "심의결과_후속조치",
+    "topic": "심의 후 변경 신청의 개념 및 절차",
+    "title": "[심의 담당자가 직접 알려주는 광고심의] 변경 신청은 뭔가요?",
+    "duration": "04:12",
+    "upload_age": "3년 전",
+    "detailed_content": "적합 또는 이행 판정을 받아 심의가 완료된 광고물에 오타 수정 등 미미한 변경 사항이 생겼을 때 신청하는 절차로, 수수료 2만 원이 발생하고 신청일 제외 영업일 약 7일 소요되며 승인 시 기존 심의필에 반영된다. 신청 중이나 승인 후에도 기존 적합·이행 광고물은 그대로 광고 가능하며, 소비자 오인 소지가 없는 경미한 항목(예: 상세페이지 제품 사진의 조명·배경색 변경 수준)은 별도 변경 신청 없이 자율 수정 후 광고 가능하다는 공지 기준을 따른다.",
+    "key_rules": [
+      "심의 완료(적합·이행) 광고물의 미미한 변경 시 신청, 수수료 2만 원, 접수일 제외 영업일 약 7일 소요",
+      "변경 신청 대기 및 승인 후에도 기존 적합·이행 광고물 광고 가능",
+      "소비자 오인 소지 없는 경미한 변경 항목은 공지 기준에 따라 자율 수정 후 광고 가능"
+    ],
+    "caveats_and_limits": [
+      "사용자 후기나 새 포인트 문구 추가, 정보·문구 배치 변경 등은 변경 신청 대상이 아니며 신규심의 대상",
+      "변경 불가 사항을 신청해 미승인될 경우 수수료 2만 원은 환불되나 영업일 약 7일 기간 손실 발생하므로 사전 범위 확인 및 전화 문의 권장"
+    ],
+    "related_stages": ["변경신청", "변경통보서", "심의후속"],
+    "source": {
+      "platform": "youtube",
+      "playlist_title": "[영상으로 보는 협회 서비스] 심의 담당자가 직접 알려주는 광고심의",
+      "playlist_url": "https://www.youtube.com/playlist?list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y",
+      "channel": "KHFF TV 한국건강기능식품협회",
+      "video_ref": "https://www.youtube.com/watch?v=supeQ4VBVQ0&list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y&index=7&pp=iAQB"
+    }
+  },
+  {
+    "id": "khff_pl_008",
+    "domain": "건강기능식품_표시광고_사전심의",
+    "doc_type": "playlist_video_guide",
+    "category": "심의결과_유형",
+    "topic": "신규 심의결과 중 재심의 판정 안내",
+    "title": "[심의 담당자가 직접 알려주는 광고심의] 신규 심의결과 (재심의 편)",
+    "duration": "03:51",
+    "upload_age": "3년 전",
+    "detailed_content": "최초 신규심의 결과(주로 수정적합, 드물게 부적합)에 대해 위원회에 이의를 제기하는 절차로, 첫 신규심의 결과 통보일로부터 30일 이내에 신청해야 한다. '나의 신청현황'에서 '재심의' 버튼을 눌러 오인 소지가 없음을 설명하는 사유와 증빙자료를 제출하며, 신규심의 일정과 동일하게 다음 주 금요일 발표된다. 결과는 승인, 수정적합, 기각 중 하나로 나오며 기각 시 최초 수정적합·부적합 상태로 돌아가 이후 절차를 진행한다.",
+    "key_rules": [
+      "신규심의 결과 통보일로부터 30일 이내 신청 가능",
+      "재심의 사유 작성 및 증빙자료 첨부 제출, 결과는 다음 주 금요일 일괄 발표",
+      "재심의 결과 유형: 승인, 수정적합, 기각"
+    ],
+    "caveats_and_limits": [
+      "기존 광고물 자체에 대한 이의제기 절차이므로 광고물 파일을 새로 교체·업로드할 수 없음",
+      "수정심의와 절차가 다르므로 수정심의 대신 재심의를 누르거나 혼동해 신청하면 취소 후 재진행으로 전체 기간이 늘어남"
+    ],
+    "related_stages": ["신규심의", "심의결과", "재심의"],
+    "source": {
+      "platform": "youtube",
+      "playlist_title": "[영상으로 보는 협회 서비스] 심의 담당자가 직접 알려주는 광고심의",
+      "playlist_url": "https://www.youtube.com/playlist?list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y",
+      "channel": "KHFF TV 한국건강기능식품협회",
+      "video_ref": "https://www.youtube.com/watch?v=NV_t5d5FZ0M&list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y&index=8&pp=iAQB"
+    }
+  },
+  {
+    "id": "khff_pl_009",
+    "domain": "건강기능식품_표시광고_사전심의",
+    "doc_type": "playlist_video_guide",
+    "category": "심의결과_유형",
+    "topic": "신규 심의결과 중 부적합 판정 안내",
+    "title": "[심의 담당자가 직접 알려주는 광고심의] 신규 심의 결과 (부적합 편)",
+    "duration": "02:47",
+    "upload_age": "3년 전",
+    "detailed_content": "금요일 오후 2시 이후 '나의 신청현황' > '조회' > '결과조회'에서 확인하는 부적합 판정은 광고물 사용이 불가해 전체 재작성이 필요한 상태다. 주된 발생 사유는 광고물 분량의 절반 이상이 삭제되는 경우(예: 5페이지 중 3페이지 삭제)나 광고물 컨셉 자체에 문제가 있어 부분 수정으로 살릴 수 없는 경우다. 해당 광고물은 폐기하고 새 광고물을 만들어 수수료를 다시 내고 신규심의를 접수해야 하며, 이미 심의가 진행된 건이므로 수수료는 환불되지 않는다.",
+    "key_rules": [
+      "부적합 시 광고물 전체 재작성 필요, 기존 광고물 폐기 및 수수료 재납부 후 신규심의 접수",
+      "주요 사유: 분량의 반 이상 삭제 또는 광고물 컨셉 자체의 문제",
+      "공식 통보서는 결과조회 화면의 인쇄 버튼으로 출력 가능"
+    ],
+    "caveats_and_limits": [
+      "수정적합과 달리 수정 위치 체크가 표시되지 않고 텍스트 사유로 안내됨",
+      "심의가 이미 수행된 건이므로 부적합 판정 시 수수료 환불 불가"
+    ],
+    "related_stages": ["신규심의", "심의결과", "부적합"],
+    "source": {
+      "platform": "youtube",
+      "playlist_title": "[영상으로 보는 협회 서비스] 심의 담당자가 직접 알려주는 광고심의",
+      "playlist_url": "https://www.youtube.com/playlist?list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y",
+      "channel": "KHFF TV 한국건강기능식품협회",
+      "video_ref": "https://www.youtube.com/watch?v=J3w7cZWbLtg&list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y&index=9&pp=iAQB"
+    }
+  },
+  {
+    "id": "khff_pl_010",
+    "domain": "건강기능식품_표시광고_사전심의",
+    "doc_type": "playlist_video_guide",
+    "category": "심의필_관리",
+    "topic": "심의필 관련 참고사항 및 심의필 확인 방법",
+    "title": "[심의 담당자가 직접 알려주는 광고심의] 심의필 관련 참고사항(심의필 보는 방법)",
+    "duration": "03:29",
+    "upload_age": "3년 전",
+    "detailed_content": "심의필 파일에는 회사명·제품 정보와 함께 광고물에 귀속되는 고유 심의 번호, 식품 표시·광고법 제8조 기반 시정사유 분류, 그리고 광고 집행 시 확인해야 할 '참고사항'이 기재된다. 대표적으로 신고된 제품명 그대로 오인 없이 표기하라는 안내, 인터넷 판매 시 '전자상거래 등에서의 상품 등의 정보 제공에 관한 고시' 건강기능식품 항목 준수 안내, '최초', '무첨가', '유기농', '논지엠오(Non-GMO)' 등 사전심의에서 사실관계를 일일이 판별하기 어려운 표현에 대한 사업자 자체 확인 안내가 포함된다.",
+    "key_rules": [
+      "심의필 번호는 고유번호로 광고에 귀속되며, 식품 표시·광고법 제8조 시정사유 및 참고사항 확인 필요",
+      "신고된 제품명 그대로 표기 및 인터넷 판매 시 전자상거래 상품정보제공 고시 확인",
+      "'최초', '무첨가', '유기농', 'Non-GMO' 등 관련 법령·사실관계 해당 여부를 광고주가 직접 확인 후 집행"
+    ],
+    "caveats_and_limits": [
+      "전자상거래 고시 사항이나 '최초' 등 사실관계 입증·법적 해당 여부는 심의기관 확인 범위를 벗어나므로 사업자가 직접 점검해야 함"
+    ],
+    "related_stages": ["심의필", "결과확인", "광고집행"],
+    "source": {
+      "platform": "youtube",
+      "playlist_title": "[영상으로 보는 협회 서비스] 심의 담당자가 직접 알려주는 광고심의",
+      "playlist_url": "https://www.youtube.com/playlist?list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y",
+      "channel": "KHFF TV 한국건강기능식품협회",
+      "video_ref": "https://www.youtube.com/watch?v=gkYPD1AlCOE&list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y&index=10&pp=iAQB"
+    }
+  },
+  {
+    "id": "khff_pl_011",
+    "domain": "건강기능식품_표시광고_사전심의",
+    "doc_type": "playlist_video_guide",
+    "category": "심의결과_유형",
+    "topic": "신규 심의결과 중 적합 판정 안내",
+    "title": "[심의 담당자가 직접 알려주는 광고심의] 신규 심의결과(적합 편)",
+    "duration": "01:41",
+    "upload_age": "3년 전",
+    "detailed_content": "수정할 부분이 전혀 없어 한 번에 통과된 판정으로, 금요일 오후 2시 이후 '나의 신청현황' > '조회' > '결과조회' > '사무처 최종 광고물'에서 내려받는 PDF 파일 모서리에 심의필 도장이 찍혀 제공된다. 해당 PDF 파일을 수령한 시점부터 즉시 광고 집행이 가능하다.",
+    "key_rules": [
+      "적합 판정 시 추가 수정 절차 없이 즉시 광고 가능",
+      "'나의 신청현황' > '조회' > '결과조회' > '사무처 최종 광고물' PDF 내 심의필 도장 확인"
+    ],
+    "caveats_and_limits": [
+      "적합·이행 완료 후 문구·디자인 등을 수정해 집행하려면 변경 신청 또는 별도 심의 기준 확인 필요"
+    ],
+    "related_stages": ["신규심의", "심의결과", "적합"],
+    "source": {
+      "platform": "youtube",
+      "playlist_title": "[영상으로 보는 협회 서비스] 심의 담당자가 직접 알려주는 광고심의",
+      "playlist_url": "https://www.youtube.com/playlist?list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y",
+      "channel": "KHFF TV 한국건강기능식품협회",
+      "video_ref": "https://www.youtube.com/watch?v=kt5oEVPZ6K8&list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y&index=11&pp=iAQB"
+    }
+  },
+  {
+    "id": "khff_pl_012",
+    "domain": "건강기능식품_표시광고_사전심의",
+    "doc_type": "playlist_video_guide",
+    "category": "심의결과_유형",
+    "topic": "신규 심의결과 중 수정적합 판정 안내",
+    "title": "[심의 담당자가 직접 알려주는 광고심의] 신규 심의결과(수정적합 편)",
+    "duration": "04:56",
+    "upload_age": "3년 전",
+    "detailed_content": "일부 수정이 필요한 상태로, 결과 PDF에 '심의가 완료되지 않은 광고물로 수정신청이 필요합니다' 워터마크와 함께 통보 알림 문서의 심의필 여부가 빈칸으로 표시된다. 체크된 시정사항을 반영해 접수 양식에 맞게 PDF를 수정한 뒤 '나의 신청현황'에서 '수정신청'을 접수(영업일 약 1주일 소요)하고, 최종 '이행' 판정 및 심의필 도장이 찍힌 PDF를 받은 뒤 참고사항을 확인하고 광고한다.",
+    "key_rules": [
+      "수정적합 단계에서는 광고 불가하며, 시정사항 반영 후 '수정신청' 접수 및 '이행' 판정 완료 후 광고 가능",
+      "수정신청 시에도 신규심의와 동일한 매체별 접수 양식 준수 필요",
+      "이행 완료 PDF의 심의필 도장 및 참고사항 확인 후 집행"
+    ],
+    "caveats_and_limits": [
+      "수정통보는 시정사항 반영 여부만 확인하는 절차이므로 새 문구·이미지 추가나 디자인 변경 불가(단, 문구 삭제 시 앞뒤 연결이 어색해지는 경우 문장이 자연스럽게 이어지는 수준으로 다듬는 것은 허용)",
+      "추가·변경 사항을 넣으면 불이행 판정이 되어 약 1주일이 추가 소요됨"
+    ],
+    "related_stages": ["신규심의", "심의결과", "수정적합", "이행판정"],
+    "source": {
+      "platform": "youtube",
+      "playlist_title": "[영상으로 보는 협회 서비스] 심의 담당자가 직접 알려주는 광고심의",
+      "playlist_url": "https://www.youtube.com/playlist?list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y",
+      "channel": "KHFF TV 한국건강기능식품협회",
+      "video_ref": "https://www.youtube.com/watch?v=OcD8PwmCil0&list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y&index=12&pp=iAQB"
+    }
+  },
+  {
+    "id": "khff_pl_013",
+    "domain": "건강기능식품_표시광고_사전심의",
+    "doc_type": "playlist_video_guide",
+    "category": "접수_양식",
+    "topic": "패키지 매체 접수 양식 안내",
+    "title": "[심의 담당자가 직접 알려주는 광고심의] 패키지 접수 양식에 대해 알려드려요",
+    "duration": "02:22",
+    "upload_age": "3년 전",
+    "detailed_content": "패키지(상자·파우치 등) 광고물은 다른 매체와 달리 A4 용지 비율을 강제하지 않으며, 용지 비율에 구애받지 않고 페이지 여백을 최소화해 분할 제출한다(패키지 설명서는 상세페이지와 동일 양식 적용). 원본 AI 디자인 전개도를 통째로 올리면 반려되므로 면·단위별로 분할해야 하며, 글자가 너무 작아 식별이 어려운 경우 각 면을 한 면씩 확대 분할해 제출하는 것이 권장된다.",
+    "key_rules": [
+      "패키지는 A4 비율 제한 없이 페이지 여백을 최소화해 분할 접수(패키지 설명서는 상세페이지 양식 적용)",
+      "전개도 통째 업로드 금지 및 면·단위별 분할 제출",
+      "미세 글씨 식별 불가 시 각 면을 한 면씩 확대 분할 제출"
+    ],
+    "caveats_and_limits": [
+      "전개도 원본 그대로 접수 시 반려 대상",
+      "PDF 뷰어 단순 화면 캡처로 화질이 떨어져 육안 확인이 어려우면 공통 기준에 의해 반려될 수 있으므로 디자이너 분할 파일 권장"
+    ],
+    "related_stages": ["심의접수", "접수양식", "패키지"],
+    "source": {
+      "platform": "youtube",
+      "playlist_title": "[영상으로 보는 협회 서비스] 심의 담당자가 직접 알려주는 광고심의",
+      "playlist_url": "https://www.youtube.com/playlist?list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y",
+      "channel": "KHFF TV 한국건강기능식품협회",
+      "video_ref": "https://www.youtube.com/watch?v=m_KDg2r0it8&list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y&index=13&pp=iAQB"
+    }
+  },
+  {
+    "id": "khff_pl_014",
+    "domain": "건강기능식품_표시광고_사전심의",
+    "doc_type": "playlist_video_guide",
+    "category": "접수_양식",
+    "topic": "방송 매체 접수 양식 안내",
+    "title": "[심의 담당자가 직접 알려주는 광고심의] 방송 접수 양식에 대해 알려드려요",
+    "duration": "03:51",
+    "upload_age": "3년 전",
+    "detailed_content": "유선방송 동영상·홈쇼핑 등 영상 매체는 장면(씬)별 이미지와 해당 자막·오디오를 콘티/스토리보드 형식으로 구성해 A4 비율(PPT 와이드 대신 A4 설정)로 제출하며, 전체 씬의 80% 이상에 이미지를 첨부해야 한다. 방송용 판넬은 대본과 함께 한 심의 번호로 신청하되 실제 디자인된 형태로 A4 비율에 좌우 여백 없이 채워 넣고, 라디오 광고는 건당 1페이지씩 A4 비율로 작성한다.",
+    "key_rules": [
+      "영상 매체(유선방송·홈쇼핑): 콘티·스토리보드 형식, A4 비율 설정, 전체 씬의 80% 이상 이미지 첨부 필수",
+      "방송 판넬: 대본과 동일 심의 번호 신청 가능, 실제 디자인 형태 및 A4 비율·좌우 여백 최소화",
+      "라디오 광고: 한 페이지에 한 건씩 A4 비율로 작성 및 글자 크기 3mm 초과 확보"
+    ],
+    "caveats_and_limits": [
+      "전체 씬 중 이미지 포함 비율이 80% 미만이면 반려 대상(쇼호스트 발화 장면도 인물 이미지 첨부 필요)",
+      "씬 이미지 내 글씨가 작아 보이지 않으면 별도 페이지에 확대본 첨부 필요"
+    ],
+    "related_stages": ["심의접수", "접수양식", "방송"],
+    "source": {
+      "platform": "youtube",
+      "playlist_title": "[영상으로 보는 협회 서비스] 심의 담당자가 직접 알려주는 광고심의",
+      "playlist_url": "https://www.youtube.com/playlist?list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y",
+      "channel": "KHFF TV 한국건강기능식품협회",
+      "video_ref": "https://www.youtube.com/watch?v=e0hUb7ER7U8&list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y&index=14&pp=iAQB"
+    }
+  },
+  {
+    "id": "khff_pl_015",
+    "domain": "건강기능식품_표시광고_사전심의",
+    "doc_type": "playlist_video_guide",
+    "category": "접수_양식",
+    "topic": "상세페이지 접수 양식 안내",
+    "title": "[심의 담당자가 직접 알려주는 광고심의] 상세페이지 접수 양식에 대해 알려드려요",
+    "duration": "06:56",
+    "upload_age": "3년 전",
+    "detailed_content": "인터넷 상세페이지·포스터 등은 긴 세로 이미지를 A4 용지 비율로 분할해 제출하며(파일 용량 20MB 이하, 분할 경계에서의 텍스트·이미지 잘림은 검토 시 감안), 디자이너 작업 또는 A4 비율 분할이 안내된다. 글자 크기는 A4 기준 3mm 초과가 기본이며, 일부 글자가 작으면 확대본을 함께 넣고 전체적으로 작으면 한 페이지를 반으로 나눠 정방향으로 크게 배치한다.",
+    "key_rules": [
+      "상세페이지·포스터 등: A4 용지 비율로 여러 페이지 분할 제출(20MB 이하, 분할 경계 잘림은 검토 시 감안)",
+      "A4 기준 글자 크기 3mm 초과 원칙 및 미세 글씨 확대·정방향 분할 배치"
+    ],
+    "caveats_and_limits": [
+      "한 페이지에 여러 페이지나 펼쳐진 설명서를 합쳐 넣는 경우, A4 비율 미준수로 양쪽 여백이 생기는 경우, 여백 제거를 위해 글자를 가로·세로로 늘려 찌그러뜨리는 경우, 분할하지 않은 긴 원본을 그대로 올리는 경우는 반려 사유",
+      "20MB 이상 파일은 업로드 제한되므로 용량 축소 필요"
+    ],
+    "related_stages": ["심의접수", "접수양식", "상세페이지"],
+    "source": {
+      "platform": "youtube",
+      "playlist_title": "[영상으로 보는 협회 서비스] 심의 담당자가 직접 알려주는 광고심의",
+      "playlist_url": "https://www.youtube.com/playlist?list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y",
+      "channel": "KHFF TV 한국건강기능식품협회",
+      "video_ref": "https://www.youtube.com/watch?v=sR-eAk5n5Ao&list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y&index=15&pp=iAQB"
+    }
+  },
+  {
+    "id": "khff_pl_016",
+    "domain": "건강기능식품_표시광고_사전심의",
+    "doc_type": "playlist_video_guide",
+    "category": "접수_양식",
+    "topic": "배너 광고 접수 양식 안내",
+    "title": "[심의 담당자가 직접 알려주는 광고심의] 배너 접수 양식에 대해 알려드려요",
+    "duration": "01:29",
+    "upload_age": "3년 전",
+    "detailed_content": "배너 광고는 상세페이지와 달리 한 A4 비율 페이지 안에 여러 시안을 함께 배치해 접수할 수 있다. 가로로 긴 배너는 좌우 여백 없이 꽉 채워 넣고, 세로로 긴 배너는 위아래 여백 없이 꽉 채워 배치하며, 한 페이지 내 다중 시안 병기는 동일 제품 배너인 경우에만 허용된다.",
+    "key_rules": [
+      "A4 비율 페이지 내 다중 배너 시안 배치 가능(단, 동일 제품 배너에 한함)",
+      "가로형 배너는 좌우 여백 없이, 세로형 배너는 위아래 여백 없이 꽉 채워 제출"
+    ],
+    "caveats_and_limits": [
+      "서로 다른 제품의 배너는 한꺼번에 넣지 말고 각각 별도 심의로 신청해야 함"
+    ],
+    "related_stages": ["심의접수", "접수양식", "배너"],
+    "source": {
+      "platform": "youtube",
+      "playlist_title": "[영상으로 보는 협회 서비스] 심의 담당자가 직접 알려주는 광고심의",
+      "playlist_url": "https://www.youtube.com/playlist?list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y",
+      "channel": "KHFF TV 한국건강기능식품협회",
+      "video_ref": "https://www.youtube.com/watch?v=d0k1bmQpHFE&list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y&index=16&pp=iAQB"
+    }
+  },
+  {
+    "id": "khff_pl_017",
+    "domain": "건강기능식품_표시광고_사전심의",
+    "doc_type": "playlist_video_guide",
+    "category": "접수_양식",
+    "topic": "공통 접수 양식 안내",
+    "title": "[심의 담당자가 직접 알려주는 광고심의] 공통 접수 양식에 대해 알려드려요",
+    "duration": "03:04",
+    "upload_age": "3년 전",
+    "detailed_content": "전 매체에 공통으로 적용되는 반려 방지 기준을 설명한다. 광고물은 PPT 가안이나 장면 요약 대본이 아닌 실제 소비자에게 노출될 최종 디자인·문구 형태로 제출해야 하며, 글씨 크기(영상 내 안내 기준 A4 3mm)와 이미지 선명도로 육안 판별이 가능해야 하고, 매체 구분에 맞게 접수해야 한다. 대체 문구(A/B안 등)를 한 장에 나열하지 말고 각 안을 독립된 최종 광고물 페이지로 나누어 제출한다.",
+    "key_rules": [
+      "최종 광고물 형태로 제출(디자인 미적용 PPT 가안·요약 콘티 지양)",
+      "육안 식별 가능한 글자 크기·해상도 확보 및 매체 구분에 맞는 개별 접수",
+      "대체 문구는 한 페이지에 병기하지 않고 안별 별도 페이지로 분리 제출"
+    ],
+    "caveats_and_limits": [
+      "인터넷 광고물을 인쇄물로 잘못 선택하는 등 매체 오선택 및 다중 매체 광고물 일괄 신청 시 반려 가능",
+      "글씨 크기 규정은 2024년 4월 1일부 추가 개정 사항이 있으므로 심의양식 홈페이지 최신 기준 확인 필요"
+    ],
+    "related_stages": ["심의접수", "접수양식", "공통양식"],
+    "source": {
+      "platform": "youtube",
+      "playlist_title": "[영상으로 보는 협회 서비스] 심의 담당자가 직접 알려주는 광고심의",
+      "playlist_url": "https://www.youtube.com/playlist?list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y",
+      "channel": "KHFF TV 한국건강기능식품협회",
+      "video_ref": "https://www.youtube.com/watch?v=RW8j-ZUqB-o&list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y&index=17&pp=iAQB"
+    }
+  },
+  {
+    "id": "khff_pl_018",
+    "domain": "건강기능식품_표시광고_사전심의",
+    "doc_type": "playlist_video_guide",
+    "category": "심의제도_개요",
+    "topic": "심의 수행 주체 안내",
+    "title": "[심의 담당자가 직접 알려주는 광고심의] 심의는 누가 하나요?",
+    "duration": "01:06",
+    "upload_age": "3년 전",
+    "detailed_content": "신규심의는 식품 표시·광고법상 규정된 각계 전문가(교수, 변호사, 소비자단체 대표, 업계 대표 등)로 구성된 심의위원회에서 검토하며, 매년 위촉되는 위원 명단은 광고심의 홈페이지 알림마당 공지사항에 게시된다. 반면 수정심의와 변경심의는 협회 사무처(광고심의부) 담당 직원들이 직접 진행한다.",
+    "key_rules": [
+      "신규심의: 법정 구성 기준에 따른 전문가 심의위원회 검토(연간 위원 명단 홈페이지 공지)",
+      "수정심의·변경심의: 협회 사무처(광고심의부) 직원 담당"
+    ],
+    "caveats_and_limits": [
+      "심의위원회 구성은 매년 변동되므로 최신 명단은 홈페이지 공지사항 확인 필요"
+    ],
+    "related_stages": ["심의주체", "자율심의기구"],
+    "source": {
+      "platform": "youtube",
+      "playlist_title": "[영상으로 보는 협회 서비스] 심의 담당자가 직접 알려주는 광고심의",
+      "playlist_url": "https://www.youtube.com/playlist?list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y",
+      "channel": "KHFF TV 한국건강기능식품협회",
+      "video_ref": "https://www.youtube.com/watch?v=qEUw5mveLHM&list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y&index=18&pp=iAQB0gcJCQ4IAYcqIYzv"
+    }
+  },
+  {
+    "id": "khff_pl_019",
+    "domain": "건강기능식품_표시광고_사전심의",
+    "doc_type": "playlist_video_guide",
+    "category": "심의접수_절차",
+    "topic": "심의신청 시작 및 회원가입 방법",
+    "title": "[심의 담당자가 직접 알려주는 광고심의] 심의신청은 어떻게 시작하나요? (회원가입 방법)",
+    "duration": "01:36",
+    "upload_age": "3년 전",
+    "detailed_content": "심의 신청 전 심의 홈페이지에서 별도 회원가입을 해야 하며, 가입비는 없다. 가입 시 건강기능식품 판매업 영업신고증, 건강기능식품 제조업 영업허가증, 또는 수입식품 등 수입·판매업 영업등록증을 제출해야 하고, 사무처 확인·승인(보통 영업일 2~3일 소요, 승인 문자 발송)이 완료되어야 심의 신청이 가능하다.",
+    "key_rules": [
+      "심의 홈페이지 별도 회원가입(가입비 무료) 및 영업신고증·영업허가증·수입판매업 영업등록증 제출",
+      "사무처 승인(보통 영업일 2~3일 내 일괄 처리 및 문자 안내) 완료 후 심의 신청 가능"
+    ],
+    "caveats_and_limits": [
+      "협회 홈페이지·교육 홈페이지와 심의 홈페이지는 별도 운영되므로 각각 가입 필요",
+      "소품·수분 판매업 신고증이나 통신판매업 신고증만으로는 회원가입 불가, 급한 경우 광고심의부 전화 문의 필요"
+    ],
+    "related_stages": ["회원가입", "심의접수"],
+    "source": {
+      "platform": "youtube",
+      "playlist_title": "[영상으로 보는 협회 서비스] 심의 담당자가 직접 알려주는 광고심의",
+      "playlist_url": "https://www.youtube.com/playlist?list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y",
+      "channel": "KHFF TV 한국건강기능식품협회",
+      "video_ref": "https://www.youtube.com/watch?v=UctWKvQ4si0&list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y&index=19&pp=iAQB"
+    }
+  },
+  {
+    "id": "khff_pl_020",
+    "domain": "건강기능식품_표시광고_사전심의",
+    "doc_type": "playlist_video_guide",
+    "category": "심의수수료",
+    "topic": "심의신청 비용 및 수수료 안내",
+    "title": "[심의 담당자가 직접 알려주는 광고심의] 심의신청하는데 얼마나 드나요?",
+    "duration": "00:49",
+    "upload_age": "3년 전",
+    "detailed_content": "심의 수수료는 광고 매체 종류와 페이지 수에 따라 차등 부과되며 홈페이지 '심의소개 > 심의수수료'에서 확인한다. 영상 안내 기준 흔히 접수되는 금액대는 12만 원대이며, 최소 금액은 5페이지 이하 패키지 6만 원, 최대 금액은 26페이지 이상 홈쇼핑 광고 20만 원 수준이다.",
+    "key_rules": [
+      "매체 종류 및 페이지 수에 따라 수수료 차등 산정(홈페이지 심의수수료 메뉴 확인)",
+      "안내 기준 다빈도 금액대 약 12만 원대, 최소 6만 원(5페이지 이하 패키지), 최대 20만 원(26페이지 이상 홈쇼핑)"
+    ],
+    "caveats_and_limits": [
+      "페이지 수는 심의접수 양식에 맞게 분할·작성된 기준 페이지 수이므로 양식 미준수 시 페이지 수가 달라져 반려될 수 있음"
+    ],
+    "related_stages": ["심의접수", "심의수수료"],
+    "source": {
+      "platform": "youtube",
+      "playlist_title": "[영상으로 보는 협회 서비스] 심의 담당자가 직접 알려주는 광고심의",
+      "playlist_url": "https://www.youtube.com/playlist?list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y",
+      "channel": "KHFF TV 한국건강기능식품협회",
+      "video_ref": "https://www.youtube.com/watch?v=QH6tZtBlesY&list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y&index=20&pp=iAQB"
+    }
+  },
+  {
+    "id": "khff_pl_021",
+    "domain": "건강기능식품_표시광고_사전심의",
+    "doc_type": "playlist_video_guide",
+    "category": "심의절차_일정",
+    "topic": "심의 전체 절차 및 소요 기간 안내",
+    "title": "[심의 담당자가 직접 알려주는 광고심의] 심의 절차는 어떻게 되나요? (얼마나 걸려요?)",
+    "duration": "08:02",
+    "upload_age": "3년 전",
+    "detailed_content": "신규심의는 매주 월~금요일 18:00까지 접수하며, 주간 약 1만 건 규모로 접수된다. 월요일에 사무처 사전검토(반려·보완 요청)를 마치고 화요일 오프라인 위원회 심의 및 금요일까지 온라인 검토를 거친 뒤, 다음 주 금요일 14:00에 적합·수정적합·부적합(물량 과다·복잡한 시험자료 시 보류 가능) 결과를 일괄 통보한다. 수정적합(약 80%) 시 수정신청(영업일 약 7일)을 거쳐 '이행' 판정을 받아야 광고할 수 있어 최소 2주, 수정심의 포함 시 3주 이상 소요된다.",
+    "key_rules": [
+      "접수 마감: 매주 월~금 18:00 / 결과 발표: 다음 주 금요일 14:00 일괄 통보",
+      "월요일 사무처 사전검토 → 화요일 위원회 심의 및 금요일까지 온라인 검토 → 결과 통보",
+      "적합(약 10%)은 즉시 광고 가능, 수정적합(약 80%)은 수정신청(영업일 약 7일) 후 이행 판정 시 광고 가능, 부적합은 폐기·재접수 필요"
+    ],
+    "caveats_and_limits": [
+      "신규심의 발표 일정은 고정되어 있어 조기 통보·스케줄 조정 불가",
+      "주말·공휴일 제외 영업일 기준으로 수정심의까지 합산 시 3주 이상 걸릴 수 있으므로 여유 일정 확보 필수"
+    ],
+    "related_stages": ["심의접수", "사전검토", "위원회심의", "결과통보", "소요기간"],
+    "source": {
+      "platform": "youtube",
+      "playlist_title": "[영상으로 보는 협회 서비스] 심의 담당자가 직접 알려주는 광고심의",
+      "playlist_url": "https://www.youtube.com/playlist?list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y",
+      "channel": "KHFF TV 한국건강기능식품협회",
+      "video_ref": "https://www.youtube.com/watch?v=c8QUtiK7dNo&list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y&index=21&pp=iAQB"
+    }
+  },
+  {
+    "id": "khff_pl_022",
+    "domain": "건강기능식품_표시광고_사전심의",
+    "doc_type": "playlist_video_guide",
+    "category": "심의접수_서류",
+    "topic": "심의신청 시 필요 제출서류 안내",
+    "title": "[심의 담당자가 직접 알려주는 광고심의] 심의신청 시작해봅시다! (필요 제출서류)",
+    "duration": "04:48",
+    "upload_age": "3년 전",
+    "detailed_content": "신청서 작성 시 제품명은 품목 제조신고 또는 수입신고된 명칭 그대로 입력(신고 전이면 신고 예정명 입력)하고 매체는 1종을 선택하며, 카탈로그 등 다제품 구성 광고물만 '대표제품 외 몇 건'으로 신청할 수 있다. 구비서류로는 정방향 광고물 파일, 국내 신고 완료 시 품목 제조신고증 앞·뒷장, 수입 신고 완료 시 수입식품 등의 수입신고서 앞·뒷장(한글 표시사항 확인용), 미신고 시 홈페이지 양식의 제품 설명서, 특허·인체시험 등 기재 시 특허증·논문 등 근거자료를 제출한다.",
+    "key_rules": [
+      "제품명 정확 입력, 광고 매체 1종 선택, 분리 가능한 다중 제품은 개별 심의 신청",
+      "국내 신고 제품은 제조신고증 앞·뒷장, 수입 신고 제품은 수입신고서 앞·뒷장(한글 표시사항) 제출",
+      "미신고 제품은 제품 설명서, 특허·인체시험 등 기재 시 관련 증빙서류(특허증·논문 등) 첨부"
+    ],
+    "caveats_and_limits": [
+      "신고증·수입신고서 앞장만 제출하거나 광고물 글씨가 눕혀진 상태로 접수하지 않도록 주의",
+      "수입신고필증은 심의와 직접 관련이 없으므로 수입신고서(한글 표시사항 포함)를 제출"
+    ],
+    "related_stages": ["심의접수", "제출서류"],
+    "source": {
+      "platform": "youtube",
+      "playlist_title": "[영상으로 보는 협회 서비스] 심의 담당자가 직접 알려주는 광고심의",
+      "playlist_url": "https://www.youtube.com/playlist?list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y",
+      "channel": "KHFF TV 한국건강기능식품협회",
+      "video_ref": "https://www.youtube.com/watch?v=09zh1THi9S4&list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y&index=22&pp=iAQB"
+    }
+  },
+  {
+    "id": "khff_pl_023",
+    "domain": "건강기능식품_표시광고_사전심의",
+    "doc_type": "playlist_video_guide",
+    "category": "심의대상_범위",
+    "topic": "표시·광고 심의 대상 범위 안내",
+    "title": "[심의 담당자가 직접 알려주는 광고심의] 심의 대상은 어떻게 되나요?",
+    "duration": "02:35",
+    "upload_age": "4년 전",
+    "detailed_content": "식품 등의 표시·광고에 관한 법률 제10조에 따라 심의 대상은 건강기능식품의 '표시' 또는 '광고'다. '표시'는 패키지 상자, 포장지 등 제품을 넣거나 싸는 것과 제품 내부에 동봉되는 제품 설명서에 적힌 내용을 포괄하며, '광고'는 각종 매체를 통해 건강기능식품에 관한 정보를 나타내거나 알리는 행위를 의미한다.",
+    "key_rules": [
+      "심의 대상: 건강기능식품 관련 '표시' 및 '광고'(식품 표시·광고법 제10조)",
+      "표시에는 패키지(상자·포장지)뿐 아니라 동봉 제품 설명서 내용도 포함"
+    ],
+    "caveats_and_limits": [
+      "광고 내 건강기능식품(제품)에 관한 정보가 전혀 노출되지 않는 순수 브랜드 광고 등은 심의 대상에서 제외됨"
+    ],
+    "related_stages": ["심의대상", "표시광고"],
+    "source": {
+      "platform": "youtube",
+      "playlist_title": "[영상으로 보는 협회 서비스] 심의 담당자가 직접 알려주는 광고심의",
+      "playlist_url": "https://www.youtube.com/playlist?list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y",
+      "channel": "KHFF TV 한국건강기능식품협회",
+      "video_ref": "https://www.youtube.com/watch?v=xqLVT1cxqoA&list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y&index=23&pp=iAQB"
+    }
+  },
+  {
+    "id": "khff_pl_024",
+    "domain": "건강기능식품_표시광고_사전심의",
+    "doc_type": "playlist_video_guide",
+    "category": "심의대상_예외",
+    "topic": "사전심의를 받지 않아도 되는 광고물 기준",
+    "title": "[심의 담당자가 직접 알려주는 광고심의] 심의를 안받아도 되는 광고물?",
+    "duration": "07:47",
+    "upload_age": "4년 전",
+    "detailed_content": "심의 면제·제외 6가지 유형을 안내한다: ① 식품 표시·광고법 제4조~제6조 법적 표시사항(제품명, 내용량, 원료명, 보관방법, 섭취량·섭취방법, 영양·기능정보 등)만 그대로 노출하는 경우, ② 홈페이지 공지 기준 내 단순 이벤트·프로모션 광고물(주년·시즌 숫자 변경 가능), ③ 제품 정보가 전혀 없는 순수 브랜드 광고, ④ 회사 소개·주소·고객문의 위주의 회사 홈페이지, ⑤ 사내 영업사원 교육 등 내부 자료, ⑥ 건강기능식품이 아닌 일반식품 광고다.",
+    "key_rules": [
+      "법 제4조~제6조 표시사항만 그대로 사용하는 경우 심의 불필요",
+      "공지 기준 내 단순 이벤트·프로모션, 제품 정보 없는 순수 브랜드 광고, 회사 소개 중심 홈페이지, 사내 교육자료, 일반식품은 심의 제외 대상"
+    ],
+    "caveats_and_limits": [
+      "법정 표시사항 외 광고 문구가 하나라도 추가되거나 이벤트 공지 범위를 벗어나면 심의 대상",
+      "상세페이지에 법정 표시사항과 패키지 전개도만 올리는 경우 해당 패키지가 이미 심의를 받은 제품인지 확인 필요(심의필은 제품 귀속)",
+      "회사 홈페이지 내 제품 상세페이지·배너 포함, 사내 교육자료의 외부 소비자 노출, 일반식품 광고와 건기식 광고의 혼재(구분 및 건기식 아님 명시 필요) 시 주의 필요"
+    ],
+    "related_stages": ["심의대상", "심의면제_예외"],
+    "source": {
+      "platform": "youtube",
+      "playlist_title": "[영상으로 보는 협회 서비스] 심의 담당자가 직접 알려주는 광고심의",
+      "playlist_url": "https://www.youtube.com/playlist?list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y",
+      "channel": "KHFF TV 한국건강기능식품협회",
+      "video_ref": "https://www.youtube.com/watch?v=QvcWHJcOUas&list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y&index=24&pp=iAQB0gcJCQ4IAYcqIYzv"
+    }
+  },
+  {
+    "id": "khff_pl_025",
+    "domain": "건강기능식품_표시광고_사전심의",
+    "doc_type": "playlist_video_guide",
+    "category": "심의제도_개요",
+    "topic": "자율심의기구의 의미 및 역할",
+    "title": "[심의 담당자가 직접 알려주는 광고심의] 자율심의기구라고 들었는데 그건 뭔가요?",
+    "duration": "02:15",
+    "upload_age": "4년 전",
+    "detailed_content": "2018년 6월 헌법재판소가 행정기관에 의한 사전심의를 규정한 건강기능식품법 제16조에 대해 사전검열에 해당한다며 위헌 결정을 내린 후, 식품 등의 표시·광고에 관한 법률 제10조에 따라 민간 기구가 자율심의기구를 구성해 심의를 수행하는 체계로 전환되었다. 한국건강기능식품협회는 건강기능식품법 제28조 설립 단체로서 식약처에 등록된 자율심의기구로 운영된다.",
+    "key_rules": [
+      "2018년 6월 헌재 위헌 결정 이후 식품 표시·광고법 제10조 기반 민간 자율심의기구 체계 전환",
+      "한국건강기능식품협회는 건강기능식품법 제28조 설립 단체 기반 식약처 등록 자율심의기구"
+    ],
+    "caveats_and_limits": [
+      "'자율심의'라는 용어 때문에 선택적·임의적 절차로 오해할 수 있으나, 법정 사전심의 의무는 그대로 적용됨"
+    ],
+    "related_stages": ["자율심의기구", "제도개요"],
+    "source": {
+      "platform": "youtube",
+      "playlist_title": "[영상으로 보는 협회 서비스] 심의 담당자가 직접 알려주는 광고심의",
+      "playlist_url": "https://www.youtube.com/playlist?list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y",
+      "channel": "KHFF TV 한국건강기능식품협회",
+      "video_ref": "https://www.youtube.com/watch?v=1C0SLTXVIew&list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y&index=25&pp=iAQB"
+    }
+  },
+  {
+    "id": "khff_pl_026",
+    "domain": "건강기능식품_표시광고_사전심의",
+    "doc_type": "playlist_video_guide",
+    "category": "심의제도_개요",
+    "topic": "광고심의 필수 여부 안내",
+    "title": "[심의 담당자가 직접 알려주는 광고심의] 광고심의는 꼭 받아야 하나요?",
+    "duration": "01:41",
+    "upload_age": "4년 전",
+    "detailed_content": "건강기능식품 표시·광고는 원칙적으로 사전에 심의를 받아야 하며, 식품 등의 표시·광고에 관한 법률 제10조가 사전심의 의무를 규정하고 있다. 심의를 받지 않거나 심의 결과에 따르지 않는 행위 자체는 같은 법 제8조(부당한 표시 또는 광고 행위의 금지) 제10호에 해당하는 부당한 표시·광고 행위가 된다.",
+    "key_rules": [
+      "건강기능식품 표시·광고 전 사전심의 이행 원칙(식품 표시·광고법 제10조)",
+      "미심의 또는 심의 결과 미준수 자체만으로도 법 제8조 제10호 위반(부당한 표시·광고)에 해당"
+    ],
+    "caveats_and_limits": [
+      "질병 예방 표현이나 의약품 오인 문구가 없더라도 사전심의를 받지 않은 것 자체가 부당 표시·광고 행위가 될 수 있음"
+    ],
+    "related_stages": ["심의의무", "제도개요"],
+    "source": {
+      "platform": "youtube",
+      "playlist_title": "[영상으로 보는 협회 서비스] 심의 담당자가 직접 알려주는 광고심의",
+      "playlist_url": "https://www.youtube.com/playlist?list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y",
+      "channel": "KHFF TV 한국건강기능식품협회",
+      "video_ref": "https://www.youtube.com/watch?v=2qAF_P3hpt8&list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y&index=26&pp=iAQB0gcJCQ4IAYcqIYzv"
+    }
+  },
+  {
+    "id": "khff_pl_027",
+    "domain": "건강기능식품_표시광고_사전심의",
+    "doc_type": "playlist_video_guide",
+    "category": "심의제도_개요",
+    "topic": "표시·광고 심의 제도의 개념",
+    "title": "[심의 담당자가 직접 알려주는 광고심의] 광고심의가 뭔가요?",
+    "duration": "01:42",
+    "upload_age": "4년 전",
+    "detailed_content": "광고심의는 건강기능식품 광고물에 소비자 식품안전 위험이나 오인 소지가 있는 문구가 포함되는 것을 사전에 걸러내고, 기준에 따라 적합·수정·부적합 등 판정을 내림으로써 영업자가 문제 문구를 삭제·수정해 안전하게 광고할 수 있도록 하는 제도다.",
+    "key_rules": [
+      "소비자 안전 위험 및 오인 유발 표현을 사전에 점검·조정해 안전한 광고 집행을 지원하는 제도",
+      "심의 기준에 따른 판정 결과를 바탕으로 문제 문구 삭제·수정을 거쳐 광고 진행"
+    ],
+    "caveats_and_limits": [
+      "기준에 부합하지 않는 표현은 수정 또는 삭제가 필요하며, 안전 위험·위반 소지가 큰 경우 광고 사용이 제한됨"
+    ],
+    "related_stages": ["광고심의", "제도개요"],
+    "source": {
+      "platform": "youtube",
+      "playlist_title": "[영상으로 보는 협회 서비스] 심의 담당자가 직접 알려주는 광고심의",
+      "playlist_url": "https://www.youtube.com/playlist?list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y",
+      "channel": "KHFF TV 한국건강기능식품협회",
+      "video_ref": "https://www.youtube.com/watch?v=lK9hxecpPts&list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y&index=27&pp=iAQB"
+    }
+  },
+  {
+    "id": "khff_pl_028",
+    "domain": "건강기능식품_표시광고_사전심의",
+    "doc_type": "playlist_video_guide",
+    "category": "재생목록_개요",
+    "topic": "협회 광고심의 안내 영상 시리즈 소개",
+    "title": "[영상으로 보는 협회 서비스] 심의 담당자가 직접 알려주는 광고심의",
+    "duration": "00:43",
+    "upload_age": "4년 전",
+    "detailed_content": "한국건강기능식품협회 광고심의부(광고 모니터링팀 권혁신 담당자)가 업계 신규 입문자 및 실무자들이 건강기능식품 표시·광고 심의 업무를 쉽게 이해하고 적용할 수 있도록 제작한 안내 영상 시리즈의 도입 영상이다.",
+    "key_rules": [
+      "건강기능식품 표시·광고 심의 업무 입문 및 실무 이해를 돕는 협회 공식 안내 시리즈"
+    ],
+    "caveats_and_limits": [
+      "개별 사안이나 최신 개정 양식·공지는 협회 심의 홈페이지 및 광고심의부를 통해 추가 확인 필요"
+    ],
+    "related_stages": ["심의안내", "시리즈개요"],
+    "source": {
+      "platform": "youtube",
+      "playlist_title": "[영상으로 보는 협회 서비스] 심의 담당자가 직접 알려주는 광고심의",
+      "playlist_url": "https://www.youtube.com/playlist?list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y",
+      "channel": "KHFF TV 한국건강기능식품협회",
+      "video_ref": "https://www.youtube.com/watch?v=yrw4Tvc6hAY&list=PLPUM-LoAFNk4vnsdSZTeBvl1oVw6Jne3y&index=28&pp=iAQB"
+    }
+  }
+]

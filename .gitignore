@@ -221,3 +221,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# raw 데이터 github 업로드 안함
+data
+notebooks/foodsafety_collec.ipynb
