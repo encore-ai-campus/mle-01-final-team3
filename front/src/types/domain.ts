@@ -71,6 +71,75 @@ export interface PasswordUpdateResult {
   message: string;
 }
 
+export type CheckProductType = "general-food" | "health-functional-food";
+export type CheckFindingSeverity = "violation-suspected" | "ambiguous" | "safe";
+export type CheckProgressStatus = "completed" | "in-progress" | "skipped" | "waiting";
+
+export interface CheckInput {
+  title: string;
+  productType: CheckProductType;
+  ingredient: string;
+  channel: string;
+  copy: string;
+}
+
+export interface EvidenceReference {
+  label: string;
+  source: string;
+  href: string | null;
+}
+
+export interface CheckFinding {
+  id: string;
+  severity: CheckFindingSeverity;
+  phrase: string;
+  reason: string;
+  allowedCopy: string | null;
+  evidence: EvidenceReference[];
+  alternatives: string[];
+}
+
+export interface CheckResult extends CheckInput {
+  id: string;
+  findings: CheckFinding[];
+  reviewId: string | null;
+  nextStep: string;
+}
+
+export interface CheckStartResult {
+  checkId: string;
+  progressId: string;
+}
+
+export interface CheckDraftResult {
+  draftId: string;
+}
+
+export interface CheckProgressStep {
+  id: string;
+  label: string;
+  status: CheckProgressStatus;
+  owner: string;
+  detail: string;
+}
+
+export interface CheckProgressHistoryItem {
+  id: string;
+  actor: string;
+  action: string;
+  createdAt: string;
+}
+
+export interface CheckProgress {
+  id: string;
+  title: string;
+  currentStep: string;
+  owner: string;
+  requestedAt: string;
+  steps: CheckProgressStep[];
+  history: CheckProgressHistoryItem[];
+}
+
 export type DataState<T> =
   | { status: "loading" }
   | { status: "ready"; data: T }
