@@ -7,10 +7,15 @@ import type {
   DashboardSummary,
   DataState,
   DecisionInput,
+  Employee,
+  EmployeeDeleteResult,
+  EmployeeInput,
   NotificationFeed,
   PasswordUpdateInput,
   PasswordUpdateResult,
   ReviewDetail,
+  ReviewReport,
+  ReviewReportStage,
   ReviewTask,
 } from "../types/domain";
 
@@ -77,6 +82,13 @@ export class ApiProvider implements DataProvider {
     );
   }
 
+  public listEmployees(search?: string): Promise<DataState<Employee[]>> { return this.run("listEmployees", () => this.client?.listEmployees(search), parseEmployeeList); }
+  public getEmployee(employeeId: string): Promise<DataState<Employee>> { return this.run("getEmployee", () => this.client?.getEmployee(employeeId), parseEmployee); }
+  public createEmployee(input: EmployeeInput): Promise<DataState<Employee>> { return this.run("createEmployee", () => this.client?.createEmployee(input), parseEmployee); }
+  public updateEmployee(employeeId: string, input: EmployeeInput): Promise<DataState<Employee>> { return this.run("updateEmployee", () => this.client?.updateEmployee(employeeId, input), parseEmployee); }
+  public deleteEmployee(employeeId: string): Promise<DataState<EmployeeDeleteResult>> { return this.run("deleteEmployee", () => this.client?.deleteEmployee(employeeId), parseEmployeeDeleteResult); }
+  public getReviewReport(reviewId: string, stage: ReviewReportStage): Promise<DataState<ReviewReport>> { return this.run("getReviewReport", () => this.client?.getReviewReport(reviewId, stage), parseReviewReport); }
+
   private async run<T>(
     operation: string,
     request: () => Promise<unknown> | undefined,
@@ -142,7 +154,23 @@ function parseReviewDetail(payload: unknown): ReviewDetail {
     readOnlyReason: payload.readOnlyReason,
     decisionReason: payload.decisionReason,
     pdfUrl: payload.pdfUrl,
+    report: payload.report === undefined ? undefined : parseReviewReport(payload.report),
   };
+}
+
+function parseReviewReport(payload: unknown): ReviewReport {
+  if (!isRecord(payload) || !isReviewReportStage(payload.stage) || !isString(payload.title) || !isString(payload.summary) || !Array.isArray(payload.sections) || !Array.isArray(payload.references)) {
+    throw createApiError("invalid-payload", "검토 보고서 응답 형식이 올바르지 않습니다.", payload);
+  }
+  const sections = payload.sections.map((item) => {
+    if (!isRecord(item) || !isString(item.label) || !isString(item.value)) throw createApiError("invalid-payload", "검토 보고서 항목 형식이 올바르지 않습니다.", item);
+    return { label: item.label, value: item.value };
+  });
+  const references = payload.references.map((item) => {
+    if (!isRecord(item) || !isString(item.id) || !isString(item.label) || !isReviewReportStage(item.stage)) throw createApiError("invalid-payload", "참조 문서 형식이 올바르지 않습니다.", item);
+    return { id: item.id, label: item.label, stage: item.stage };
+  });
+  return { stage: payload.stage, title: payload.title, summary: payload.summary, sections, references };
 }
 
 function parseCheckFindings(payload: unknown): CheckFinding[] {
@@ -223,21 +251,41 @@ function parseReviewArray(payload: unknown[]): ReviewTask[] {
 }
 
 function parseReviewTask(payload: unknown): ReviewTask {
-  if (!isRecord(payload) || !isString(payload.id) || !isString(payload.title) || !isString(payload.advertiser) || !isString(payload.submittedAt) || !isReviewStatus(payload.status) || !isReviewJudgment(payload.judgment) || !isStringOrNull(payload.assignee) || !isStringOrNull(payload.processedAt) || !isStringOrNull(payload.ownerId)) {
+  const title = isRecord(payload) && isString(payload.title) ? payload.title : isRecord(payload) && isString(payload.adName) ? payload.adName : null;
+  const sentAt = isRecord(payload) && isString(payload.sentAt) ? payload.sentAt : isRecord(payload) && isString(payload.submittedAt) ? payload.submittedAt : null;
+  if (!isRecord(payload) || !isString(payload.id) || !title || !sentAt || !isReviewStatus(payload.status) || !isReviewJudgment(payload.judgment) || !isStringOrNull(payload.assignee) || !isStringOrNull(payload.processedAt) || !isStringOrNull(payload.ownerId)) {
     throw createApiError("invalid-payload", "검토 항목 응답 형식이 올바르지 않습니다.", payload);
   }
 
   return {
     id: payload.id,
-    title: payload.title,
-    advertiser: payload.advertiser,
-    submittedAt: payload.submittedAt,
+    title,
+    advertiser: isString(payload.advertiser) ? payload.advertiser : "미지정",
+    author: isString(payload.author) ? payload.author : payload.assignee ?? "미지정",
+    category: isString(payload.category) ? payload.category : "미분류",
+    submittedAt: sentAt,
+    sentAt,
     status: payload.status,
     judgment: payload.judgment,
     assignee: payload.assignee,
     processedAt: payload.processedAt,
     ownerId: payload.ownerId,
   };
+}
+
+function parseEmployeeList(payload: unknown): Employee[] {
+  if (!Array.isArray(payload)) throw createApiError("invalid-payload", "직원 목록 응답 형식이 올바르지 않습니다.", payload);
+  return payload.map(parseEmployee);
+}
+
+function parseEmployee(payload: unknown): Employee {
+  if (!isRecord(payload) || !isString(payload.id) || !isString(payload.name) || !isEmployeeDepartment(payload.department) || !isString(payload.email) || !isString(payload.phone) || !isEmployeeStatus(payload.status)) throw createApiError("invalid-payload", "직원 응답 형식이 올바르지 않습니다.", payload);
+  return { id: payload.id, name: payload.name, department: payload.department, email: payload.email, phone: payload.phone, status: payload.status };
+}
+
+function parseEmployeeDeleteResult(payload: unknown): EmployeeDeleteResult {
+  if (!isRecord(payload) || !isString(payload.employeeId)) throw createApiError("invalid-payload", "직원 삭제 응답 형식이 올바르지 않습니다.", payload);
+  return { employeeId: payload.employeeId };
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -261,8 +309,12 @@ function isStringOrNull(value: unknown): value is string | null {
 }
 
 function isReviewStatus(value: unknown): value is ReviewTask["status"] {
-  return value === "waiting" || value === "in-progress" || value === "completed";
+  return value === "waiting" || value === "in-progress" || value === "completed" || value === "first-review-completed" || value === "second-review-completed" || value === "legal-review";
 }
+
+function isReviewReportStage(value: unknown): value is ReviewReportStage { return value === "first-review" || value === "second-review" || value === "legal-review"; }
+function isEmployeeDepartment(value: unknown): value is Employee["department"] { return value === "marketing" || value === "legal"; }
+function isEmployeeStatus(value: unknown): value is Employee["status"] { return value === "active" || value === "inactive"; }
 
 function isReviewJudgment(value: unknown): value is ReviewTask["judgment"] {
   return value === "pending" || value === "approved" || value === "rejected" || value === "hold";

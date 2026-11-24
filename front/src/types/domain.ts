@@ -1,13 +1,19 @@
 export type UserRole = "admin" | "reviewer" | "viewer";
 export type Department = "legal" | "marketing" | "quality" | "unknown";
 export type ReviewJudgment = "pending" | "approved" | "rejected" | "hold";
-export type ReviewStatus = "waiting" | "in-progress" | "completed";
+export type ReviewStatus = "waiting" | "in-progress" | "completed" | "first-review-completed" | "second-review-completed" | "legal-review";
+export type ReviewReportStage = "first-review" | "second-review" | "legal-review";
+export type EmployeeDepartment = "marketing" | "legal";
+export type EmployeeStatus = "active" | "inactive";
 
 export interface ReviewTask {
   id: string;
   title: string;
   advertiser: string;
+  author: string;
+  category: string;
   submittedAt: string;
+  sentAt: string;
   status: ReviewStatus;
   judgment: ReviewJudgment;
   assignee: string | null;
@@ -24,6 +30,26 @@ export interface ReviewDetail extends ReviewTask {
   readOnlyReason: string | null;
   decisionReason: string | null;
   pdfUrl: string | null;
+  report?: ReviewReport;
+}
+
+export interface ReviewReferenceDocument {
+  id: string;
+  label: string;
+  stage: ReviewReportStage;
+}
+
+export interface ReviewReportSection {
+  label: string;
+  value: string;
+}
+
+export interface ReviewReport {
+  stage: ReviewReportStage;
+  title: string;
+  summary: string;
+  sections: ReviewReportSection[];
+  references: ReviewReferenceDocument[];
 }
 
 export interface DashboardSummary {
@@ -83,6 +109,14 @@ export interface CheckInput {
   ingredient: string;
   channel: string;
   copy: string;
+  attachments: CheckAttachment[];
+}
+
+export interface CheckAttachment {
+  id: string;
+  name: string;
+  size: number;
+  type: string;
 }
 
 export interface EvidenceReference {
@@ -140,6 +174,26 @@ export interface CheckProgress {
   requestedAt: string;
   steps: CheckProgressStep[];
   history: CheckProgressHistoryItem[];
+}
+
+export interface Employee {
+  id: string;
+  name: string;
+  department: EmployeeDepartment;
+  email: string;
+  phone: string;
+  status: EmployeeStatus;
+}
+
+export interface EmployeeInput {
+  name: string;
+  department: EmployeeDepartment;
+  email: string;
+  phone: string;
+}
+
+export interface EmployeeDeleteResult {
+  employeeId: string;
 }
 
 export type DataState<T> =

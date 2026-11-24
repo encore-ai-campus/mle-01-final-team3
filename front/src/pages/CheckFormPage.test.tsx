@@ -33,4 +33,14 @@ describe("CheckFormPage", () => {
 
     expect(await screen.findByRole("heading", { name: "검사 결과" })).toBeInTheDocument();
   });
+
+  it("accepts an allowed attachment and displays the selected file", async () => {
+    const user = userEvent.setup();
+    render(<MemoryRouter><CheckFormPage provider={new FixtureCheckProvider()} /></MemoryRouter>);
+    const file = new File(["광고 문서"], "광고문서.pdf", { type: "application/pdf" });
+
+    await user.upload(screen.getByLabelText("첨부 파일"), file);
+
+    expect(screen.getByText("광고문서.pdf")).toBeInTheDocument();
+  });
 });

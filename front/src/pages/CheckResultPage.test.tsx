@@ -32,6 +32,7 @@ describe("CheckResultPage", () => {
       ingredient: "원료",
       channel: "SNS",
       copy: "문구",
+      attachments: [],
       findings: [{ id: "finding-1", severity: "safe", phrase: "문구", reason: "안전", allowedCopy: null, evidence: [], alternatives: [] }],
       reviewId: null,
       nextStep: "확인",

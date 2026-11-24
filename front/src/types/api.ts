@@ -7,10 +7,15 @@ import type {
   CheckStartResult,
   DashboardSummary,
   DecisionInput,
+  Employee,
+  EmployeeDeleteResult,
+  EmployeeInput,
   NotificationFeed,
   PasswordUpdateInput,
   PasswordUpdateResult,
   ReviewDetail,
+  ReviewReport,
+  ReviewReportStage,
   ReviewTask,
 } from "./domain";
 
@@ -31,6 +36,12 @@ export interface ApiContract {
   updatePassword?: (input: PasswordUpdateInput) => Promise<unknown>;
   listNotifications?: () => Promise<unknown>;
   markNotificationsRead?: () => Promise<unknown>;
+  listEmployees?: (search?: string) => Promise<unknown>;
+  getEmployee?: (employeeId: string) => Promise<unknown>;
+  createEmployee?: (input: EmployeeInput) => Promise<unknown>;
+  updateEmployee?: (employeeId: string, input: EmployeeInput) => Promise<unknown>;
+  deleteEmployee?: (employeeId: string) => Promise<unknown>;
+  getReviewReport?: (reviewId: string, stage: ReviewReportStage) => Promise<unknown>;
 }
 
 export interface ApiProviderOptions {
@@ -48,6 +59,12 @@ export interface DataProvider {
   ): Promise<import("./domain").DataState<PasswordUpdateResult>>;
   listNotifications(): Promise<import("./domain").DataState<NotificationFeed>>;
   markNotificationsRead(): Promise<import("./domain").DataState<NotificationFeed>>;
+  listEmployees(search?: string): Promise<import("./domain").DataState<Employee[]>>;
+  getEmployee(employeeId: string): Promise<import("./domain").DataState<Employee>>;
+  createEmployee(input: EmployeeInput): Promise<import("./domain").DataState<Employee>>;
+  updateEmployee(employeeId: string, input: EmployeeInput): Promise<import("./domain").DataState<Employee>>;
+  deleteEmployee(employeeId: string): Promise<import("./domain").DataState<EmployeeDeleteResult>>;
+  getReviewReport(reviewId: string, stage: ReviewReportStage): Promise<import("./domain").DataState<ReviewReport>>;
 }
 
 export interface CheckDataProvider {

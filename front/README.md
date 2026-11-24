@@ -28,6 +28,9 @@ npm.cmd run dev
 - `/checks/:checkId`: 위반 의심·애매·안전 결과와 근거·대안 문구 확인
 - `/progress` 또는 `/progress/:checkId`: 자동 검사와 담당자 검토 진행 상황 확인
 - `/reviews` 및 `/reviews/:reviewId`: 검토함과 검토 보고서, AI 근거·피드백 확인
+- `/reviews/:reviewId/reports/:reportStage`: 1차·2차·법무팀 참조 보고서 상세
+- `/workflow`: 관리자 업무 흐름 시각화
+- `/employees`, `/employees/new`, `/employees/:employeeId`: 관리자 직원 목록·등록·수정·삭제
 
 광고 검사 API 계약이 확인되지 않은 기본 모드에서는 저장·검사 시작·결과 조회가 `not-configured` 상태로 표시됩니다. `VITE_USE_FIXTURES=true`일 때만 화면 흐름 검증용 fixture 결과가 사용됩니다.
 

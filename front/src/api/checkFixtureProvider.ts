@@ -36,6 +36,7 @@ function createFixtureResult(id: string): CheckResult {
     ingredient: "예시 원료",
     channel: "상세페이지",
     copy: "예시 광고 문구는 실제 API 연결 후 표시됩니다.",
+    attachments: [],
     findings: [
       {
         id: "fixture-finding-1",

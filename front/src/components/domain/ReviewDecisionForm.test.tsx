@@ -5,7 +5,7 @@ import type { ReviewDetail } from "../../types/domain";
 import { ReviewDecisionForm } from "./ReviewDecisionForm";
 
 const detail: ReviewDetail = {
-  id: "review-1", title: "보고서", advertiser: "광고주", submittedAt: "날짜", status: "waiting", judgment: "pending", assignee: "담당자", processedAt: null, ownerId: "user", copy: "문구", attachments: [], canDecide: true, readOnlyReason: null, decisionReason: null, pdfUrl: null,
+  id: "review-1", title: "보고서", advertiser: "광고주", author: "작성자", category: "건강기능식품", submittedAt: "날짜", sentAt: "날짜", status: "waiting", judgment: "pending", assignee: "담당자", processedAt: null, ownerId: "user", copy: "문구", attachments: [], canDecide: true, readOnlyReason: null, decisionReason: null, pdfUrl: null,
 };
 
 describe("ReviewDecisionForm", () => {

@@ -1,5 +1,5 @@
 import type { ApiContract, ReviewQuery } from "../types/api";
-import type { DecisionInput, PasswordUpdateInput } from "../types/domain";
+import type { DecisionInput, PasswordUpdateInput, ReviewReportStage, EmployeeInput } from "../types/domain";
 
 export class ContractApiClient {
   public constructor(private readonly contract: ApiContract) {}
@@ -38,6 +38,13 @@ export class ContractApiClient {
       "markNotificationsRead",
     )();
   }
+
+  public listEmployees(search?: string): Promise<unknown> { return this.requireOperation(this.contract.listEmployees, "listEmployees")(search); }
+  public getEmployee(employeeId: string): Promise<unknown> { return this.requireOperation(this.contract.getEmployee, "getEmployee")(employeeId); }
+  public createEmployee(input: EmployeeInput): Promise<unknown> { return this.requireOperation(this.contract.createEmployee, "createEmployee")(input); }
+  public updateEmployee(employeeId: string, input: EmployeeInput): Promise<unknown> { return this.requireOperation(this.contract.updateEmployee, "updateEmployee")(employeeId, input); }
+  public deleteEmployee(employeeId: string): Promise<unknown> { return this.requireOperation(this.contract.deleteEmployee, "deleteEmployee")(employeeId); }
+  public getReviewReport(reviewId: string, stage: ReviewReportStage): Promise<unknown> { return this.requireOperation(this.contract.getReviewReport, "getReviewReport")(reviewId, stage); }
 
   private requireOperation<TArgs extends unknown[], TResult>(
     operation: ((...args: TArgs) => Promise<TResult>) | undefined,

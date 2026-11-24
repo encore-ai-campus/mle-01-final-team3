@@ -10,6 +10,7 @@ describe("CheckDataProvider", () => {
       ingredient: "원료",
       channel: "상세페이지",
       copy: "광고 문구",
+      attachments: [],
     };
 
     await expect(provider.getResult("check-1")).resolves.toMatchObject({ status: "not-configured" });
