@@ -64,6 +64,8 @@ export class FixtureProvider implements DataProvider {
         ...task,
         copy: "예시 광고 문구는 실제 API 연결 후 표시됩니다.",
         attachments: ["fixture-attachment.pdf"],
+        findings: [{ id: "fixture-finding-1", severity: "violation-suspected", phrase: "효과를 보장합니다", reason: "효과를 단정하는 표현은 확인이 필요합니다.", allowedCopy: "건강한 생활에 도움을 줄 수 있어요", evidence: [{ label: "적용 조항", source: "확인된 API 연결 후 표시됩니다.", href: null }], alternatives: ["건강한 생활에 도움을 줄 수 있어요"] }],
+        evidencePath: ["광고 문구", "AI 자동 검사", "적용 조항"],
         canDecide: !readOnly,
         readOnlyReason: readOnly ? "다른 담당자가 처리했거나 처리 권한이 없습니다." : null,
         decisionReason: this.scenarioId === "LG-20" || this.scenarioId === "LG-27" ? "예시 부적합 사유" : null,

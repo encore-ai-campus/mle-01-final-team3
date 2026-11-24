@@ -15,12 +15,16 @@ interface SidebarProps {
 
 const navItems = [
   { path: "/", label: "대시보드", icon: "⌂" },
+  { path: "/checks/new", label: "광고 문구 검사", icon: "✎" },
+  { path: "/progress", label: "진행 상황", icon: "◷" },
   { path: "/reviews", label: "검토함", icon: "▤" },
   { path: "/notifications", label: "알림", icon: "●" },
   { path: "/account", label: "마이페이지", icon: "◎" },
 ];
 
 export function Sidebar({ currentPath, user, open, onNavigate, onClose }: SidebarProps) {
+  const isCurrent = (path: string) => path === "/" ? currentPath === path : currentPath === path || currentPath.startsWith(`${path}/`);
+
   return (
     <aside className={`sidebar ${open ? "sidebar--open" : ""}`} aria-label="사이드바">
       <div className="sidebar__brand">
@@ -32,8 +36,8 @@ export function Sidebar({ currentPath, user, open, onNavigate, onClose }: Sideba
           <a
             key={item.path}
             href={item.path}
-            className={`sidebar__link ${currentPath === item.path ? "sidebar__link--active" : ""}`}
-            aria-current={currentPath === item.path ? "page" : undefined}
+            className={`sidebar__link ${isCurrent(item.path) ? "sidebar__link--active" : ""}`}
+            aria-current={isCurrent(item.path) ? "page" : undefined}
             onClick={(event) => {
               event.preventDefault();
               onNavigate(item.path);

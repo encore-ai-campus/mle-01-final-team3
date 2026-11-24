@@ -18,6 +18,8 @@ export interface ReviewTask {
 export interface ReviewDetail extends ReviewTask {
   copy: string;
   attachments: string[];
+  findings?: CheckFinding[];
+  evidencePath?: string[];
   canDecide: boolean;
   readOnlyReason: string | null;
   decisionReason: string | null;

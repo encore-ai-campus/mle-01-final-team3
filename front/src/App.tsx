@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { BrowserRouter, Route, Routes, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { createDataProvider } from "./api/providerFactory";
+import { createCheckProvider } from "./api/checkProvider";
 import { isArtifactScenarioId } from "./fixtures/artifactScenarios";
 import { AppShell } from "./components/layout/AppShell";
 import { AccountPage } from "./pages/AccountPage";
@@ -8,6 +9,9 @@ import { DashboardPage } from "./pages/DashboardPage";
 import { NotificationsPage } from "./pages/NotificationsPage";
 import { ReviewDetailPage } from "./pages/ReviewDetailPage";
 import { ReviewsPage } from "./pages/ReviewsPage";
+import { CheckFormPage } from "./pages/CheckFormPage";
+import { CheckResultPage } from "./pages/CheckResultPage";
+import { ProgressPage } from "./pages/ProgressPage";
 
 function AppRoutes() {
   const location = useLocation();
@@ -16,8 +20,9 @@ function AppRoutes() {
   const scenarioValue = searchParams.get("scenario");
   const scenario = isArtifactScenarioId(scenarioValue) ? scenarioValue : "LG-1";
   const provider = useMemo(() => createDataProvider(scenario), [scenario]);
+  const checkProvider = useMemo(() => createCheckProvider(scenario), [scenario]);
 
-  return <AppShell currentPath={location.pathname} user={{ name: "로그인 사용자", department: "부서 미확인" }} onNavigate={(path) => navigate(path)}><Routes><Route path="/" element={<DashboardPage provider={provider} />} /><Route path="/reviews" element={<ReviewsPage provider={provider} />} /><Route path="/reviews/:reviewId" element={<ReviewDetailPage provider={provider} />} /><Route path="/account" element={<AccountPage provider={provider} />} /><Route path="/notifications" element={<NotificationsPage provider={provider} />} /><Route path="*" element={<NotFoundPage />} /></Routes></AppShell>;
+  return <AppShell currentPath={location.pathname} user={{ name: "로그인 사용자", department: "부서 미확인" }} onNavigate={(path) => navigate(path)}><Routes><Route path="/" element={<DashboardPage provider={provider} />} /><Route path="/checks/new" element={<CheckFormPage provider={checkProvider} />} /><Route path="/checks/:checkId" element={<CheckResultPage provider={checkProvider} />} /><Route path="/progress" element={<ProgressPage provider={checkProvider} />} /><Route path="/progress/:checkId" element={<ProgressPage provider={checkProvider} />} /><Route path="/reviews" element={<ReviewsPage provider={provider} />} /><Route path="/reviews/:reviewId" element={<ReviewDetailPage provider={provider} />} /><Route path="/account" element={<AccountPage provider={provider} />} /><Route path="/notifications" element={<NotificationsPage provider={provider} />} /><Route path="*" element={<NotFoundPage />} /></Routes></AppShell>;
 }
 
 function NotFoundPage() {

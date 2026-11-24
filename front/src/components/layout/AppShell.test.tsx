@@ -17,6 +17,8 @@ describe("AppShell", () => {
 
     expect(screen.getByRole("navigation", { name: "주요 메뉴" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "검토함" })).toHaveAttribute("aria-current", "page");
+    expect(screen.getByRole("link", { name: "광고 문구 검사" })).toHaveAttribute("href", "/checks/new");
+    expect(screen.getByRole("link", { name: "진행 상황" })).toHaveAttribute("href", "/progress");
     expect(screen.getByRole("main")).toHaveTextContent("본문");
   });
 

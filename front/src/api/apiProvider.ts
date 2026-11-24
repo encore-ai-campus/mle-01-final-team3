@@ -3,6 +3,7 @@ import { createApiError, toApiError, type ApiError } from "./errors";
 import type { ApiProviderOptions, DataProvider, ReviewQuery } from "../types/api";
 import type {
   Account,
+  CheckFinding,
   DashboardSummary,
   DataState,
   DecisionInput,
@@ -135,11 +136,41 @@ function parseReviewDetail(payload: unknown): ReviewDetail {
     ...task,
     copy: payload.copy,
     attachments: payload.attachments,
+    findings: payload.findings === undefined ? [] : parseCheckFindings(payload.findings),
+    evidencePath: payload.evidencePath === undefined ? [] : parseStringArray(payload.evidencePath, "근거 경로"),
     canDecide: payload.canDecide,
     readOnlyReason: payload.readOnlyReason,
     decisionReason: payload.decisionReason,
     pdfUrl: payload.pdfUrl,
   };
+}
+
+function parseCheckFindings(payload: unknown): CheckFinding[] {
+  if (!Array.isArray(payload)) {
+    throw createApiError("invalid-payload", "검토 근거 응답 형식이 올바르지 않습니다.", payload);
+  }
+
+  return payload.map((item) => {
+    if (!isRecord(item) || !isString(item.id) || !isCheckFindingSeverity(item.severity) || !isString(item.phrase) || !isString(item.reason) || !isStringOrNull(item.allowedCopy) || !Array.isArray(item.evidence) || !Array.isArray(item.alternatives) || !item.alternatives.every(isString)) {
+      throw createApiError("invalid-payload", "검토 근거 항목 형식이 올바르지 않습니다.", item);
+    }
+
+    const evidence = item.evidence.map((reference) => {
+      if (!isRecord(reference) || !isString(reference.label) || !isString(reference.source) || !isStringOrNull(reference.href)) {
+        throw createApiError("invalid-payload", "검토 근거 출처 형식이 올바르지 않습니다.", reference);
+      }
+      return { label: reference.label, source: reference.source, href: reference.href };
+    });
+
+    return { id: item.id, severity: item.severity, phrase: item.phrase, reason: item.reason, allowedCopy: item.allowedCopy, evidence, alternatives: item.alternatives };
+  });
+}
+
+function parseStringArray(payload: unknown, label: string): string[] {
+  if (!Array.isArray(payload) || !payload.every(isString)) {
+    throw createApiError("invalid-payload", `${label} 응답 형식이 올바르지 않습니다.`, payload);
+  }
+  return payload;
 }
 
 function parseAccount(payload: unknown): Account {
@@ -235,6 +266,10 @@ function isReviewStatus(value: unknown): value is ReviewTask["status"] {
 
 function isReviewJudgment(value: unknown): value is ReviewTask["judgment"] {
   return value === "pending" || value === "approved" || value === "rejected" || value === "hold";
+}
+
+function isCheckFindingSeverity(value: unknown): value is CheckFinding["severity"] {
+  return value === "violation-suspected" || value === "ambiguous" || value === "safe";
 }
 
 function isDepartment(value: unknown): value is Account["department"] {
