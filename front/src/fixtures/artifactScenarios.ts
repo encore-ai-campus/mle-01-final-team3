@@ -63,3 +63,7 @@ const scenarios: Record<ArtifactScenarioId, Omit<ArtifactScenario, "id">> = {
 export const artifactScenarios: Record<ArtifactScenarioId, ArtifactScenario> = Object.fromEntries(
   artifactScenarioIds.map((id) => [id, { id, ...scenarios[id] }]),
 ) as Record<ArtifactScenarioId, ArtifactScenario>;
+
+export function isArtifactScenarioId(value: string | null): value is ArtifactScenarioId {
+  return value !== null && artifactScenarioIds.includes(value as ArtifactScenarioId);
+}

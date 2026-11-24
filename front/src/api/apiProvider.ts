@@ -147,7 +147,14 @@ function parseAccount(payload: unknown): Account {
     throw createApiError("invalid-payload", "계정 응답 형식이 올바르지 않습니다.", payload);
   }
 
-  return payload as Account;
+  return {
+    userId: payload.userId,
+    name: payload.name,
+    email: payload.email,
+    department: payload.department,
+    role: payload.role,
+    needsPasswordChange: payload.needsPasswordChange,
+  };
 }
 
 function parsePasswordUpdateResult(payload: unknown): PasswordUpdateResult {
@@ -168,7 +175,13 @@ function parseNotificationFeed(payload: unknown): NotificationFeed {
       throw createApiError("invalid-payload", "알림 항목 형식이 올바르지 않습니다.", item);
     }
 
-    return item;
+    return {
+      id: item.id,
+      title: item.title,
+      message: item.message,
+      createdAt: item.createdAt,
+      read: item.read,
+    };
   });
 
   return { notifications };
