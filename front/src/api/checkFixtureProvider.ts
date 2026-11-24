@@ -13,11 +13,13 @@ export class FixtureCheckProvider implements CheckDataProvider {
     return { status: "ready", data: createFixtureResult(checkId) };
   }
 
-  public async saveDraft(_input: CheckInput): Promise<DataState<CheckDraftResult>> {
+  public async saveDraft(input: CheckInput): Promise<DataState<CheckDraftResult>> {
+    void input;
     return { status: "ready", data: { draftId: "fixture-draft-1" } };
   }
 
-  public async startCheck(_input: CheckInput): Promise<DataState<CheckStartResult>> {
+  public async startCheck(input: CheckInput): Promise<DataState<CheckStartResult>> {
+    void input;
     return { status: "ready", data: { checkId: "fixture-check-1", progressId: "fixture-check-1" } };
   }
 

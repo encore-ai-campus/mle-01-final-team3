@@ -17,11 +17,13 @@ export class ApiCheckProvider implements CheckDataProvider {
     return Promise.resolve(this.notConfigured(`getResult(${checkId})`));
   }
 
-  public saveDraft(_input: CheckInput): Promise<DataState<CheckDraftResult>> {
+  public saveDraft(input: CheckInput): Promise<DataState<CheckDraftResult>> {
+    void input;
     return Promise.resolve(this.notConfigured("saveDraft"));
   }
 
-  public startCheck(_input: CheckInput): Promise<DataState<CheckStartResult>> {
+  public startCheck(input: CheckInput): Promise<DataState<CheckStartResult>> {
+    void input;
     return Promise.resolve(this.notConfigured("startCheck"));
   }
 
@@ -35,6 +37,7 @@ export class ApiCheckProvider implements CheckDataProvider {
 }
 
 export function createCheckProvider(scenarioId: ArtifactScenarioId = "LG-1"): CheckDataProvider {
+  void scenarioId;
   return import.meta.env.VITE_USE_FIXTURES === "true" ? new FixtureCheckProvider() : new ApiCheckProvider();
 }
 
