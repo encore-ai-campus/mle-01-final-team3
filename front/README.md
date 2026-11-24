@@ -22,6 +22,15 @@ npm.cmd run dev
 
 아트보드 상태는 `?scenario=LG-1`부터 `?scenario=LG-41`까지 선택할 수 있습니다. 예: `/reviews?scenario=LG-10`.
 
+### 광고 문구 검사 경로
+
+- `/checks/new`: 광고명·제품 유형·원료·게시 채널·광고 문구 입력
+- `/checks/:checkId`: 위반 의심·애매·안전 결과와 근거·대안 문구 확인
+- `/progress` 또는 `/progress/:checkId`: 자동 검사와 담당자 검토 진행 상황 확인
+- `/reviews` 및 `/reviews/:reviewId`: 검토함과 검토 보고서, AI 근거·피드백 확인
+
+광고 검사 API 계약이 확인되지 않은 기본 모드에서는 저장·검사 시작·결과 조회가 `not-configured` 상태로 표시됩니다. `VITE_USE_FIXTURES=true`일 때만 화면 흐름 검증용 fixture 결과가 사용됩니다.
+
 ## Vercel 연결
 
 저장소에서 Vercel 프로젝트를 연결할 때 다음 설정을 사용합니다.
@@ -60,5 +69,7 @@ npm.cmd run build
 - 인증 방식, 권한 오류 형식, 세션 만료 처리
 - 각 요청·응답의 필드와 날짜 형식
 - 판정 저장의 중복 요청·동시 담당자 처리 규칙
+- 광고 검사 시작·임시 저장·결과·진행 상황 조회의 실제 HTTP 메서드와 경로
+- 광고 검사 요청·finding·근거·대안 문구·진행 단계 응답 필드와 권한 규칙
 - PDF 저장 URL 또는 다운로드 응답 방식
 - 비밀번호 정책과 변경 완료 후 알림 처리
