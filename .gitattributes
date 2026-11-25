@@ -1,3 +1,7 @@
 data_parsing/01_건강기능식품/원본[[:space:]]데이터/제품정보-20261123T031715Z-1-001/I0030_20261122_202624.json filter=lfs diff=lfs merge=lfs -text
 data_parsing/02_일반식품/원본[[:space:]]데이터/C002/C002_261123.json filter=lfs diff=lfs merge=lfs -text
 data_parsing/02_일반식품/원본[[:space:]]데이터/I1250/I1250_261123.json filter=lfs diff=lfs merge=lfs -text
+/data_chunking/01_건강기능식품/원본[[:space:]]데이터/제품정보-20261123T031715Z-1-001/I0030_20261122_202624.json.chunks.jsonl filter=lfs diff=lfs merge=lfs -text
+/data_chunking/02_일반식품/원본[[:space:]]데이터/C002/C002_261123.json.chunks.jsonl filter=lfs diff=lfs merge=lfs -text
+/data_chunking/02_일반식품/원본[[:space:]]데이터/I1250/I1250_261123.json.chunks.jsonl filter=lfs diff=lfs merge=lfs -text
+/data_chunking/sample/02_일반식품/원본[[:space:]]데이터/C002/C002_261123.json.chunks.jsonl filter=lfs diff=lfs merge=lfs -text
