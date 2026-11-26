@@ -1,0 +1,29 @@
+:root {
+  font-family: Inter, Pretendard, "Noto Sans KR", system-ui, sans-serif;
+  color: #14284b;
+  background: #f4f7fb;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+
+  --color-bg: #f4f7fb;
+  --color-surface: #ffffff;
+  --color-border: #dce4ef;
+  --color-text: #14284b;
+  --color-muted: #687890;
+  --color-primary: #172d54;
+  --color-primary-strong: #0e2142;
+  --color-focus: #8aa9d7;
+  --color-success: #2f8b5b;
+  --color-warning: #c98b20;
+  --color-danger: #c9362b;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --shadow-card: 0 0.25rem 1rem rgb(15 23 42 / 0.06);
+}
