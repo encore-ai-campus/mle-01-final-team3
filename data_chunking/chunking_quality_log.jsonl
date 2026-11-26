@@ -1,0 +1,641 @@
+{"event": "duplicate_excluded", "document_id": "7721de8f3c4fa1a9", "source_path": "data_parsing/01_건강기능식품/법령_고시/현재/기준규격/제2026-43호/건강기능식품의 기준 및 규격_(제4).json", "reason": "same_registry_title_version"}
+{"event": "duplicate_excluded", "document_id": "ccb21ee852a2ed89", "source_path": "data_parsing/01_건강기능식품/법령_고시/현재/기준규격/제2026-43호/건강기능식품의 기준 및 규격_(제5).json", "reason": "same_registry_title_version"}
+{"event": "source_excluded", "document_id": "DOC-6A72EB6512", "source_path": "data_parsing/01_건강기능식품/원본 데이터/제품정보-20261123T031715Z-1-001/I0030_20261122_202624.json", "reason": "large_catalog_out_of_chunking_brief"}
+{"event": "source_excluded", "document_id": "DOC-D1DABDE9E3", "source_path": "data_parsing/02_일반식품/원본 데이터/C002/C002_261123.json", "reason": "large_catalog_out_of_chunking_brief"}
+{"event": "source_excluded", "document_id": "DOC-8E5CFCD60A", "source_path": "data_parsing/02_일반식품/원본 데이터/I1250/I1250_261123.json", "reason": "large_catalog_out_of_chunking_brief"}
+{"event": "source_excluded", "document_id": "d5de46c63314d48d", "source_path": "data_parsing/02_일반식품/원본 데이터/식품원료/food_raw_material_metadata.json", "reason": "large_catalog_out_of_chunking_brief"}
+{"event": "duplicate_excluded", "document_id": "4875117b2d645c67", "source_path": "data_parsing/law/건강기능식품의+기준+및+규격+일부개정고시(제2026-43호,+2026.6.11.).json", "reason": "same_registry_title_version"}
+{"event": "duplicate_excluded", "document_id": "df71ee26b065bf5b", "source_path": "data_parsing/law/친환경농어업 육성 및 유기식품 등의 관리ㆍ지원에 관한 법률.json", "reason": "same_registry_title_version"}
+{"event": "document_processed", "document_id": "bb51bc2a5017baec", "chunk_count": 17, "source_path": "data/data_parsing/00_공통_표시광고-20261123T025100Z-1-001/과거/식품등의 부당한 표시 또는 광고의 내용 기준_제2021-89호.json"}
+{"event": "skipped_page", "document_id": "cbfc8683ba236d34", "source_page": 2}
+{"event": "skipped_page", "document_id": "cbfc8683ba236d34", "source_page": 3}
+{"event": "skipped_page", "document_id": "cbfc8683ba236d34", "source_page": 4}
+{"event": "skipped_page", "document_id": "cbfc8683ba236d34", "source_page": 5}
+{"event": "skipped_page", "document_id": "cbfc8683ba236d34", "source_page": 6}
+{"event": "skipped_page", "document_id": "cbfc8683ba236d34", "source_page": 7}
+{"event": "skipped_page", "document_id": "cbfc8683ba236d34", "source_page": 8}
+{"event": "skipped_page", "document_id": "cbfc8683ba236d34", "source_page": 9}
+{"event": "skipped_page", "document_id": "cbfc8683ba236d34", "source_page": 10}
+{"event": "skipped_page", "document_id": "cbfc8683ba236d34", "source_page": 11}
+{"event": "skipped_page", "document_id": "cbfc8683ba236d34", "source_page": 13}
+{"event": "document_processed", "document_id": "cbfc8683ba236d34", "chunk_count": 1, "source_path": "data/data_parsing/00_공통_표시광고-20261123T025100Z-1-001/현재/★++「식품등의+부당한+표시+또는+광고의+내용+기준」+고시+전문(제2025-79호,+2025.12.4.json"}
+{"event": "document_processed", "document_id": "5080265feb5e1e6f", "chunk_count": 90, "source_path": "data/data_parsing/01_건강기능식품/법령_고시/원본 데이터/시행예정/2028/건강기능식품의 표시기준(식품의약품안전처고시)(제2026-66호)(20280101).json"}
+{"event": "document_processed", "document_id": "c8e42509e89badab", "chunk_count": 1, "source_path": "data/data_parsing/01_건강기능식품/법령_고시/현재/기준규격/제2026-43호/건강기능식품의 기준 및 규격(식품의약품안전처고시)(제2026-43호)(20260611).json"}
+{"event": "skipped_page", "document_id": "c6e1f86dbab0f4c7", "source_page": 40}
+{"event": "skipped_page", "document_id": "c6e1f86dbab0f4c7", "source_page": 74}
+{"event": "skipped_page", "document_id": "c6e1f86dbab0f4c7", "source_page": 75}
+{"event": "skipped_page", "document_id": "c6e1f86dbab0f4c7", "source_page": 99}
+{"event": "skipped_page", "document_id": "c6e1f86dbab0f4c7", "source_page": 184}
+{"event": "document_processed", "document_id": "c6e1f86dbab0f4c7", "chunk_count": 613, "source_path": "data/data_parsing/01_건강기능식품/법령_고시/현재/기준규격/제2026-43호/건강기능식품의 기준 및 규격_(제1~제3)_개정.json"}
+{"event": "document_processed", "document_id": "6a65a41e5979de6c", "chunk_count": 94, "source_path": "data/data_parsing/01_건강기능식품/법령_고시/현재/표시기준/★건강기능식품의 표시기준 고시전문(고시 제2025-61호, 2025.8.29.).json"}
+{"event": "document_processed", "document_id": "3422fc7d2d8aad23", "chunk_count": 457, "source_path": "data/data_parsing/01_건강기능식품/원본 데이터/개별인정-20261123T031709Z-1-001/건강기능식품_개별인정형_정보.json"}
+{"event": "document_processed", "document_id": "389128677e1eb090", "chunk_count": 779, "source_path": "data/data_parsing/01_건강기능식품/원본 데이터/기능성원료-20261123T031711Z-1-001/건강기능식품_기능성_원료인정현황.json"}
+{"event": "document_processed", "document_id": "f31aea9ef2a904e2", "chunk_count": 585, "source_path": "data/data_parsing/01_건강기능식품/원본 데이터/영양DB-20261123T031713Z-1-001/건강기능식품_영양DB.json"}
+{"event": "document_processed", "document_id": "ef4b83ea4a5a8f68", "chunk_count": 585, "source_path": "data/data_parsing/01_건강기능식품/원본 데이터/품목분류-20261123T031718Z-1-001/건강기능식품_품목분류정보.json"}
+{"event": "document_processed", "document_id": "b0936351581da6bb", "chunk_count": 55, "source_path": "data/data_parsing/02_일반식품/법령_고시/시행예정/2028/광고규정/기능성 표시·광고 규정_제2026-70호.json"}
+{"event": "document_processed", "document_id": "5840bab5b8cfa0a8", "chunk_count": 188, "source_path": "data/data_parsing/02_일반식품/법령_고시/시행예정/2028/표시기준/식품등의 표시기준(식품의약품안전처고시)(제2026-37호)(20280101).json"}
+{"event": "skipped_page", "document_id": "caa14f8565f4921f", "source_page": 1}
+{"event": "skipped_page", "document_id": "caa14f8565f4921f", "source_page": 2}
+{"event": "skipped_page", "document_id": "caa14f8565f4921f", "source_page": 3}
+{"event": "skipped_page", "document_id": "caa14f8565f4921f", "source_page": 4}
+{"event": "skipped_page", "document_id": "caa14f8565f4921f", "source_page": 5}
+{"event": "skipped_page", "document_id": "caa14f8565f4921f", "source_page": 6}
+{"event": "skipped_page", "document_id": "caa14f8565f4921f", "source_page": 7}
+{"event": "skipped_page", "document_id": "caa14f8565f4921f", "source_page": 8}
+{"event": "skipped_page", "document_id": "caa14f8565f4921f", "source_page": 9}
+{"event": "skipped_page", "document_id": "caa14f8565f4921f", "source_page": 10}
+{"event": "skipped_page", "document_id": "caa14f8565f4921f", "source_page": 11}
+{"event": "skipped_page", "document_id": "caa14f8565f4921f", "source_page": 12}
+{"event": "skipped_page", "document_id": "caa14f8565f4921f", "source_page": 13}
+{"event": "skipped_page", "document_id": "caa14f8565f4921f", "source_page": 14}
+{"event": "skipped_page", "document_id": "caa14f8565f4921f", "source_page": 15}
+{"event": "skipped_page", "document_id": "caa14f8565f4921f", "source_page": 17}
+{"event": "skipped_page", "document_id": "caa14f8565f4921f", "source_page": 18}
+{"event": "document_processed", "document_id": "caa14f8565f4921f", "chunk_count": 1, "source_path": "data/data_parsing/02_일반식품/법령_고시/현재/광고규정/기능성 표시·광고 규정_제2023-20호_시행20230308.json"}
+{"event": "document_processed", "document_id": "459be586daf265c7", "chunk_count": 269, "source_path": "data/data_parsing/02_일반식품/법령_고시/현재/표시기준/식품등의 표시기준_20260517기준.json"}
+{"event": "document_processed", "document_id": "5d80ac03c1dba7b4", "chunk_count": 10, "source_path": "data/data_parsing/03_어린이 기호식품/법령_고시/과거/표시인증/어린이 기호식품 등의 영양성분 표시기준 및 방법에 관한 규정(식품의약품안전청고시)(제2011-16호)(20110329).json"}
+{"event": "document_processed", "document_id": "d7d6aa742889bf9d", "chunk_count": 39, "source_path": "data/data_parsing/03_어린이 기호식품/법령_고시/과거/품질인증/어린이+기호식품+품질인증기준+전문(식약처+고시+제2023-58호).json"}
+{"event": "document_processed", "document_id": "fffc5d1bca919a24", "chunk_count": 1, "source_path": "data/data_parsing/03_어린이 기호식품/법령_고시/원본데이터/품질인증제품/2026.10.31.어린이+기호식품+품질인증+현황+목록(540).json"}
+{"event": "document_processed", "document_id": "b015d0e1afc34399", "chunk_count": 16, "source_path": "data/data_parsing/03_어린이 기호식품/법령_고시/현재/고열량_저열량/제2023-59호/[별표] 고열량·저영양 식품 영양성분 기준(제3조 관련)(고열량·저영양 식품 영양성분 기준).json"}
+{"event": "document_processed", "document_id": "8a4e6fdff547c70c", "chunk_count": 6, "source_path": "data/data_parsing/03_어린이 기호식품/법령_고시/현재/광고제한/광고 제한 및 금지 대상 고열량·저영양 식품과 고카페인 함유 식품(식품의약품안전처고시)(제2019-24호)(20190322).json"}
+{"event": "document_processed", "document_id": "c171926547d88962", "chunk_count": 119, "source_path": "data/data_parsing/03_어린이 기호식품/법령_고시/현재/기본법령/법률/어린이 식생활안전관리 특별법(법률)(제19622호)(20240209).json"}
+{"event": "document_processed", "document_id": "daeaaa1caba60934", "chunk_count": 155, "source_path": "data/data_parsing/03_어린이 기호식품/법령_고시/현재/기본법령/시행령/어린이 식생활안전관리 특별법 시행령(대통령령)(제36292호)(20260512).json"}
+{"event": "document_processed", "document_id": "be14415baee3a8af", "chunk_count": 8, "source_path": "data/data_parsing/03_어린이 기호식품/법령_고시/현재/판매_광고금지/정서저해 식품 등의 판매 등 금지에 관한 규정(식품의약품안전처고시)(제2014-38호)(20140212).json"}
+{"event": "document_processed", "document_id": "cf8d6313492fa1c6", "chunk_count": 54, "source_path": "data/data_parsing/03_어린이 기호식품/법령_고시/현재/표시기준/어린이 기호식품 등의 영양성분과 고카페인 함유 식품 표시기준 및 방법에 관한 규정(식품의약품안전처고시)(제2023-77호)(20231215).json"}
+{"event": "document_processed", "document_id": "6cf430575c5b3a21", "chunk_count": 18, "source_path": "data/data_parsing/03_어린이 기호식품/법령_고시/현재/품질인증/[별표] 어린이 기호식품 품질인증기준(제3조 관련)(어린이 기호식품 품질인증기준).json"}
+{"event": "document_processed", "document_id": "8beddd917de081dd", "chunk_count": 14, "source_path": "data/data_parsing/03_어린이 기호식품/법령_고시/현재/품질인증/어린이 기호식품 품질인증기준(식품의약품안전처고시)(제2026-61호)(20260814).json"}
+{"event": "skipped_page", "document_id": "e5b90c83fe342dd5", "source_page": 2}
+{"event": "skipped_page", "document_id": "e5b90c83fe342dd5", "source_page": 3}
+{"event": "skipped_page", "document_id": "e5b90c83fe342dd5", "source_page": 4}
+{"event": "skipped_page", "document_id": "e5b90c83fe342dd5", "source_page": 5}
+{"event": "skipped_page", "document_id": "e5b90c83fe342dd5", "source_page": 6}
+{"event": "skipped_page", "document_id": "e5b90c83fe342dd5", "source_page": 7}
+{"event": "skipped_page", "document_id": "e5b90c83fe342dd5", "source_page": 8}
+{"event": "skipped_page", "document_id": "e5b90c83fe342dd5", "source_page": 9}
+{"event": "skipped_page", "document_id": "e5b90c83fe342dd5", "source_page": 10}
+{"event": "skipped_page", "document_id": "e5b90c83fe342dd5", "source_page": 13}
+{"event": "document_processed", "document_id": "e5b90c83fe342dd5", "chunk_count": 1, "source_path": "data/data_parsing/law/☆+「식품등의+부당한+표시+또는+광고의+내용+기준」+고시+전문(제2024-23호，+2024.6.11.).json"}
+{"event": "document_processed", "document_id": "c7db9cc3644c38da", "chunk_count": 404, "source_path": "data/data_parsing/law/건강기능식품에 관한 법률 시행규칙.json"}
+{"event": "document_processed", "document_id": "a8849fd047eb965b", "chunk_count": 176, "source_path": "data/data_parsing/law/건강기능식품에 관한 법률 시행령.json"}
+{"event": "document_processed", "document_id": "0265d6e9e6e846f8", "chunk_count": 429, "source_path": "data/data_parsing/law/건강기능식품에 관한 법률.json"}
+{"event": "document_processed", "document_id": "296150b7d07cdce2", "chunk_count": 655, "source_path": "data/data_parsing/law/농림축산식품부 소관 친환경농어업 육성 및 유기식품 등의 관리ㆍ지원에 관한 법률 시행규칙.json"}
+{"event": "document_processed", "document_id": "7bef278a65d4e45a", "chunk_count": 90, "source_path": "data/data_parsing/law/방문판매 등에 관한 법률 시행규칙.json"}
+{"event": "document_processed", "document_id": "e106ae6d4dc75efa", "chunk_count": 347, "source_path": "data/data_parsing/law/방문판매 등에 관한 법률 시행령.json"}
+{"event": "document_processed", "document_id": "4c74f0c78b46fb75", "chunk_count": 577, "source_path": "data/data_parsing/law/방문판매법 등에 관한 법률.json"}
+{"event": "document_processed", "document_id": "426e03491e10c123", "chunk_count": 104, "source_path": "data/data_parsing/law/식품 등의 표시ㆍ광고에 관한 법률 시행령.json"}
+{"event": "document_processed", "document_id": "bc579008458506dd", "chunk_count": 5, "source_path": "data/data_parsing/law/식품등의 부당한 표시 또는 광고의 내용 기준.json"}
+{"event": "document_processed", "document_id": "7d237411cc7cb62e", "chunk_count": 240, "source_path": "data/data_parsing/law/식품등의표시광고에관한법률_본문.json"}
+{"event": "document_processed", "document_id": "3190e5dbd6aefd6a", "chunk_count": 163, "source_path": "data/data_parsing/law/어린이 식생활안전관리 특별법 시행규칙.json"}
+{"event": "document_processed", "document_id": "41d87c15dc0db197", "chunk_count": 123, "source_path": "data/data_parsing/law/어린이 식생활안전관리 특별법 시행령.json"}
+{"event": "document_processed", "document_id": "2462dada5452960e", "chunk_count": 201, "source_path": "data/data_parsing/law/어린이 식생활안전관리 특별법.json"}
+{"event": "document_processed", "document_id": "db4a52405f29b6c2", "chunk_count": 158, "source_path": "data/data_parsing/law/친환경농어업 육성 및 유기식품 등의 관리ㆍ지원에 관한 법률 시행령.json"}
+{"event": "document_processed", "document_id": "DOC_표시·광고의 공정화에 관한 법", "chunk_count": 9, "source_path": "data/data_parsing/law/표시·광고의 공정화에 관한 법률 위반사업자등에 대한 과징금부과 세부기준 등에 관한 고시.json"}
+{"event": "document_processed", "document_id": "61e69650dda6b19d", "chunk_count": 144, "source_path": "data/data_parsing/law/표시·광고의 공정화에 관한 법률_본문.json"}
+{"event": "document_processed", "document_id": "4b2f1b9f022f5d8d", "chunk_count": 97, "source_path": "data/data_parsing/law/표시ㆍ광고의 공정화에 관한 법률 시행령.json"}
+{"event": "document_processed", "document_id": "6f78edebfe4eb8c9", "chunk_count": 392, "source_path": "data/data_parsing/law/해양수산부 소관 친환경농어업 육성 및 유기식품 등의 관리ㆍ지원에 관한 법률 시행규칙.json"}
+{"event": "skipped_page", "document_id": "f32c7bd98edadb61", "source_page": 2}
+{"event": "skipped_page", "document_id": "f32c7bd98edadb61", "source_page": 6}
+{"event": "skipped_page", "document_id": "f32c7bd98edadb61", "source_page": 60}
+{"event": "skipped_page", "document_id": "f32c7bd98edadb61", "source_page": 125}
+{"event": "skipped_page", "document_id": "f32c7bd98edadb61", "source_page": 127}
+{"event": "skipped_page", "document_id": "f32c7bd98edadb61", "source_page": 129}
+{"event": "skipped_page", "document_id": "f32c7bd98edadb61", "source_page": 130}
+{"event": "skipped_page", "document_id": "f32c7bd98edadb61", "source_page": 131}
+{"event": "skipped_page", "document_id": "f32c7bd98edadb61", "source_page": 132}
+{"event": "skipped_page", "document_id": "f32c7bd98edadb61", "source_page": 133}
+{"event": "document_processed", "document_id": "f32c7bd98edadb61", "chunk_count": 642, "source_path": "data/data_parsing/해설서, 사례/20210225_식품등_부당한_광고_판단기준_가이드라인(판단안내서)_수정.json"}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 2}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 3}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 4}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 6}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 7}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 8}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 9}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 10}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 11}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 20}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 21}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 25}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 26}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 27}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 32}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 37}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 38}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 39}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 43}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 45}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 49}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 50}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 51}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 52}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 53}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 56}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 57}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 58}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 60}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 61}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 62}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 63}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 64}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 65}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 66}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 67}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 69}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 70}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 71}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 72}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 73}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 77}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 78}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 79}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 80}
+{"event": "skipped_page", "document_id": "fc1959b68d6d1e90", "source_page": 81}
+{"event": "document_processed", "document_id": "fc1959b68d6d1e90", "chunk_count": 33, "source_path": "data/data_parsing/해설서, 사례/20220406_온라인_식품·건강기능식품·의약외품·화장품_분야_부당광고_사례집-웹게시용(표지수정).json"}
+{"event": "skipped_page", "document_id": "bb1dc11e08c909cb", "source_page": 1}
+{"event": "skipped_page", "document_id": "bb1dc11e08c909cb", "source_page": 2}
+{"event": "skipped_page", "document_id": "bb1dc11e08c909cb", "source_page": 6}
+{"event": "skipped_page", "document_id": "bb1dc11e08c909cb", "source_page": 10}
+{"event": "skipped_page", "document_id": "bb1dc11e08c909cb", "source_page": 62}
+{"event": "document_processed", "document_id": "bb1dc11e08c909cb", "chunk_count": 119, "source_path": "data/data_parsing/해설서, 사례/230216_식품·의약품등의_온라인_자율관리_가이드라인.json"}
+{"event": "document_processed", "document_id": "a2947897a2a8b301", "chunk_count": 28, "source_path": "data/data_parsing/해설서, 사례/광고심의 기준 및 가이드라인.json"}
+{"event": "document_processed", "document_id": "e25157ee2a78cbf1", "chunk_count": 5060, "source_path": "data/data_parsing/해설서, 사례/식품관련법 위반사례_식품안전나라.json"}
+{"event": "skipped_page", "document_id": "fdb75433e5ba9e14", "source_page": 1}
+{"event": "skipped_page", "document_id": "fdb75433e5ba9e14", "source_page": 2}
+{"event": "skipped_page", "document_id": "fdb75433e5ba9e14", "source_page": 4}
+{"event": "skipped_page", "document_id": "fdb75433e5ba9e14", "source_page": 6}
+{"event": "skipped_page", "document_id": "fdb75433e5ba9e14", "source_page": 78}
+{"event": "document_processed", "document_id": "fdb75433e5ba9e14", "chunk_count": 99, "source_path": "data/data_parsing/해설서, 사례/합본_식품_등_온라인_부당광고_사례집.json"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A005:P001:I004", "chunk_id": "c7db9cc3644c38da:A005:P001:I004:V002", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A007", "chunk_id": "c7db9cc3644c38da:A007:V002", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A007:P001", "chunk_id": "c7db9cc3644c38da:A007:P001:V002", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A010", "chunk_id": "c7db9cc3644c38da:A010:V002", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A013", "chunk_id": "c7db9cc3644c38da:A013:V002", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A016", "chunk_id": "c7db9cc3644c38da:A016:V002", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A016", "chunk_id": "c7db9cc3644c38da:A016:V003", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A016", "chunk_id": "c7db9cc3644c38da:A016:V004", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A016", "chunk_id": "c7db9cc3644c38da:A016:V005", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A020", "chunk_id": "c7db9cc3644c38da:A020:V002", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A020:P001", "chunk_id": "c7db9cc3644c38da:A020:P001:V002", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A020", "chunk_id": "c7db9cc3644c38da:A020:V003", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A020:P001", "chunk_id": "c7db9cc3644c38da:A020:P001:V003", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A020:P001:I001", "chunk_id": "c7db9cc3644c38da:A020:P001:I001:V002", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A020:P001:I002", "chunk_id": "c7db9cc3644c38da:A020:P001:I002:V002", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A020:P001:I003", "chunk_id": "c7db9cc3644c38da:A020:P001:I003:V002", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A020:P001:I004", "chunk_id": "c7db9cc3644c38da:A020:P001:I004:V002", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A020:P001:I005", "chunk_id": "c7db9cc3644c38da:A020:P001:I005:V002", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A020", "chunk_id": "c7db9cc3644c38da:A020:V004", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A020:P001", "chunk_id": "c7db9cc3644c38da:A020:P001:V004", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A020:P002", "chunk_id": "c7db9cc3644c38da:A020:P002:V002", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A020:P003", "chunk_id": "c7db9cc3644c38da:A020:P003:V002", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A020:P004", "chunk_id": "c7db9cc3644c38da:A020:P004:V002", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A020", "chunk_id": "c7db9cc3644c38da:A020:V005", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A020", "chunk_id": "c7db9cc3644c38da:A020:V006", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A020", "chunk_id": "c7db9cc3644c38da:A020:V007", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A020", "chunk_id": "c7db9cc3644c38da:A020:V008", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A024", "chunk_id": "c7db9cc3644c38da:A024:V002", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A025", "chunk_id": "c7db9cc3644c38da:A025:V002", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A025:P001", "chunk_id": "c7db9cc3644c38da:A025:P001:V002", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A025:P002", "chunk_id": "c7db9cc3644c38da:A025:P002:V002", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A025", "chunk_id": "c7db9cc3644c38da:A025:V003", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A025", "chunk_id": "c7db9cc3644c38da:A025:V004", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A025:P001", "chunk_id": "c7db9cc3644c38da:A025:P001:V003", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A025:P002", "chunk_id": "c7db9cc3644c38da:A025:P002:V003", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A025:P003", "chunk_id": "c7db9cc3644c38da:A025:P003:V002", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A025", "chunk_id": "c7db9cc3644c38da:A025:V005", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A029", "chunk_id": "c7db9cc3644c38da:A029:V002", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A029", "chunk_id": "c7db9cc3644c38da:A029:V003", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A029:P001", "chunk_id": "c7db9cc3644c38da:A029:P001:V002", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A029:P002", "chunk_id": "c7db9cc3644c38da:A029:P002:V002", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A029", "chunk_id": "c7db9cc3644c38da:A029:V004", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A029:P001", "chunk_id": "c7db9cc3644c38da:A029:P001:V003", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A029:P002", "chunk_id": "c7db9cc3644c38da:A029:P002:V003", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A029:P002:I001", "chunk_id": "c7db9cc3644c38da:A029:P002:I001:V002", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A029:P002:I002", "chunk_id": "c7db9cc3644c38da:A029:P002:I002:V002", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A029:P003", "chunk_id": "c7db9cc3644c38da:A029:P003:V002", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A029", "chunk_id": "c7db9cc3644c38da:A029:V005", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A029:P001", "chunk_id": "c7db9cc3644c38da:A029:P001:V004", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A029:P001:I001", "chunk_id": "c7db9cc3644c38da:A029:P001:I001:V002", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A029:P001:I002", "chunk_id": "c7db9cc3644c38da:A029:P001:I002:V002", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A029:P001:I003", "chunk_id": "c7db9cc3644c38da:A029:P001:I003:V002", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A029", "chunk_id": "c7db9cc3644c38da:A029:V006", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A029:P001", "chunk_id": "c7db9cc3644c38da:A029:P001:V005", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A029:P002", "chunk_id": "c7db9cc3644c38da:A029:P002:V004", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A029", "chunk_id": "c7db9cc3644c38da:A029:V007", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A029:P001", "chunk_id": "c7db9cc3644c38da:A029:P001:V006", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A029:P001:I001", "chunk_id": "c7db9cc3644c38da:A029:P001:I001:V003", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A029:P001:I002", "chunk_id": "c7db9cc3644c38da:A029:P001:I002:V003", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A029", "chunk_id": "c7db9cc3644c38da:A029:V008", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A035", "chunk_id": "c7db9cc3644c38da:A035:V002", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A035:P001", "chunk_id": "c7db9cc3644c38da:A035:P001:V002", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A035:P001:I006", "chunk_id": "c7db9cc3644c38da:A035:P001:I006:V002", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "c7db9cc3644c38da:A035:P001:I008", "chunk_id": "c7db9cc3644c38da:A035:P001:I008:V002", "document_id": "c7db9cc3644c38da"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A003", "chunk_id": "a8849fd047eb965b:A003:V002", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A003", "chunk_id": "a8849fd047eb965b:A003:V003", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A003", "chunk_id": "a8849fd047eb965b:A003:V004", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A003:P001", "chunk_id": "a8849fd047eb965b:A003:P001:V002", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A004:P001:I002", "chunk_id": "a8849fd047eb965b:A004:P001:I002:V002", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A004:P001:I006", "chunk_id": "a8849fd047eb965b:A004:P001:I006:V002", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A005", "chunk_id": "a8849fd047eb965b:A005:V002", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A005:P001", "chunk_id": "a8849fd047eb965b:A005:P001:V002", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A005:P001:I001", "chunk_id": "a8849fd047eb965b:A005:P001:I001:V002", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A005:P001:I002", "chunk_id": "a8849fd047eb965b:A005:P001:I002:V002", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A005:P001:I003", "chunk_id": "a8849fd047eb965b:A005:P001:I003:V002", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A006", "chunk_id": "a8849fd047eb965b:A006:V002", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A007", "chunk_id": "a8849fd047eb965b:A007:V002", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A007", "chunk_id": "a8849fd047eb965b:A007:V003", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A007:P001", "chunk_id": "a8849fd047eb965b:A007:P001:V002", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A007:P001:I001", "chunk_id": "a8849fd047eb965b:A007:P001:I001:V002", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A007:P001:I002", "chunk_id": "a8849fd047eb965b:A007:P001:I002:V002", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A007:P001:I003", "chunk_id": "a8849fd047eb965b:A007:P001:I003:V002", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A007:P001:I003", "chunk_id": "a8849fd047eb965b:A007:P001:I003:V003", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A007:P001:I004", "chunk_id": "a8849fd047eb965b:A007:P001:I004:V002", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A019", "chunk_id": "a8849fd047eb965b:A019:V002", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A019:P001", "chunk_id": "a8849fd047eb965b:A019:P001:V002", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A019:P002", "chunk_id": "a8849fd047eb965b:A019:P002:V002", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A019:P003", "chunk_id": "a8849fd047eb965b:A019:P003:V002", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A019:P004", "chunk_id": "a8849fd047eb965b:A019:P004:V002", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A019", "chunk_id": "a8849fd047eb965b:A019:V003", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A019", "chunk_id": "a8849fd047eb965b:A019:V004", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A019:P001", "chunk_id": "a8849fd047eb965b:A019:P001:V003", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A019:P002", "chunk_id": "a8849fd047eb965b:A019:P002:V003", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A019:P003", "chunk_id": "a8849fd047eb965b:A019:P003:V003", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A019", "chunk_id": "a8849fd047eb965b:A019:V005", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A019:P001", "chunk_id": "a8849fd047eb965b:A019:P001:V004", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A019", "chunk_id": "a8849fd047eb965b:A019:V006", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A019:P001", "chunk_id": "a8849fd047eb965b:A019:P001:V005", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A019:P002", "chunk_id": "a8849fd047eb965b:A019:P002:V004", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A019:P003", "chunk_id": "a8849fd047eb965b:A019:P003:V004", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A019:P004", "chunk_id": "a8849fd047eb965b:A019:P004:V003", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A019:P005", "chunk_id": "a8849fd047eb965b:A019:P005:V002", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A020:P001:I007", "chunk_id": "a8849fd047eb965b:A020:P001:I007:V002", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A020:P001:I009", "chunk_id": "a8849fd047eb965b:A020:P001:I009:V002", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A020:P001:I009", "chunk_id": "a8849fd047eb965b:A020:P001:I009:V003", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A020:P001:I009", "chunk_id": "a8849fd047eb965b:A020:P001:I009:V004", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A020", "chunk_id": "a8849fd047eb965b:A020:V002", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A020:P001", "chunk_id": "a8849fd047eb965b:A020:P001:V002", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A020:P001:I001", "chunk_id": "a8849fd047eb965b:A020:P001:I001:V002", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A020:P001:I002", "chunk_id": "a8849fd047eb965b:A020:P001:I002:V002", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A020:P001:I002", "chunk_id": "a8849fd047eb965b:A020:P001:I002:V003", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A020:P001:I003", "chunk_id": "a8849fd047eb965b:A020:P001:I003:V002", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A020:P001:I004", "chunk_id": "a8849fd047eb965b:A020:P001:I004:V002", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A020:P001:I005", "chunk_id": "a8849fd047eb965b:A020:P001:I005:V002", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A020:P001:I005", "chunk_id": "a8849fd047eb965b:A020:P001:I005:V003", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A020:P001:I006", "chunk_id": "a8849fd047eb965b:A020:P001:I006:V002", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "a8849fd047eb965b:A020:P001:I007", "chunk_id": "a8849fd047eb965b:A020:P001:I007:V003", "document_id": "a8849fd047eb965b"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A001", "chunk_id": "0265d6e9e6e846f8:A001:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A003:P001:I001", "chunk_id": "0265d6e9e6e846f8:A003:P001:I001:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A004", "chunk_id": "0265d6e9e6e846f8:A004:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A005:P003:I004", "chunk_id": "0265d6e9e6e846f8:A005:P003:I004:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A010", "chunk_id": "0265d6e9e6e846f8:A010:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A010:P001", "chunk_id": "0265d6e9e6e846f8:A010:P001:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A010:P002", "chunk_id": "0265d6e9e6e846f8:A010:P002:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A010", "chunk_id": "0265d6e9e6e846f8:A010:V003", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A010:P001", "chunk_id": "0265d6e9e6e846f8:A010:P001:V003", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A010:P002", "chunk_id": "0265d6e9e6e846f8:A010:P002:V003", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A012", "chunk_id": "0265d6e9e6e846f8:A012:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A012", "chunk_id": "0265d6e9e6e846f8:A012:V003", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A012:P001", "chunk_id": "0265d6e9e6e846f8:A012:P001:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A012:P002", "chunk_id": "0265d6e9e6e846f8:A012:P002:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A012:P002:I001", "chunk_id": "0265d6e9e6e846f8:A012:P002:I001:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A012:P002:I002", "chunk_id": "0265d6e9e6e846f8:A012:P002:I002:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A012:P002:I003", "chunk_id": "0265d6e9e6e846f8:A012:P002:I003:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A012:P002:I004", "chunk_id": "0265d6e9e6e846f8:A012:P002:I004:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A012:P003", "chunk_id": "0265d6e9e6e846f8:A012:P003:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A012:P004", "chunk_id": "0265d6e9e6e846f8:A012:P004:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A012:P005", "chunk_id": "0265d6e9e6e846f8:A012:P005:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A012:P006", "chunk_id": "0265d6e9e6e846f8:A012:P006:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A012:P007", "chunk_id": "0265d6e9e6e846f8:A012:P007:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A012:P008", "chunk_id": "0265d6e9e6e846f8:A012:P008:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A014", "chunk_id": "0265d6e9e6e846f8:A014:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A015", "chunk_id": "0265d6e9e6e846f8:A015:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A015:P001", "chunk_id": "0265d6e9e6e846f8:A015:P001:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A015:P002", "chunk_id": "0265d6e9e6e846f8:A015:P002:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A016", "chunk_id": "0265d6e9e6e846f8:A016:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A017", "chunk_id": "0265d6e9e6e846f8:A017:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A017", "chunk_id": "0265d6e9e6e846f8:A017:V003", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A017:P001", "chunk_id": "0265d6e9e6e846f8:A017:P001:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A017:P001:I001", "chunk_id": "0265d6e9e6e846f8:A017:P001:I001:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A017:P001:I002", "chunk_id": "0265d6e9e6e846f8:A017:P001:I002:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A017:P002", "chunk_id": "0265d6e9e6e846f8:A017:P002:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A017:P003", "chunk_id": "0265d6e9e6e846f8:A017:P003:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A020", "chunk_id": "0265d6e9e6e846f8:A020:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A020", "chunk_id": "0265d6e9e6e846f8:A020:V003", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A020:P001", "chunk_id": "0265d6e9e6e846f8:A020:P001:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A020:P001:I001", "chunk_id": "0265d6e9e6e846f8:A020:P001:I001:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A020:P001:I002", "chunk_id": "0265d6e9e6e846f8:A020:P001:I002:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A020:P002", "chunk_id": "0265d6e9e6e846f8:A020:P002:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A021", "chunk_id": "0265d6e9e6e846f8:A021:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A021:P001", "chunk_id": "0265d6e9e6e846f8:A021:P001:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A021:P002", "chunk_id": "0265d6e9e6e846f8:A021:P002:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A021", "chunk_id": "0265d6e9e6e846f8:A021:V003", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A021:P001", "chunk_id": "0265d6e9e6e846f8:A021:P001:V003", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A021:P001:I001", "chunk_id": "0265d6e9e6e846f8:A021:P001:I001:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A021:P001:I002", "chunk_id": "0265d6e9e6e846f8:A021:P001:I002:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A021:P002", "chunk_id": "0265d6e9e6e846f8:A021:P002:V003", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A021:P003", "chunk_id": "0265d6e9e6e846f8:A021:P003:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A022", "chunk_id": "0265d6e9e6e846f8:A022:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A022", "chunk_id": "0265d6e9e6e846f8:A022:V003", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A022:P001", "chunk_id": "0265d6e9e6e846f8:A022:P001:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A022:P002", "chunk_id": "0265d6e9e6e846f8:A022:P002:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A022:P003", "chunk_id": "0265d6e9e6e846f8:A022:P003:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A022:P004", "chunk_id": "0265d6e9e6e846f8:A022:P004:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A022:P005", "chunk_id": "0265d6e9e6e846f8:A022:P005:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A022:P006", "chunk_id": "0265d6e9e6e846f8:A022:P006:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A022:P007", "chunk_id": "0265d6e9e6e846f8:A022:P007:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A023", "chunk_id": "0265d6e9e6e846f8:A023:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A024:P002:I002", "chunk_id": "0265d6e9e6e846f8:A024:P002:I002:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A027", "chunk_id": "0265d6e9e6e846f8:A027:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A029", "chunk_id": "0265d6e9e6e846f8:A029:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A032:P001:I002", "chunk_id": "0265d6e9e6e846f8:A032:P001:I002:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A032:P001:I003", "chunk_id": "0265d6e9e6e846f8:A032:P001:I003:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A032:P001:I004", "chunk_id": "0265d6e9e6e846f8:A032:P001:I004:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A032:P001:I008", "chunk_id": "0265d6e9e6e846f8:A032:P001:I008:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A032:P001:I009", "chunk_id": "0265d6e9e6e846f8:A032:P001:I009:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A037", "chunk_id": "0265d6e9e6e846f8:A037:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A037:P001", "chunk_id": "0265d6e9e6e846f8:A037:P001:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A037:P002", "chunk_id": "0265d6e9e6e846f8:A037:P002:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A037:P003", "chunk_id": "0265d6e9e6e846f8:A037:P003:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A037:P004", "chunk_id": "0265d6e9e6e846f8:A037:P004:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A037:P005", "chunk_id": "0265d6e9e6e846f8:A037:P005:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A037", "chunk_id": "0265d6e9e6e846f8:A037:V003", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A038", "chunk_id": "0265d6e9e6e846f8:A038:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A038:P001:I003", "chunk_id": "0265d6e9e6e846f8:A038:P001:I003:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A042:P001:I004", "chunk_id": "0265d6e9e6e846f8:A042:P001:I004:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A042", "chunk_id": "0265d6e9e6e846f8:A042:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A043", "chunk_id": "0265d6e9e6e846f8:A043:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A044:P001:I003", "chunk_id": "0265d6e9e6e846f8:A044:P001:I003:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A045:P001:I004", "chunk_id": "0265d6e9e6e846f8:A045:P001:I004:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A045:P001:I004", "chunk_id": "0265d6e9e6e846f8:A045:P001:I004:V003", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A045:P001:I005", "chunk_id": "0265d6e9e6e846f8:A045:P001:I005:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A045:P001:I005", "chunk_id": "0265d6e9e6e846f8:A045:P001:I005:V003", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A047:P001:I002", "chunk_id": "0265d6e9e6e846f8:A047:P001:I002:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A047:P001:I005", "chunk_id": "0265d6e9e6e846f8:A047:P001:I005:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A047:P001:I005", "chunk_id": "0265d6e9e6e846f8:A047:P001:I005:V003", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A047:P001:I005", "chunk_id": "0265d6e9e6e846f8:A047:P001:I005:V004", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "0265d6e9e6e846f8:A047:P001:I007", "chunk_id": "0265d6e9e6e846f8:A047:P001:I007:V002", "document_id": "0265d6e9e6e846f8"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "296150b7d07cdce2:A001", "chunk_id": "296150b7d07cdce2:A001:V002", "document_id": "296150b7d07cdce2"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "296150b7d07cdce2:A004", "chunk_id": "296150b7d07cdce2:A004:V002", "document_id": "296150b7d07cdce2"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "296150b7d07cdce2:A010", "chunk_id": "296150b7d07cdce2:A010:V002", "document_id": "296150b7d07cdce2"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "296150b7d07cdce2:A010", "chunk_id": "296150b7d07cdce2:A010:V003", "document_id": "296150b7d07cdce2"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "296150b7d07cdce2:A032", "chunk_id": "296150b7d07cdce2:A032:V002", "document_id": "296150b7d07cdce2"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "296150b7d07cdce2:A044", "chunk_id": "296150b7d07cdce2:A044:V002", "document_id": "296150b7d07cdce2"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "296150b7d07cdce2:A053", "chunk_id": "296150b7d07cdce2:A053:V002", "document_id": "296150b7d07cdce2"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "296150b7d07cdce2:A060", "chunk_id": "296150b7d07cdce2:A060:V002", "document_id": "296150b7d07cdce2"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "296150b7d07cdce2:A088", "chunk_id": "296150b7d07cdce2:A088:V002", "document_id": "296150b7d07cdce2"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "296150b7d07cdce2:A091:P001:I007", "chunk_id": "296150b7d07cdce2:A091:P001:I007:V002", "document_id": "296150b7d07cdce2"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A001", "chunk_id": "e106ae6d4dc75efa:A001:V002", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A007", "chunk_id": "e106ae6d4dc75efa:A007:V002", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A020", "chunk_id": "e106ae6d4dc75efa:A020:V002", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A037", "chunk_id": "e106ae6d4dc75efa:A037:V002", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A043", "chunk_id": "e106ae6d4dc75efa:A043:V002", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A047", "chunk_id": "e106ae6d4dc75efa:A047:V002", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A047:P001", "chunk_id": "e106ae6d4dc75efa:A047:P001:V002", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A047", "chunk_id": "e106ae6d4dc75efa:A047:V003", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A047:P001", "chunk_id": "e106ae6d4dc75efa:A047:P001:V003", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A047:P002", "chunk_id": "e106ae6d4dc75efa:A047:P002:V002", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A047:P003", "chunk_id": "e106ae6d4dc75efa:A047:P003:V002", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A050", "chunk_id": "e106ae6d4dc75efa:A050:V002", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A050", "chunk_id": "e106ae6d4dc75efa:A050:V003", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A050:P001", "chunk_id": "e106ae6d4dc75efa:A050:P001:V002", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A050:P002", "chunk_id": "e106ae6d4dc75efa:A050:P002:V002", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A050:P003", "chunk_id": "e106ae6d4dc75efa:A050:P003:V002", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A055", "chunk_id": "e106ae6d4dc75efa:A055:V002", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A058", "chunk_id": "e106ae6d4dc75efa:A058:V002", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A062", "chunk_id": "e106ae6d4dc75efa:A062:V002", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A062", "chunk_id": "e106ae6d4dc75efa:A062:V003", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A062:P001", "chunk_id": "e106ae6d4dc75efa:A062:P001:V002", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A062:P001:I001", "chunk_id": "e106ae6d4dc75efa:A062:P001:I001:V002", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A062:P001:I002", "chunk_id": "e106ae6d4dc75efa:A062:P001:I002:V002", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A062:P002", "chunk_id": "e106ae6d4dc75efa:A062:P002:V002", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A062:P002:I001", "chunk_id": "e106ae6d4dc75efa:A062:P002:I001:V002", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A062:P002:I002", "chunk_id": "e106ae6d4dc75efa:A062:P002:I002:V002", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A062:P003", "chunk_id": "e106ae6d4dc75efa:A062:P003:V002", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A062", "chunk_id": "e106ae6d4dc75efa:A062:V004", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A062:P001", "chunk_id": "e106ae6d4dc75efa:A062:P001:V003", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A062:P001:I001", "chunk_id": "e106ae6d4dc75efa:A062:P001:I001:V003", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A062:P001:I002", "chunk_id": "e106ae6d4dc75efa:A062:P001:I002:V003", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A062:P001:I003", "chunk_id": "e106ae6d4dc75efa:A062:P001:I003:V002", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A062:P001:I004", "chunk_id": "e106ae6d4dc75efa:A062:P001:I004:V002", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A062:P001:I005", "chunk_id": "e106ae6d4dc75efa:A062:P001:I005:V002", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A062:P001:I006", "chunk_id": "e106ae6d4dc75efa:A062:P001:I006:V002", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A062:P001:I007", "chunk_id": "e106ae6d4dc75efa:A062:P001:I007:V002", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "e106ae6d4dc75efa:A063", "chunk_id": "e106ae6d4dc75efa:A063:V002", "document_id": "e106ae6d4dc75efa"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A001", "chunk_id": "4c74f0c78b46fb75:A001:V002", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A005", "chunk_id": "4c74f0c78b46fb75:A005:V002", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A007", "chunk_id": "4c74f0c78b46fb75:A007:V002", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A007:P001", "chunk_id": "4c74f0c78b46fb75:A007:P001:V002", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A007:P002", "chunk_id": "4c74f0c78b46fb75:A007:P002:V002", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A013", "chunk_id": "4c74f0c78b46fb75:A013:V002", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A030", "chunk_id": "4c74f0c78b46fb75:A030:V002", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A035", "chunk_id": "4c74f0c78b46fb75:A035:V002", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A043", "chunk_id": "4c74f0c78b46fb75:A043:V002", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A043", "chunk_id": "4c74f0c78b46fb75:A043:V003", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A043:P001", "chunk_id": "4c74f0c78b46fb75:A043:P001:V002", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A043:P002", "chunk_id": "4c74f0c78b46fb75:A043:P002:V002", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A044", "chunk_id": "4c74f0c78b46fb75:A044:V002", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A044:P001", "chunk_id": "4c74f0c78b46fb75:A044:P001:V002", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A044:P001:I001", "chunk_id": "4c74f0c78b46fb75:A044:P001:I001:V002", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A044:P001:I002", "chunk_id": "4c74f0c78b46fb75:A044:P001:I002:V002", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A044:P002", "chunk_id": "4c74f0c78b46fb75:A044:P002:V002", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A048", "chunk_id": "4c74f0c78b46fb75:A048:V002", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A050", "chunk_id": "4c74f0c78b46fb75:A050:V002", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A050:P001", "chunk_id": "4c74f0c78b46fb75:A050:P001:V002", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A050:P002", "chunk_id": "4c74f0c78b46fb75:A050:P002:V002", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A050:P003", "chunk_id": "4c74f0c78b46fb75:A050:P003:V002", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A050:P004", "chunk_id": "4c74f0c78b46fb75:A050:P004:V002", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A050", "chunk_id": "4c74f0c78b46fb75:A050:V003", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A050:P001", "chunk_id": "4c74f0c78b46fb75:A050:P001:V003", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A050:P002", "chunk_id": "4c74f0c78b46fb75:A050:P002:V003", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A050:P002:I001", "chunk_id": "4c74f0c78b46fb75:A050:P002:I001:V002", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A050:P002:I002", "chunk_id": "4c74f0c78b46fb75:A050:P002:I002:V002", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A050:P002:I003", "chunk_id": "4c74f0c78b46fb75:A050:P002:I003:V002", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A050:P003", "chunk_id": "4c74f0c78b46fb75:A050:P003:V003", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A050:P004", "chunk_id": "4c74f0c78b46fb75:A050:P004:V003", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A050", "chunk_id": "4c74f0c78b46fb75:A050:V004", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A050:P001", "chunk_id": "4c74f0c78b46fb75:A050:P001:V004", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A050:P002", "chunk_id": "4c74f0c78b46fb75:A050:P002:V004", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A050:P003", "chunk_id": "4c74f0c78b46fb75:A050:P003:V004", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A050", "chunk_id": "4c74f0c78b46fb75:A050:V005", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A050:P001", "chunk_id": "4c74f0c78b46fb75:A050:P001:V005", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A050:P002", "chunk_id": "4c74f0c78b46fb75:A050:P002:V005", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A052", "chunk_id": "4c74f0c78b46fb75:A052:V002", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A058", "chunk_id": "4c74f0c78b46fb75:A058:V002", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4c74f0c78b46fb75:A066:P003:I003", "chunk_id": "4c74f0c78b46fb75:A066:P003:I003:V002", "document_id": "4c74f0c78b46fb75"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "426e03491e10c123:A007", "chunk_id": "426e03491e10c123:A007:V002", "document_id": "426e03491e10c123"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "426e03491e10c123:A007:P001", "chunk_id": "426e03491e10c123:A007:P001:V002", "document_id": "426e03491e10c123"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "426e03491e10c123:A007:P001:I001", "chunk_id": "426e03491e10c123:A007:P001:I001:V002", "document_id": "426e03491e10c123"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "426e03491e10c123:A007:P001:I002", "chunk_id": "426e03491e10c123:A007:P001:I002:V002", "document_id": "426e03491e10c123"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "426e03491e10c123:A007", "chunk_id": "426e03491e10c123:A007:V003", "document_id": "426e03491e10c123"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "426e03491e10c123:A007:P001", "chunk_id": "426e03491e10c123:A007:P001:V003", "document_id": "426e03491e10c123"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "426e03491e10c123:A007:P001:I001", "chunk_id": "426e03491e10c123:A007:P001:I001:V003", "document_id": "426e03491e10c123"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "426e03491e10c123:A007:P001:I002", "chunk_id": "426e03491e10c123:A007:P001:I002:V003", "document_id": "426e03491e10c123"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "426e03491e10c123:A007:P001:I003", "chunk_id": "426e03491e10c123:A007:P001:I003:V002", "document_id": "426e03491e10c123"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "426e03491e10c123:A007:P001:I004", "chunk_id": "426e03491e10c123:A007:P001:I004:V002", "document_id": "426e03491e10c123"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "426e03491e10c123:A007:P001:I005", "chunk_id": "426e03491e10c123:A007:P001:I005:V002", "document_id": "426e03491e10c123"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "7d237411cc7cb62e:A004", "chunk_id": "7d237411cc7cb62e:A004:V002", "document_id": "7d237411cc7cb62e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "7d237411cc7cb62e:A004:P001", "chunk_id": "7d237411cc7cb62e:A004:P001:V002", "document_id": "7d237411cc7cb62e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "7d237411cc7cb62e:A004:P002", "chunk_id": "7d237411cc7cb62e:A004:P002:V002", "document_id": "7d237411cc7cb62e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "7d237411cc7cb62e:A004:P003", "chunk_id": "7d237411cc7cb62e:A004:P003:V002", "document_id": "7d237411cc7cb62e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "7d237411cc7cb62e:A008", "chunk_id": "7d237411cc7cb62e:A008:V002", "document_id": "7d237411cc7cb62e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "7d237411cc7cb62e:A008:P001", "chunk_id": "7d237411cc7cb62e:A008:P001:V002", "document_id": "7d237411cc7cb62e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "7d237411cc7cb62e:A008:P002", "chunk_id": "7d237411cc7cb62e:A008:P002:V002", "document_id": "7d237411cc7cb62e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "7d237411cc7cb62e:A013", "chunk_id": "7d237411cc7cb62e:A013:V002", "document_id": "7d237411cc7cb62e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "7d237411cc7cb62e:A013:P001", "chunk_id": "7d237411cc7cb62e:A013:P001:V002", "document_id": "7d237411cc7cb62e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "7d237411cc7cb62e:A013:P002", "chunk_id": "7d237411cc7cb62e:A013:P002:V002", "document_id": "7d237411cc7cb62e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "7d237411cc7cb62e:A013:P003", "chunk_id": "7d237411cc7cb62e:A013:P003:V002", "document_id": "7d237411cc7cb62e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "7d237411cc7cb62e:A013", "chunk_id": "7d237411cc7cb62e:A013:V003", "document_id": "7d237411cc7cb62e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "7d237411cc7cb62e:A013:P001", "chunk_id": "7d237411cc7cb62e:A013:P001:V003", "document_id": "7d237411cc7cb62e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "7d237411cc7cb62e:A013:P002", "chunk_id": "7d237411cc7cb62e:A013:P002:V003", "document_id": "7d237411cc7cb62e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "7d237411cc7cb62e:A013", "chunk_id": "7d237411cc7cb62e:A013:V004", "document_id": "7d237411cc7cb62e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "7d237411cc7cb62e:A013:P001", "chunk_id": "7d237411cc7cb62e:A013:P001:V004", "document_id": "7d237411cc7cb62e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "7d237411cc7cb62e:A013:P002", "chunk_id": "7d237411cc7cb62e:A013:P002:V004", "document_id": "7d237411cc7cb62e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "7d237411cc7cb62e:A013", "chunk_id": "7d237411cc7cb62e:A013:V005", "document_id": "7d237411cc7cb62e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "7d237411cc7cb62e:A013:P001", "chunk_id": "7d237411cc7cb62e:A013:P001:V005", "document_id": "7d237411cc7cb62e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "7d237411cc7cb62e:A013:P002", "chunk_id": "7d237411cc7cb62e:A013:P002:V005", "document_id": "7d237411cc7cb62e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "7d237411cc7cb62e:A013:P003", "chunk_id": "7d237411cc7cb62e:A013:P003:V003", "document_id": "7d237411cc7cb62e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "3190e5dbd6aefd6a:A009", "chunk_id": "3190e5dbd6aefd6a:A009:V002", "document_id": "3190e5dbd6aefd6a"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "3190e5dbd6aefd6a:A009:P001", "chunk_id": "3190e5dbd6aefd6a:A009:P001:V002", "document_id": "3190e5dbd6aefd6a"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "3190e5dbd6aefd6a:A009:P002", "chunk_id": "3190e5dbd6aefd6a:A009:P002:V002", "document_id": "3190e5dbd6aefd6a"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "3190e5dbd6aefd6a:A009", "chunk_id": "3190e5dbd6aefd6a:A009:V003", "document_id": "3190e5dbd6aefd6a"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "3190e5dbd6aefd6a:A009:P001", "chunk_id": "3190e5dbd6aefd6a:A009:P001:V003", "document_id": "3190e5dbd6aefd6a"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "3190e5dbd6aefd6a:A013", "chunk_id": "3190e5dbd6aefd6a:A013:V002", "document_id": "3190e5dbd6aefd6a"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "3190e5dbd6aefd6a:A013:P001", "chunk_id": "3190e5dbd6aefd6a:A013:P001:V002", "document_id": "3190e5dbd6aefd6a"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "3190e5dbd6aefd6a:A013:P002", "chunk_id": "3190e5dbd6aefd6a:A013:P002:V002", "document_id": "3190e5dbd6aefd6a"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "3190e5dbd6aefd6a:A013:P003", "chunk_id": "3190e5dbd6aefd6a:A013:P003:V002", "document_id": "3190e5dbd6aefd6a"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "3190e5dbd6aefd6a:A017", "chunk_id": "3190e5dbd6aefd6a:A017:V002", "document_id": "3190e5dbd6aefd6a"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "3190e5dbd6aefd6a:A017:P001", "chunk_id": "3190e5dbd6aefd6a:A017:P001:V002", "document_id": "3190e5dbd6aefd6a"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "3190e5dbd6aefd6a:A017:P002", "chunk_id": "3190e5dbd6aefd6a:A017:P002:V002", "document_id": "3190e5dbd6aefd6a"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "3190e5dbd6aefd6a:A019", "chunk_id": "3190e5dbd6aefd6a:A019:V002", "document_id": "3190e5dbd6aefd6a"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "3190e5dbd6aefd6a:A019:P001", "chunk_id": "3190e5dbd6aefd6a:A019:P001:V002", "document_id": "3190e5dbd6aefd6a"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "3190e5dbd6aefd6a:A019:P002", "chunk_id": "3190e5dbd6aefd6a:A019:P002:V002", "document_id": "3190e5dbd6aefd6a"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "3190e5dbd6aefd6a:A019:P003", "chunk_id": "3190e5dbd6aefd6a:A019:P003:V002", "document_id": "3190e5dbd6aefd6a"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "3190e5dbd6aefd6a:A020:P001:I001", "chunk_id": "3190e5dbd6aefd6a:A020:P001:I001:V002", "document_id": "3190e5dbd6aefd6a"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "41d87c15dc0db197:A007", "chunk_id": "41d87c15dc0db197:A007:V002", "document_id": "41d87c15dc0db197"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "41d87c15dc0db197:A007:P001", "chunk_id": "41d87c15dc0db197:A007:P001:V002", "document_id": "41d87c15dc0db197"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "41d87c15dc0db197:A007:P002", "chunk_id": "41d87c15dc0db197:A007:P002:V002", "document_id": "41d87c15dc0db197"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "41d87c15dc0db197:A012", "chunk_id": "41d87c15dc0db197:A012:V002", "document_id": "41d87c15dc0db197"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "41d87c15dc0db197:A012:P001", "chunk_id": "41d87c15dc0db197:A012:P001:V002", "document_id": "41d87c15dc0db197"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "41d87c15dc0db197:A012:P001:I001", "chunk_id": "41d87c15dc0db197:A012:P001:I001:V002", "document_id": "41d87c15dc0db197"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "41d87c15dc0db197:A012:P001:I002", "chunk_id": "41d87c15dc0db197:A012:P001:I002:V002", "document_id": "41d87c15dc0db197"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "41d87c15dc0db197:A012:P001:I003", "chunk_id": "41d87c15dc0db197:A012:P001:I003:V002", "document_id": "41d87c15dc0db197"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "41d87c15dc0db197:A017", "chunk_id": "41d87c15dc0db197:A017:V002", "document_id": "41d87c15dc0db197"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "41d87c15dc0db197:A023", "chunk_id": "41d87c15dc0db197:A023:V002", "document_id": "41d87c15dc0db197"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "41d87c15dc0db197:A023", "chunk_id": "41d87c15dc0db197:A023:V003", "document_id": "41d87c15dc0db197"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "2462dada5452960e:A001", "chunk_id": "2462dada5452960e:A001:V002", "document_id": "2462dada5452960e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "2462dada5452960e:A005", "chunk_id": "2462dada5452960e:A005:V002", "document_id": "2462dada5452960e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "2462dada5452960e:A008", "chunk_id": "2462dada5452960e:A008:V002", "document_id": "2462dada5452960e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "2462dada5452960e:A011", "chunk_id": "2462dada5452960e:A011:V002", "document_id": "2462dada5452960e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "2462dada5452960e:A011", "chunk_id": "2462dada5452960e:A011:V003", "document_id": "2462dada5452960e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "2462dada5452960e:A011:P001", "chunk_id": "2462dada5452960e:A011:P001:V002", "document_id": "2462dada5452960e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "2462dada5452960e:A011:P002", "chunk_id": "2462dada5452960e:A011:P002:V002", "document_id": "2462dada5452960e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "2462dada5452960e:A012", "chunk_id": "2462dada5452960e:A012:V002", "document_id": "2462dada5452960e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "2462dada5452960e:A012:P001", "chunk_id": "2462dada5452960e:A012:P001:V002", "document_id": "2462dada5452960e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "2462dada5452960e:A012:P002", "chunk_id": "2462dada5452960e:A012:P002:V002", "document_id": "2462dada5452960e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "2462dada5452960e:A021", "chunk_id": "2462dada5452960e:A021:V002", "document_id": "2462dada5452960e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "2462dada5452960e:A021", "chunk_id": "2462dada5452960e:A021:V003", "document_id": "2462dada5452960e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "2462dada5452960e:A021:P001", "chunk_id": "2462dada5452960e:A021:P001:V002", "document_id": "2462dada5452960e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "2462dada5452960e:A021:P002", "chunk_id": "2462dada5452960e:A021:P002:V002", "document_id": "2462dada5452960e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "2462dada5452960e:A021", "chunk_id": "2462dada5452960e:A021:V004", "document_id": "2462dada5452960e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "2462dada5452960e:A021:P001", "chunk_id": "2462dada5452960e:A021:P001:V003", "document_id": "2462dada5452960e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "2462dada5452960e:A021:P001:I001", "chunk_id": "2462dada5452960e:A021:P001:I001:V002", "document_id": "2462dada5452960e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "2462dada5452960e:A021:P001:I002", "chunk_id": "2462dada5452960e:A021:P001:I002:V002", "document_id": "2462dada5452960e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "2462dada5452960e:A021:P001:I003", "chunk_id": "2462dada5452960e:A021:P001:I003:V002", "document_id": "2462dada5452960e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "2462dada5452960e:A021:P001:I004", "chunk_id": "2462dada5452960e:A021:P001:I004:V002", "document_id": "2462dada5452960e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "2462dada5452960e:A021:P002", "chunk_id": "2462dada5452960e:A021:P002:V003", "document_id": "2462dada5452960e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "2462dada5452960e:A021:P003", "chunk_id": "2462dada5452960e:A021:P003:V002", "document_id": "2462dada5452960e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "2462dada5452960e:A021:P004", "chunk_id": "2462dada5452960e:A021:P004:V002", "document_id": "2462dada5452960e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "2462dada5452960e:A021", "chunk_id": "2462dada5452960e:A021:V005", "document_id": "2462dada5452960e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "2462dada5452960e:A021:P001", "chunk_id": "2462dada5452960e:A021:P001:V004", "document_id": "2462dada5452960e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "2462dada5452960e:A021:P002", "chunk_id": "2462dada5452960e:A021:P002:V004", "document_id": "2462dada5452960e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "2462dada5452960e:A021:P003", "chunk_id": "2462dada5452960e:A021:P003:V003", "document_id": "2462dada5452960e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "2462dada5452960e:A023", "chunk_id": "2462dada5452960e:A023:V002", "document_id": "2462dada5452960e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "2462dada5452960e:A026", "chunk_id": "2462dada5452960e:A026:V002", "document_id": "2462dada5452960e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "2462dada5452960e:A026:P001", "chunk_id": "2462dada5452960e:A026:P001:V002", "document_id": "2462dada5452960e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "2462dada5452960e:A026:P002", "chunk_id": "2462dada5452960e:A026:P002:V002", "document_id": "2462dada5452960e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "2462dada5452960e:A026:P003", "chunk_id": "2462dada5452960e:A026:P003:V002", "document_id": "2462dada5452960e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "2462dada5452960e:A026:P004", "chunk_id": "2462dada5452960e:A026:P004:V002", "document_id": "2462dada5452960e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "2462dada5452960e:A027", "chunk_id": "2462dada5452960e:A027:V002", "document_id": "2462dada5452960e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "2462dada5452960e:A029", "chunk_id": "2462dada5452960e:A029:V002", "document_id": "2462dada5452960e"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "61e69650dda6b19d:A001", "chunk_id": "61e69650dda6b19d:A001:V002", "document_id": "61e69650dda6b19d"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "61e69650dda6b19d:A003", "chunk_id": "61e69650dda6b19d:A003:V002", "document_id": "61e69650dda6b19d"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "61e69650dda6b19d:A004", "chunk_id": "61e69650dda6b19d:A004:V002", "document_id": "61e69650dda6b19d"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "61e69650dda6b19d:A007", "chunk_id": "61e69650dda6b19d:A007:V002", "document_id": "61e69650dda6b19d"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "61e69650dda6b19d:A007:P001", "chunk_id": "61e69650dda6b19d:A007:P001:V002", "document_id": "61e69650dda6b19d"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "61e69650dda6b19d:A007:P001:I001", "chunk_id": "61e69650dda6b19d:A007:P001:I001:V002", "document_id": "61e69650dda6b19d"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "61e69650dda6b19d:A007:P001:I002", "chunk_id": "61e69650dda6b19d:A007:P001:I002:V002", "document_id": "61e69650dda6b19d"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "61e69650dda6b19d:A007:P002", "chunk_id": "61e69650dda6b19d:A007:P002:V002", "document_id": "61e69650dda6b19d"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "61e69650dda6b19d:A007", "chunk_id": "61e69650dda6b19d:A007:V003", "document_id": "61e69650dda6b19d"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "61e69650dda6b19d:A007", "chunk_id": "61e69650dda6b19d:A007:V004", "document_id": "61e69650dda6b19d"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "61e69650dda6b19d:A007", "chunk_id": "61e69650dda6b19d:A007:V005", "document_id": "61e69650dda6b19d"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "61e69650dda6b19d:A007:P001", "chunk_id": "61e69650dda6b19d:A007:P001:V003", "document_id": "61e69650dda6b19d"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "61e69650dda6b19d:A007:P002", "chunk_id": "61e69650dda6b19d:A007:P002:V003", "document_id": "61e69650dda6b19d"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "61e69650dda6b19d:A010", "chunk_id": "61e69650dda6b19d:A010:V002", "document_id": "61e69650dda6b19d"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "61e69650dda6b19d:A012", "chunk_id": "61e69650dda6b19d:A012:V002", "document_id": "61e69650dda6b19d"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "61e69650dda6b19d:A014", "chunk_id": "61e69650dda6b19d:A014:V002", "document_id": "61e69650dda6b19d"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "61e69650dda6b19d:A014:P001", "chunk_id": "61e69650dda6b19d:A014:P001:V002", "document_id": "61e69650dda6b19d"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "61e69650dda6b19d:A014:P002", "chunk_id": "61e69650dda6b19d:A014:P002:V002", "document_id": "61e69650dda6b19d"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "61e69650dda6b19d:A014:P003", "chunk_id": "61e69650dda6b19d:A014:P003:V002", "document_id": "61e69650dda6b19d"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "61e69650dda6b19d:A014:P004", "chunk_id": "61e69650dda6b19d:A014:P004:V002", "document_id": "61e69650dda6b19d"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "61e69650dda6b19d:A014:P005", "chunk_id": "61e69650dda6b19d:A014:P005:V002", "document_id": "61e69650dda6b19d"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "61e69650dda6b19d:A016", "chunk_id": "61e69650dda6b19d:A016:V002", "document_id": "61e69650dda6b19d"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "61e69650dda6b19d:A016:P001", "chunk_id": "61e69650dda6b19d:A016:P001:V002", "document_id": "61e69650dda6b19d"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "61e69650dda6b19d:A016:P002", "chunk_id": "61e69650dda6b19d:A016:P002:V002", "document_id": "61e69650dda6b19d"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "61e69650dda6b19d:A016:P003", "chunk_id": "61e69650dda6b19d:A016:P003:V002", "document_id": "61e69650dda6b19d"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "61e69650dda6b19d:A017", "chunk_id": "61e69650dda6b19d:A017:V002", "document_id": "61e69650dda6b19d"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4b2f1b9f022f5d8d:A008", "chunk_id": "4b2f1b9f022f5d8d:A008:V002", "document_id": "4b2f1b9f022f5d8d"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4b2f1b9f022f5d8d:A016", "chunk_id": "4b2f1b9f022f5d8d:A016:V002", "document_id": "4b2f1b9f022f5d8d"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4b2f1b9f022f5d8d:A016:P001", "chunk_id": "4b2f1b9f022f5d8d:A016:P001:V002", "document_id": "4b2f1b9f022f5d8d"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4b2f1b9f022f5d8d:A016:P002", "chunk_id": "4b2f1b9f022f5d8d:A016:P002:V002", "document_id": "4b2f1b9f022f5d8d"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4b2f1b9f022f5d8d:A016", "chunk_id": "4b2f1b9f022f5d8d:A016:V003", "document_id": "4b2f1b9f022f5d8d"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4b2f1b9f022f5d8d:A016:P001", "chunk_id": "4b2f1b9f022f5d8d:A016:P001:V003", "document_id": "4b2f1b9f022f5d8d"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4b2f1b9f022f5d8d:A016:P002", "chunk_id": "4b2f1b9f022f5d8d:A016:P002:V003", "document_id": "4b2f1b9f022f5d8d"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "4b2f1b9f022f5d8d:A016", "chunk_id": "4b2f1b9f022f5d8d:A016:V004", "document_id": "4b2f1b9f022f5d8d"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A001", "chunk_id": "6f78edebfe4eb8c9:A001:V002", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A004", "chunk_id": "6f78edebfe4eb8c9:A004:V002", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A007", "chunk_id": "6f78edebfe4eb8c9:A007:V002", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A007:P003:I004", "chunk_id": "6f78edebfe4eb8c9:A007:P003:I004:V002", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A007", "chunk_id": "6f78edebfe4eb8c9:A007:V003", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A008", "chunk_id": "6f78edebfe4eb8c9:A008:V002", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A008", "chunk_id": "6f78edebfe4eb8c9:A008:V003", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A011", "chunk_id": "6f78edebfe4eb8c9:A011:V002", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A018", "chunk_id": "6f78edebfe4eb8c9:A018:V002", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A018:P001", "chunk_id": "6f78edebfe4eb8c9:A018:P001:V002", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A018:P002", "chunk_id": "6f78edebfe4eb8c9:A018:P002:V002", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A018:P003", "chunk_id": "6f78edebfe4eb8c9:A018:P003:V002", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A018:P004", "chunk_id": "6f78edebfe4eb8c9:A018:P004:V002", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A026", "chunk_id": "6f78edebfe4eb8c9:A026:V002", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A031", "chunk_id": "6f78edebfe4eb8c9:A031:V002", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A031:P001", "chunk_id": "6f78edebfe4eb8c9:A031:P001:V002", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A031:P001:I001", "chunk_id": "6f78edebfe4eb8c9:A031:P001:I001:V002", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A031:P001:I002", "chunk_id": "6f78edebfe4eb8c9:A031:P001:I002:V002", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A031:P002", "chunk_id": "6f78edebfe4eb8c9:A031:P002:V002", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A031:P002:I001", "chunk_id": "6f78edebfe4eb8c9:A031:P002:I001:V002", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A031:P002:I002", "chunk_id": "6f78edebfe4eb8c9:A031:P002:I002:V002", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A031:P003", "chunk_id": "6f78edebfe4eb8c9:A031:P003:V002", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A031", "chunk_id": "6f78edebfe4eb8c9:A031:V003", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A031:P001", "chunk_id": "6f78edebfe4eb8c9:A031:P001:V003", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A031:P002", "chunk_id": "6f78edebfe4eb8c9:A031:P002:V003", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A031:P002:I001", "chunk_id": "6f78edebfe4eb8c9:A031:P002:I001:V003", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A031:P002:I002", "chunk_id": "6f78edebfe4eb8c9:A031:P002:I002:V003", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A031:P003", "chunk_id": "6f78edebfe4eb8c9:A031:P003:V003", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A031:P004", "chunk_id": "6f78edebfe4eb8c9:A031:P004:V002", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A031:P005", "chunk_id": "6f78edebfe4eb8c9:A031:P005:V002", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A034", "chunk_id": "6f78edebfe4eb8c9:A034:V002", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A034", "chunk_id": "6f78edebfe4eb8c9:A034:V003", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A036", "chunk_id": "6f78edebfe4eb8c9:A036:V002", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A036", "chunk_id": "6f78edebfe4eb8c9:A036:V003", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A036", "chunk_id": "6f78edebfe4eb8c9:A036:V004", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A036:P001", "chunk_id": "6f78edebfe4eb8c9:A036:P001:V002", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A036:P002", "chunk_id": "6f78edebfe4eb8c9:A036:P002:V002", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A036", "chunk_id": "6f78edebfe4eb8c9:A036:V005", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A036:P001", "chunk_id": "6f78edebfe4eb8c9:A036:P001:V003", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A036:P002", "chunk_id": "6f78edebfe4eb8c9:A036:P002:V003", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A036", "chunk_id": "6f78edebfe4eb8c9:A036:V006", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A036:P001", "chunk_id": "6f78edebfe4eb8c9:A036:P001:V004", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A036:P001:I001", "chunk_id": "6f78edebfe4eb8c9:A036:P001:I001:V002", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A036:P001:I002", "chunk_id": "6f78edebfe4eb8c9:A036:P001:I002:V002", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A036:P001:I003", "chunk_id": "6f78edebfe4eb8c9:A036:P001:I003:V002", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A036:P001:I004", "chunk_id": "6f78edebfe4eb8c9:A036:P001:I004:V002", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A038", "chunk_id": "6f78edebfe4eb8c9:A038:V002", "document_id": "6f78edebfe4eb8c9"}
+{"event": "duplicate_chunk_id_resolved", "original_chunk_id": "6f78edebfe4eb8c9:A045", "chunk_id": "6f78edebfe4eb8c9:A045:V002", "document_id": "6f78edebfe4eb8c9"}
+{"event": "validation_summary", "chunk_count": 14471, "document_count": 50, "duplicate_chunk_id_count": 0, "invalid_reference_count": 0}
