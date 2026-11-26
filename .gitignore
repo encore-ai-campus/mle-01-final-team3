@@ -224,3 +224,7 @@ __marimo__/
 
 # Codex execution ledgers
 .superpowers/
+# raw 데이터 github 업로드 안함
+docs\superpowers
+tmp
+tests
