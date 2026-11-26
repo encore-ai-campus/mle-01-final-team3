@@ -223,5 +223,6 @@ __marimo__/
 .streamlit/secrets.toml
 
 # raw 데이터 github 업로드 안함
-data
 docs\superpowers
+tmp
+tests
