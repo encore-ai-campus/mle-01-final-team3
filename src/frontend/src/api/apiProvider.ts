@@ -1,5 +1,6 @@
 import { ContractApiClient } from "./client";
 import { createApiError, toApiError, type ApiError } from "./errors";
+import type { RestClient } from "./restClient";
 import type { ApiProviderOptions, DataProvider, ReviewQuery } from "../types/api";
 import type {
   Account,
@@ -25,9 +26,11 @@ const notConfiguredMessage = "검증된 API 연결이 설정되지 않았습니�
 
 export class ApiProvider implements DataProvider {
   private readonly client: ContractApiClient | null;
+  private readonly restClient: RestClient | null;
 
   public constructor(options: ApiProviderOptions = {}) {
     this.client = options.contract ? new ContractApiClient(options.contract) : null;
+    this.restClient = options.restClient ?? null;
   }
 
   public getDashboard(): Promise<DataState<DashboardSummary>> {

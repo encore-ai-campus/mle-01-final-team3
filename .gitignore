@@ -228,3 +228,5 @@ __marimo__/
 docs\superpowers
 tmp
 tests
+.vercel/
+.env.local

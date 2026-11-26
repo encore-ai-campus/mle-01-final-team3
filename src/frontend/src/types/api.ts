@@ -22,6 +22,7 @@ import type {
   ReviewWorkflowActionInput,
   MarketingWorkflowActionInput,
 } from "./domain";
+import type { RestClient } from "../api/restClient";
 
 export interface ReviewQuery {
   search?: string;
@@ -52,6 +53,7 @@ export interface ApiContract {
 
 export interface ApiProviderOptions {
   contract?: ApiContract;
+  restClient?: RestClient | null;
 }
 
 export interface DataProvider {
