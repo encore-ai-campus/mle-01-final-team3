@@ -1,0 +1,16 @@
+{
+  "dataset_name": "structured_chunks",
+  "data_version": "2026-11-26-pdf-layout-repair",
+  "schema_version": "2026-11-26-reconciled",
+  "record_count": 2256998,
+  "document_count": 453,
+  "file_size_bytes": 4722940833,
+  "sha256": "f54ff455022b654e69d2f5b4c893ae0c34bd89f6e92f34cc842742bf2e1cf874",
+  "local_path": "data/data_chunking/structured_chunks.jsonl",
+  "storage_uri": null,
+  "reparsed_sources_sha256": {
+    "bb51bc2a5017baec": "8cbe344cd16edd62edf6f005872fecd2fbc835ca0faa1c2013d2775c16c8027d",
+    "f32c7bd98edadb61": "fc003db3cb2a69c13e58d71f2256416c4cbef0800776df5d2c7972fdde1b9bf6"
+  },
+  "source_file": "structured_chunks-001 (1).jsonl"
+}
