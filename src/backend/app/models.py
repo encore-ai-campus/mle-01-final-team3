@@ -1,4 +1,4 @@
-"""DB 테이블 정의. 기준: ERD_v0.4.dbml
+"""DB 테이블 정의. 기준: docs/ERD_v0.4.dbml
 
 - 테이블을 바꾸려면 이 파일을 고친 뒤 새 마이그레이션을 만든다 (README 참고).
 - 시각은 모두 timezone 포함(timestamptz)으로 저장한다.
