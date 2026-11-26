@@ -1,0 +1,176 @@
+// AdGuard AI 백엔드 ERD v0.4
+// DB: PostgreSQL / 작성: 엄가현 / 2026-11-26
+// ID는 문자열. 개발 중에는 접두어_순번(예: revw_001), 배포 전 DB 초기화 후 접두어_랜덤(예: revw_reil4lk)으로 전환
+// 시각은 timestamp, 코드 값은 varchar
+//
+// v0.3 → v0.4 변경
+// - 보고서 2주 자동 삭제 없앰: reports.delete_scheduled_at, legal_submissions.delete_scheduled_at 삭제
+// - '삭제된 사용자'는 userId만 남김: users.last_login_at도 비움 (note 추가)
+// - 직접 재작성 없앰: reviews.base_review_id 삭제, activity_logs.operation에서 REWRITE_SUBMITTED 삭제
+// - 판단 보류 없앰: reports.hold_reason, reports.review_points 삭제
+// - 버전 기록: reports.version, reports.reviewed_text 추가, (review_id, version) UNIQUE
+// - 로그인 세션: sessions 테이블 추가 (세션 쿠키 방식, DB 저장)
+
+Project adguard_ai {
+  database_type: 'PostgreSQL'
+  Note: 'AdGuard AI 백엔드 ERD v0.4'
+}
+
+Table users {
+  id varchar(32) [pk, note: '예: usr_001']
+  name varchar(100) [not null, note: "이름. '삭제된 사용자'는 '삭제된 사용자'로 덮어씀"]
+  email varchar(255) [unique, not null, note: "이메일 (로그인 아이디). '삭제된 사용자'는 deleted+{id}@invalid"]
+  password_hash varchar(255) [not null, note: "암호화한 비밀번호. '삭제된 사용자'는 로그인할 수 없는 값으로 덮어씀"]
+  role varchar(32) [not null, note: 'MARKETING, LEGAL, ADMIN (조회 범위도 role로 나눔)']
+  status varchar(32) [not null, default: 'ACTIVE', note: "ACTIVE, INACTIVE, DELETED('삭제된 사용자'. 되돌릴 수 없음)"]
+  must_change_password boolean [default: true, note: '임시 비밀번호면 true, 변경하면 false']
+  last_login_at timestamp [note: "최근 로그인 시각. '삭제된 사용자'는 비움"]
+  created_at timestamp [note: '만든 시각']
+
+  Note: '''
+  삭제 2가지
+  - 기록 없는 계정: 행 삭제 (딸린 sessions·activity_logs·notifications·menu_seen·idempotency_keys 먼저 삭제)
+  - 기록 있는 계정: 행은 남기고 개인정보만 덮어씀(status=DELETED). id만 남음. 화면 작성자명은 '삭제된 사용자'
+  '''
+}
+
+Table reviews {
+  id varchar(32) [pk, note: '광고 검토 건. 예: revw_001']
+  author_id varchar(32) [ref: > users.id, note: '작성자 (법무 검토 요청·AI 추천 요청·끝 처리는 이 사람만)']
+  title varchar(200) [not null, note: '광고명']
+  product_category varchar(32) [not null, note: 'HEALTH_FUNCTIONAL_FOOD, GENERAL_FOOD, CHILDREN_PREFERRED_FOOD']
+  text text [not null, note: '광고 문구 (처음 입력한 원문)']
+  closed_type varchar(32) [note: '끝 처리: ENDED(종료, 법무 검토 없음), PUBLISHED(게시 완료), CANCELED(심의 취소). 끝나지 않았으면 null']
+  closed_at timestamp [note: '끝 처리 시각']
+  created_at timestamp [note: '만든 시각']
+  updated_at timestamp [note: '마지막 수정 시각']
+}
+
+Table attachments {
+  id varchar(32) [pk]
+  filename varchar(255) [not null, note: '파일 이름']
+  content_type varchar(100) [not null, note: 'pdf, xlsx, docx']
+  size int [not null, note: '바이트. 제출당 합계 10MB 이하']
+  storage_key varchar(255) [not null, note: '파일 저장 위치']
+  uploaded_by varchar(32) [ref: > users.id]
+  created_at timestamp [note: '만든 시각']
+}
+
+Table review_attachments {
+  review_id varchar(32) [ref: > reviews.id, note: '관련 광고 검토 건']
+  attachment_id varchar(32) [ref: > attachments.id, note: '첨부파일']
+
+  indexes {
+    (review_id, attachment_id) [pk]
+  }
+}
+
+Table review_runs {
+  id varchar(32) [pk, note: '실행 1번. 예: run_001']
+  review_id varchar(32) [ref: > reviews.id, note: '관련 광고 검토 건']
+  stage varchar(32) [not null, note: 'AI_SCREENING(AI 심의), RA_SUGGEST(AI 추천 문구 생성), RA_RECHECK(AI 추천 문구 재심의)']
+  status varchar(32) [not null, note: 'QUEUED, RUNNING, SUCCEEDED, FAILED']
+  attempt int [default: 1, note: '첫 실행 1. 재시도는 최대 2회 (AI 추천 요청은 새 실행이며 attempt 1부터)']
+  retry_of varchar(32) [ref: > review_runs.id, note: '어떤 실패를 다시 한 건지']
+  error_code varchar(50) [note: '예: RUN_TIMEOUT (접수 후 180초)']
+  error_message varchar(500) [note: '오류 내용']
+  error_retryable boolean [note: '다시 시도해도 되는 오류인지']
+  created_at timestamp [note: '만든 시각']
+  updated_at timestamp [note: '마지막 수정 시각']
+  started_at timestamp [note: '시작 시각']
+  finished_at timestamp [note: '끝난 시각']
+  suggestion jsonb [note: 'RA_SUGGEST 실행의 추천 문구 {text, rationale, status}. status는 PENDING(확인 대기), RECHECKED([재심의]), DISMISSED([닫기]). 다른 단계는 null']
+}
+
+Table reports {
+  run_id varchar(32) [pk, ref: - review_runs.id, note: '실행 1번 = 보고서 1개']
+  review_id varchar(32) [ref: > reviews.id, note: '관련 광고 검토 건']
+  stage varchar(32) [not null, note: 'AI_SCREENING, RA_RECHECK']
+  version int [not null, note: "버전. 처음 AI 심의 1, 재심의 성공마다 +1. 화면의 'n차 심의'·'vN'"]
+  reviewed_text text [not null, note: '이 버전에서 심의한 광고 문구. AI 심의는 원문, 재심의는 AI 추천 문구']
+  decision varchar(32) [not null, note: 'SUITABLE(적합), UNSUITABLE(부적합)']
+  summary text [not null, note: '검토 요약']
+  improvement_note text [note: '개선 의견 (없으면 null)']
+  findings jsonb [not null, note: '문장별: sentenceId, text, decision, rationale, violationCode, sources[{title, reference, url, lawText, noticeNo, effectiveDate}], referenceCases[{title, summary, caseRef, caseDate, url}], alternativeText. RA_RECHECK이면 text가 AI 추천 문구']
+  created_at timestamp [note: '만든 시각']
+
+  indexes {
+    (review_id, version) [unique]
+  }
+
+  Note: '보고서는 적합·부적합 모두 삭제하지 않음. 재심의마다 버전이 오름 (v0.4)'
+}
+
+Table legal_submissions {
+  id varchar(32) [pk, note: '법무 검토 요청 건']
+  review_id varchar(32) [ref: > reviews.id, note: '관련 광고 검토 건 (재심의 후 다시 요청하면 한 건에 여러 행)']
+  report_run_id varchar(32) [unique, ref: - reports.run_id, note: '요청한 적합 보고서. 같은 보고서 중복 요청 금지']
+  sender_id varchar(32) [ref: > users.id, note: '요청한 마케팅 담당자']
+  reviewer_id varchar(32) [ref: > users.id, note: '[검토 시작]을 먼저 누른 법무 담당자']
+  status varchar(32) [not null, note: 'PENDING(검토 대기), IN_REVIEW(검토 중), OPINION_SENT(검토 의견 전송). 미요청은 행 없음']
+  reason text [note: '검토 의견 (전송 시 필수)']
+  sent_at timestamp [not null, note: '요청 시각']
+  started_at timestamp [note: '담당자 지정 시각']
+  decided_at timestamp [note: '검토 의견 전송 시각']
+}
+
+Table notifications {
+  id varchar(32) [pk]
+  user_id varchar(32) [ref: > users.id, note: '받는 사람 (법무팀 전체 알림은 담당자마다 1줄씩)']
+  type varchar(32) [not null, note: 'LEGAL_OPINION_SENT, RA_SUGGESTED, RA_COMPLETED, SUBMISSION_RECEIVED, PASSWORD_CHANGE_REQUIRED, WORK_HANDED_OVER, LEGAL_REASSIGN_NEEDED']
+  message varchar(500) [not null, note: '알림 문구']
+  review_id varchar(32) [note: '관련 광고 검토 건']
+  submission_id varchar(32) [note: '관련 법무 검토 요청 건']
+  menu varchar(32) [note: 'INBOX, SENT_LIST (파란 불 켤 메뉴)']
+  created_at timestamp [note: '만든 시각']
+  read_at timestamp [note: '비어 있으면 새 알림']
+}
+
+Table menu_seen {
+  user_id varchar(32) [ref: > users.id, note: '사용자']
+  menu varchar(32) [note: 'INBOX, SENT_LIST']
+  seen_at timestamp [note: '이 시각 이후 알림만 파란 불']
+
+  indexes {
+    (user_id, menu) [pk]
+  }
+}
+
+Table activity_logs {
+  id varchar(32) [pk]
+  user_id varchar(32) [ref: > users.id, note: '사용자']
+  operation varchar(32) [not null, note: 'LOGIN, LOGOUT, REVIEW_REQUESTED, RA_RECHECK_REQUESTED, SUGGESTION_RECHECKED, SUGGESTION_DISMISSED, RUN_RETRIED, LEGAL_SENT, REPORT_VIEWED, LEGAL_OPINION_SENT, REVIEW_CLOSED, USER_CREATED, USER_UPDATED, WORK_HANDED_OVER, USER_DELETED, USER_ANONYMIZED']
+  target_label varchar(255) [note: '화면에 보일 대상 이름. 사용자 관리 로그(USER_*, WORK_HANDED_OVER)는 대상 userId']
+  occurred_at timestamp [not null]
+}
+
+Table sessions {
+  token_hash varchar(64) [pk, note: '쿠키 adguard_session 값(랜덤 토큰)의 SHA-256. 원래 토큰은 저장하지 않음']
+  user_id varchar(32) [not null, ref: > users.id, note: '로그인한 사용자']
+  created_at timestamp [not null, note: '로그인 시각']
+  expires_at timestamp [not null, note: '만료 시간은 로그인 후 10시간 고정']
+
+  indexes {
+    user_id [note: '비활성화·역할 변경·삭제 때 그 사용자 세션 전부 삭제']
+    expires_at [note: '만료된 세션 정리']
+  }
+
+  Note: '''
+  로그인 1번 = 행 1개. 로그아웃하면 그 행 삭제
+  비활성화·역할 변경·삭제 시 user_id로 전부 삭제 → 바로 로그아웃됨
+  요청마다 token_hash로 찾고, 없거나 expires_at이 지났으면 401 UNAUTHENTICATED
+  '''
+}
+
+Table idempotency_keys {
+  user_id varchar(32) [ref: > users.id, note: '사용자']
+  key varchar(100) [note: '검토 접수·재시도·AI 추천 요청·법무 검토 요청·의견 전송·끝 처리']
+  request_hash varchar(64) [note: '요청 내용 확인값']
+  status_code int [note: '처음 응답 코드']
+  response jsonb [note: '처음 응답 내용']
+  created_at timestamp [note: '만든 시각']
+
+  indexes {
+    (user_id, key) [pk]
+  }
+}

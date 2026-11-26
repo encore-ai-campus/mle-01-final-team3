@@ -148,6 +148,9 @@ dependencies = [
     "starlette==1.3.1",
     "torchvision>=0.29.2",
     "paddleocr>=2.10.0",
+    "fastapi>=0.163.2",
+    "sqlalchemy>=2.1.9",
+    "alembic>=1.20.1",
 ]
 
 [tool.uv]
