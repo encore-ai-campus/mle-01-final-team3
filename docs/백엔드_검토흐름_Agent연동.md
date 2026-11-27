@@ -3,7 +3,7 @@
 - 담당: 검토 흐름·AI 연동 담당
 - 기준: API 설계서 v5.3 (3장 실행 상태, 6장 검토 흐름·연동 방향·결과 보고서 조회, 7장 실행 상태와 공통 오류) + Agent 담당과 정한 것(9장)
 - 코드: `src/backend/app/reviews/`, `src/backend/app/agent/`
-- 테스트: `src/backend/tests/` (가짜 Agent 기준 103개 통과)
+- 테스트: `src/backend/tests/` (가짜 Agent 기준, 인증·관리자 테스트 포함 189개 통과)
 
 ## 1. API 목록
 
@@ -24,7 +24,7 @@
 - 202 응답에는 `Location: /api/v1/review-runs/{runId}` 헤더가 붙는다.
 - 실행을 만드는 API(reviews, ra-runs, recheck, retry)는 `Idempotency-Key`를 받는다. 같은 키로 다시 보내면 처음 응답을 그대로 돌려주고 Agent에도 한 번만 보낸다.
 - 백엔드 ↔ Agent 사이 인증은 양쪽 모두 `Authorization: Bearer {AGENT_TOKEN}`이다. 토큰을 바꾸는 동안에는 `AGENT_TOKEN_EXTRA`도 받는다 (7장 '서비스 토큰 교체').
-- 길이 제한(DB 칼럼 길이): 제목 200자, 첨부 파일 이름 255자, 완료 통지 `error.code` 50자. 넘으면 422 VALIDATION_ERROR (`title`·`file`·`error.code` INVALID).
+- 길이 제한(DB 칼럼 길이): 제목 200자, 첨부 파일 이름 255자, 완료 통지 `error.code` 50자. 넘으면 422 VALIDATION_ERROR (`title`·`filename`·`error.code` INVALID).
 - 응답 시각은 한국시간 ISO 8601, 초 단위다 (예: `2026-11-27T09:45:16+09:00`). 모든 API 공통 규칙으로, `app/core/times.py`의 `to_kst()`로 바꾼다. 저장은 UTC 그대로이고, 오프셋 없이 받은 요청 시각은 한국시간으로 본다.
 
 ## 2. 실행 상태
@@ -277,6 +277,7 @@ POST /reviews · ra-runs · recheck · retry
 | 재시도: 최신 실패 실행이 아님 / 실행 중 | 409 STATE_CONFLICT |
 | 재시도: retryable=false | 409 STATE_CONFLICT |
 | 재시도: 최초 실행별 2회를 다 씀 (attempt 3) | 409 RETRY_LIMIT_REACHED |
+| 실행을 만들 때 실행 중인 실행이 이미 있음 | 409 STATE_CONFLICT. 검토 건 행을 잠근 뒤 확인한다. 이 확인을 빠뜨린 경로가 있어도 DB 인덱스 `uq_review_runs_one_active`가 막고, 그때도 500이 아니라 409로 답한다 |
 
 - Agent가 완료 통지를 보냈는데 응답을 못 받았으면 같은 내용으로 다시 보내면 된다 (중복은 200).
 - 시간 초과는 따로 돌아가는 작업 없이, 실행·보고서를 조회하거나 완료 통지를 받을 때 확인해서 확정한다. 상태는 API로만 보이므로 결과는 같다.
@@ -305,7 +306,7 @@ POST /reviews · ra-runs · recheck · retry
 
 ## 8. 확인 결과
 
-### 가짜 Agent 테스트 (`uv run pytest tests`, 103개 통과)
+### 가짜 Agent 테스트 (`uv run pytest tests`, 인증·관리자 테스트 포함 189개 통과)
 
 진짜 Agent 대신 작업 요청을 기록만 하는 가짜 Agent를 끼우고, 완료 통지는 테스트가 Agent 대신 보낸다.
 
@@ -327,6 +328,7 @@ POST /reviews · ra-runs · recheck · retry
 | 시각 형식 | 검토·실행·관리자 API 모두 `+09:00` 초 단위 (테스트 DB를 UTC로 두고 확인), 오프셋 없는 `from`/`to`는 한국시간 | test_times.py |
 | 중복 클릭 | 같은 Idempotency-Key → 같은 runId, 작업 요청 1번 / 다른 내용 → 409 | test_review_flow.py |
 | 동시 요청 | 다른 세션이 검토 건 행을 잠근 동안 AI 추천 요청·재시도 2개가 잠금을 기다리고, 풀린 뒤 202 하나·409 하나, 실행은 하나만 생김 | test_review_locks.py |
+| 인덱스 안전망 | 코드 확인을 거치지 않고 실행 중 실행을 DB에 직접 넣은 뒤 AI 추천 요청·재시도 → 500이 아니라 409, 새 실행·Agent 요청 없음 | test_review_locks.py |
 | 잠금 순서 | 완료 통지·실행 조회 중 시간 초과·Agent 작업 요청 실패 처리·[닫기]가 실행 행보다, 법무 [검토 시작]·의견 전송이 법무 요청 행보다 검토 건 행을 먼저 기다림(그동안 뒤의 행은 비어 있음), 목록용 시간 초과는 잠긴 검토 건을 건너뜀 | test_review_locks.py |
 | 검토 접수 | 미로그인·비활성 계정 401, 잘못된 제품 분류 422, 저장 중 오류 시 검토 건·첨부 연결·실행·활동 로그·멱등성 키 모두 롤백(Agent 요청 없음, 같은 키로 다시 보내면 정상 접수) | test_review_request.py |
 | 정리 명령 | 24시간 지난 중복 방지 키 삭제(지운 키는 새 요청으로 처리), 24시간 지나도록 검토 건에 안 붙은 첨부 삭제(최근 파일·붙은 파일은 남김, 지운 첨부로 요청하면 422), DB에 없는 파일은 1시간 지난 것만 삭제, 폴더 밖 경로 거부, `--dry-run`은 아무것도 지우지 않음 | test_maintenance.py |

@@ -71,7 +71,7 @@ def upload_attachment(
     if len(filename) > FILENAME_MAX:
         raise ApiError(
             422, "VALIDATION_ERROR", f"파일 이름은 {FILENAME_MAX}자까지 쓸 수 있습니다.",
-            field_errors=[{"field": "file", "code": "INVALID"}],
+            field_errors=[{"field": "filename", "code": "INVALID"}],
         )  # fmt: skip
 
     attachment_id = new_id(db, "att")

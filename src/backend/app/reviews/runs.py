@@ -17,9 +17,11 @@ from datetime import timedelta
 
 from fastapi import BackgroundTasks
 from sqlalchemy import select
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session as DbSession
 
 from app.core.config import settings
+from app.core.errors import ApiError
 from app.core.ids import new_id
 from app.core.security import utcnow
 from app.models import Attachment, Review, ReviewAttachment, ReviewRun
@@ -29,6 +31,13 @@ from app.reviews.state import current_report, latest_legal, report_of_version, r
 
 TIMEOUT_MESSAGE = "검토 시간이 초과되었습니다. 다시 검토해 주세요."
 UNAVAILABLE_MESSAGE = "AI 검토 서버에 연결하지 못했습니다. 다시 검토해 주세요."
+# 광고 건당 실행 중(QUEUED·RUNNING) 실행은 1개 (models.ReviewRun의 부분 UNIQUE 인덱스 이름)
+ACTIVE_RUN_INDEX = "uq_review_runs_one_active"
+
+
+def _violates_active_run_index(exc: IntegrityError) -> bool:
+    diag = getattr(exc.orig, "diag", None)
+    return getattr(diag, "constraint_name", None) == ACTIVE_RUN_INDEX
 
 
 def create_run(
@@ -43,6 +52,9 @@ def create_run(
     """새 실행을 QUEUED로 만들고, 응답을 보낸 뒤 Agent에 작업을 요청하도록 예약한다. commit은 호출한 쪽에서.
 
     input_text: 재심의(RA_RECHECK)할 추천 문구. 재시도는 원래 실행의 값을 그대로 복사한다.
+
+    실행 중인 건이 있는지는 호출한 쪽이 검토 건 행을 잠근 뒤 확인한다(409). 그 확인을 빠뜨린 경로가 있어도
+    DB 인덱스(uq_review_runs_one_active)가 두 번째 실행을 막는데, 그 오류도 500이 아니라 같은 409로 답한다.
     """
     from app.agent.dispatch import dispatch_run  # 순환 import 방지
 
@@ -59,6 +71,12 @@ def create_run(
         updated_at=now,
     )
     db.add(run)
+    try:
+        db.flush()  # 인덱스 위반을 여기서 확인한다 (Agent 작업 요청을 예약하기 전에)
+    except IntegrityError as exc:
+        if _violates_active_run_index(exc):
+            raise ApiError(409, "STATE_CONFLICT", "이미 검토가 진행 중입니다. 최신 상태를 다시 조회해 주세요.") from None
+        raise
     review.updated_at = now
     background.add_task(dispatch_run, run.id)
     return run
