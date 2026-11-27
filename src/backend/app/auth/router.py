@@ -67,7 +67,7 @@ def login(body: LoginRequest, response: Response, db: DbSession = Depends(get_db
             token_hash=hash_token(token),
             user_id=user.id,
             created_at=now,
-            expires_at=now + timedelta(hours=settings.session_hours),  # 고정 10시간
+            expires_at=now + timedelta(hours=settings.session_hours),  # 고정 8시간
         )
     )
     user.last_login_at = now

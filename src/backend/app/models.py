@@ -174,7 +174,7 @@ class ActivityLog(Base):
 
 
 class Session(Base):
-    """로그인 세션. 로그인 1번 = 행 1개. 만료는 로그인 시점 + 10시간 고정."""
+    """로그인 세션. 로그인 1번 = 행 1개. 만료는 로그인 시점 + 8시간 고정."""
 
     __tablename__ = "sessions"
 

@@ -43,7 +43,7 @@ def test_new_id_is_prefix_and_number(db):
 # ---------- 로그인 성공 ----------
 
 
-def test_login_success_sets_cookie_and_10h_session(client, db):
+def test_login_success_sets_cookie_and_8h_session(client, db):
     user = make_user(db)
     res = login(client)
     assert res.status_code == 200
@@ -56,7 +56,7 @@ def test_login_success_sets_cookie_and_10h_session(client, db):
 
     db.expire_all()
     session = db.scalar(select(Session).where(Session.user_id == user.id))
-    assert session.expires_at - session.created_at == timedelta(hours=10)
+    assert session.expires_at - session.created_at == timedelta(hours=8)
     assert db.get(User, user.id).last_login_at is not None
     assert db.scalar(select(ActivityLog.operation).where(ActivityLog.user_id == user.id)) == "LOGIN"
 
