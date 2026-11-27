@@ -23,7 +23,7 @@ def test_create_review_returns_202_and_dispatches_job(mkt, agent):
         "schemaVersion": "1.0", "runId": body["runId"], "reviewId": body["reviewId"], "stage": "AI_SCREENING",
         "title": "면역력 음료", "productCategory": "GENERAL_FOOD", "channel": "SNS", "mainIngredients": ["홍삼", "비타민C"],
         "text": "면역력 쑥쑥", "attachments": [],
-        "baseReportRunId": None, "baseReport": None, "legalOpinion": None,
+        "baseReportRunId": None, "baseReport": None, "initialReport": None, "legalOpinion": None,
     }  # fmt: skip
     run = run_of(mkt, body["runId"])
     assert run["runStatus"] == "RUNNING" and run["attempt"] == 1
@@ -123,6 +123,7 @@ def test_ra_suggest_then_recheck_bumps_version(mkt, agent, agent_http):
     job = agent.last()
     assert job["stage"] == "RA_SUGGEST" and job["baseReportRunId"] == run
     assert job["baseReport"]["version"] == 1 and job["legalOpinion"] is None
+    assert job["initialReport"] is None  # 최신이 v1이면 보내지 않는다
     assert detail(mkt, rev)["allowedActions"] == []  # 실행 중
 
     # 추천 문구 도착 → 보고서는 그대로(v1), 확인 팝업 버튼만
@@ -153,6 +154,25 @@ def test_ra_suggest_then_recheck_bumps_version(mkt, agent, agent_http):
     with SessionLocal() as db:
         types = db.scalars(select(Notification.type).where(Notification.user_id == mkt.user_id)).all()
     assert sorted(types) == ["RA_COMPLETED", "RA_SUGGESTED"]
+
+
+def test_suggest_after_recheck_sends_initial_report(mkt, agent, agent_http):
+    """재심의 뒤(v2 이상) 다시 AI 추천을 요청하면 최초 AI 심의 보고서(v1)를 initialReport로 함께 보낸다."""
+    rev, run = new_review(mkt)
+    finish(agent_http, run, rev, "UNSUITABLE")  # v1
+    sug_run = suggest(mkt, agent_http, rev)
+    recheck_run = mkt.post(f"{API}/reviews/{rev}/ra-runs/{sug_run}/recheck").json()["runId"]
+    assert agent.last()["initialReport"] is None  # 재심의 작업 요청에는 보내지 않는다
+    finish(agent_http, recheck_run, rev, "UNSUITABLE")  # v2도 부적합
+
+    assert mkt.post(f"{API}/reviews/{rev}/ra-runs").status_code == 202
+    job = agent.last()
+    assert job["stage"] == "RA_SUGGEST" and job["baseReportRunId"] == recheck_run
+    assert job["baseReport"]["version"] == 2 and job["baseReport"]["reviewedText"] == SUGGESTION["text"]
+    initial = job["initialReport"]
+    assert initial["version"] == 1 and initial["runId"] == run and initial["stage"] == "AI_SCREENING"
+    assert initial["reviewedText"] == detail(mkt, rev)["text"] and initial["decision"] == "UNSUITABLE"
+    assert set(initial) == set(job["baseReport"])  # baseReport와 같은 형식
 
 
 def test_recheck_twice_is_409(mkt, agent_http):

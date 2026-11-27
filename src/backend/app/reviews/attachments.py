@@ -4,10 +4,14 @@
 - 검토 요청(POST /reviews)에는 attachmentIds만 보낸다. 합계 10MB를 넘으면 413.
 - Agent에는 작업 요청의 attachments[].url로 10분짜리 서명 URL을 준다.
   GET /internal/v1/attachments/{attachmentId}?expires=..&sig=.. 로 내려받는다.
+  서명은 AGENT_TOKEN으로 만들고, 토큰을 바꾸는 동안에는 AGENT_TOKEN_EXTRA로 만든 서명도 받는다.
+  서버 접속 로그에는 서명 값을 가려서 남긴다 (HideSignature).
 """
 
 import hashlib
 import hmac
+import logging
+import re
 import time
 from pathlib import Path
 from typing import Literal
@@ -122,14 +126,39 @@ def check_review_attachments(db: DbSession, user: User, attachment_ids: list[str
 # ---------- Agent용 서명 URL ----------
 
 
-def _signature(attachment_id: str, expires: int) -> str:
-    return hmac.new(settings.agent_token.encode(), f"{attachment_id}:{expires}".encode(), hashlib.sha256).hexdigest()
+def _signature(key: str, attachment_id: str, expires: int) -> str:
+    return hmac.new(key.encode(), f"{attachment_id}:{expires}".encode(), hashlib.sha256).hexdigest()
 
 
 def signed_url(attachment_id: str) -> str:
     expires = int(time.time()) + SIGNED_URL_SECONDS
     base = settings.public_base_url.rstrip("/")
-    return f"{base}/internal/v1/attachments/{attachment_id}?expires={expires}&sig={_signature(attachment_id, expires)}"
+    sig = _signature(settings.agent_token, attachment_id, expires)
+    return f"{base}/internal/v1/attachments/{attachment_id}?expires={expires}&sig={sig}"
+
+
+def _valid_signature(attachment_id: str, expires: int, sig: str) -> bool:
+    """받는 토큰(AGENT_TOKEN·AGENT_TOKEN_EXTRA) 중 하나로 만든 서명이면 맞다. 토큰이 없으면 항상 틀림."""
+    matches = [hmac.compare_digest(sig, _signature(t, attachment_id, expires)) for t in settings.accepted_agent_tokens]
+    return any(matches)
+
+
+_SIG_VALUE = re.compile(r"(?<=[?&]sig=)[^&\s\"]+")
+
+
+class HideSignature(logging.Filter):
+    """로그 문장에 들어간 첨부 다운로드 주소의 서명(sig) 값을 ***로 바꾼다.
+
+    서버 접속 로그(uvicorn.access)는 요청 주소를 쿼리까지 남겨서, 그대로 두면 10분 동안 쓸 수 있는 주소가 로그에 남는다.
+    app/main.py에서 uvicorn.access 로거에 붙인다.
+    """
+
+    def filter(self, record: logging.LogRecord) -> bool:
+        if isinstance(record.msg, str):
+            record.msg = _SIG_VALUE.sub("***", record.msg)
+        if isinstance(record.args, tuple):
+            record.args = tuple(_SIG_VALUE.sub("***", a) if isinstance(a, str) else a for a in record.args)
+        return True
 
 
 @internal_router.get(
@@ -144,12 +173,7 @@ def download_attachment(
     sig: str = Query(...),
     db: DbSession = Depends(get_db),
 ):
-    valid = (
-        settings.agent_token
-        and expires >= int(time.time())
-        and hmac.compare_digest(sig, _signature(attachmentId, expires))
-    )
-    if not valid:
+    if expires < int(time.time()) or not _valid_signature(attachmentId, expires, sig):
         raise ApiError(401, "UNAUTHENTICATED", "파일 주소가 만료되었거나 올바르지 않습니다.")
     attachment = db.get(Attachment, attachmentId)
     if attachment is None or not _file_path(attachment.storage_key).is_file():
