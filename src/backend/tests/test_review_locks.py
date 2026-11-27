@@ -7,6 +7,7 @@
    실행·법무 요청 행보다 검토 건 행을 먼저 잠근다.
    다른 세션이 검토 건을 잠근 동안 그 처리가 검토 건 잠금을 기다리고, 실행 행은 아직 잡지 않았는지(NOWAIT로 잠가 봄) 확인한다.
    순서가 반대면 실행 행을 잡은 채 검토 건을 기다려, 검토 건을 잡고 실행을 기다리는 요청과 교착이 생긴다.
+3. 코드 확인을 빠뜨린 경로가 있어도 DB 인덱스(uq_review_runs_one_active)가 두 번째 실행을 막고, 응답은 500이 아니라 409다.
 """
 
 import threading
@@ -18,6 +19,7 @@ from sqlalchemy.exc import OperationalError
 
 from app.agent.dispatch import dispatch_run
 from app.core.db import SessionLocal
+from app.core.ids import new_id
 from app.main import app
 from app.models import LegalSubmission, Review, ReviewRun
 from app.reviews import codes as C
@@ -225,3 +227,49 @@ def test_legal_opinion_locks_review_before_submission(mkt, legal, agent_http):
     send = lambda: client.post(f"{API}/legal-submissions/{sub}/opinion", json={"reason": "근거 자료가 필요합니다."}).status_code  # noqa: E731
     waiting, sub_free, code = _check_order(rev, sub, send, _submission_lock_is_free)
     assert waiting and sub_free and code == 200
+
+
+# ---------- DB 인덱스 안전망 (uq_review_runs_one_active) ----------
+
+
+def _sneak_active_run(review_id: str, before_run: str) -> str:
+    """코드 확인을 거치지 않고 실행 중(QUEUED) 실행을 DB에 직접 넣는다.
+
+    최신 실행(before_run)보다 먼저 만든 것으로 넣어, 코드의 '실행 중인 건 있나' 확인(최신 실행 기준)은
+    통과하고 DB 인덱스에서만 막히게 한다. 잠금·확인을 빠뜨린 경로를 흉내 낸 것이다.
+    """
+    with SessionLocal() as db:
+        latest = db.get(ReviewRun, before_run)
+        run_id = new_id(db, "run")
+        db.add(ReviewRun(
+            id=run_id, review_id=review_id, stage=C.AI_SCREENING, status=C.QUEUED, attempt=1,
+            created_at=latest.created_at - timedelta(seconds=1), updated_at=latest.created_at,
+        ))  # fmt: skip
+        db.commit()
+        return run_id
+
+
+def test_index_violation_on_ai_suggestion_is_409(mkt, agent, agent_http):
+    rev, run = new_review(mkt)
+    finish(agent_http, run, rev, "UNSUITABLE")
+    _sneak_active_run(rev, run)
+    sent = len(agent.jobs)
+
+    r = mkt.post(f"{API}/reviews/{rev}/ra-runs")
+
+    assert r.status_code == 409 and r.json()["error"]["code"] == "STATE_CONFLICT"
+    assert _count_runs(rev, stage="RA_SUGGEST") == 0
+    assert len(agent.jobs) == sent  # Agent에 보내지 않는다
+
+
+def test_index_violation_on_retry_is_409(mkt, agent, agent_http):
+    rev, run = new_review(mkt)
+    fail(agent_http, run, rev)
+    _sneak_active_run(rev, run)
+    sent = len(agent.jobs)
+
+    r = mkt.post(f"{API}/review-runs/{run}/retry")
+
+    assert r.status_code == 409 and r.json()["error"]["code"] == "STATE_CONFLICT"
+    assert _count_runs(rev, retry_of=run) == 0
+    assert len(agent.jobs) == sent

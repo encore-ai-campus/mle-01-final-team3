@@ -44,7 +44,7 @@ def test_unsupported_type_415(mkt):
 def test_filename_over_255_is_422(mkt):
     r = upload(mkt, "가" * 252 + ".pdf")  # 256자
     assert r.status_code == 422
-    assert r.json()["error"]["fieldErrors"] == [{"field": "file", "code": "INVALID"}]
+    assert r.json()["error"]["fieldErrors"] == [{"field": "filename", "code": "INVALID"}]
     assert upload(mkt, "가" * 251 + ".pdf").status_code == 201  # 255자
 
 
