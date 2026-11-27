@@ -35,8 +35,12 @@ def create_run(
     background: BackgroundTasks,
     *,
     retry_of: ReviewRun | None = None,
+    input_text: str | None = None,
 ) -> ReviewRun:
-    """새 실행을 QUEUED로 만들고, 응답을 보낸 뒤 Agent에 작업을 요청하도록 예약한다. commit은 호출한 쪽에서."""
+    """새 실행을 QUEUED로 만들고, 응답을 보낸 뒤 Agent에 작업을 요청하도록 예약한다. commit은 호출한 쪽에서.
+
+    input_text: 재심의(RA_RECHECK)할 추천 문구. 재시도는 원래 실행의 값을 그대로 복사한다.
+    """
     from app.agent.dispatch import dispatch_run  # 순환 import 방지
 
     now = utcnow()
@@ -47,6 +51,7 @@ def create_run(
         status=C.QUEUED,
         attempt=(retry_of.attempt or 1) + 1 if retry_of else 1,
         retry_of=retry_of.id if retry_of else None,
+        input_text=retry_of.input_text if retry_of else input_text,
         created_at=now,
         updated_at=now,
     )
@@ -97,40 +102,11 @@ def expire_overdue_runs(db: DbSession, review_ids: list[str] | None = None) -> i
     return len(runs)
 
 
-def first_run(db: DbSession, run: ReviewRun) -> ReviewRun:
-    """재시도 사슬(retry_of)을 따라 최초 실행을 찾는다."""
-    while run.retry_of:
-        run = db.get(ReviewRun, run.retry_of)
-    return run
-
-
-def run_input_text(db: DbSession, run: ReviewRun, review: Review) -> str:
-    """이 실행이 심의할 문구.
-
-    - AI_SCREENING·RA_SUGGEST: 처음 입력한 원문
-    - RA_RECHECK: 마케팅 담당자가 [재심의]한 추천 문구. 재시도해도 같은 문구 (설계서 6장)
-
-    review_runs에 입력 문구 칼럼이 아직 없어서, 최초 RA_RECHECK 실행 직전에 [재심의] 처리된 RA_SUGGEST 실행의
-    suggestion.text를 쓴다. 검토 건당 활성 실행은 하나라 순서가 섞이지 않는다.
-    칼럼(review_runs.input_text)은 추가하기로 합의했다. 인증·공통 기반 담당이 추가하면 그 값을 쓰도록 바꾼다.
-    """
-    if run.stage != C.RA_RECHECK:
-        return review.text
-    root = first_run(db, run)
-    source = db.scalars(
-        select(ReviewRun)
-        .where(
-            ReviewRun.review_id == review.id,
-            ReviewRun.stage == C.RA_SUGGEST,
-            ReviewRun.created_at <= root.created_at,
-            ReviewRun.suggestion["status"].astext == C.SUGGESTION_RECHECKED,
-        )
-        .order_by(ReviewRun.created_at.desc())
-        .limit(1)
-    ).first()
-    if source is None:  # 정상 흐름에서는 생기지 않는다
-        raise RuntimeError(f"재심의 문구를 찾을 수 없습니다: {run.id}")
-    return source.suggestion["text"]
+def run_input_text(run: ReviewRun, review: Review) -> str:
+    """이 실행이 심의할 문구. AI 심의·추천 문구 생성은 처음 입력한 원문, 재심의는 [재심의]한 추천 문구(input_text)."""
+    if run.stage == C.RA_RECHECK:
+        return run.input_text
+    return review.text
 
 
 def build_job(db: DbSession, run: ReviewRun) -> dict:
@@ -157,7 +133,9 @@ def build_job(db: DbSession, run: ReviewRun) -> dict:
         "stage": run.stage,
         "title": review.title,
         "productCategory": review.product_category,
-        "text": run_input_text(db, run, review),
+        "channel": review.channel,
+        "mainIngredients": review.main_ingredients or [],
+        "text": run_input_text(run, review),
         "attachments": [
             {"attachmentId": a.id, "filename": a.filename, "url": signed_url(a.id)} for a in attachments
         ],

@@ -10,13 +10,12 @@ from datetime import datetime
 from typing import Annotated, Literal
 
 from fastapi import APIRouter, Depends, Query, Response
-from fastapi.encoders import jsonable_encoder
-from fastapi.responses import JSONResponse
+from pydantic import StringConstraints
 from sqlalchemy import delete, func, or_, select, update
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session as DbSession
 
-from app.admin_users.service import create_user
+from app.admin_users.service import EMAIL_PATTERN, create_user
 from app.auth.sessions import revoke_user_sessions
 from app.core.activity import log_activity
 from app.core.deps import Admin, get_db
@@ -53,9 +52,17 @@ OPERATIONS = {
 # ---------- 요청 모델 ----------
 
 
+# 길이 상한은 DB 칸 크기와 같다 (name 100자, email 255자). 넘으면 500 대신 422.
+Name = Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=100)]
+# 이메일은 소문자로 바꿔 받는다. 형식이 틀리면 422 (fieldErrors email INVALID)
+Email = Annotated[
+    str, StringConstraints(strip_whitespace=True, to_lower=True, min_length=1, max_length=255, pattern=EMAIL_PATTERN)
+]
+
+
 class UserCreate(CamelModel):
-    name: Text
-    email: Text
+    name: Name
+    email: Email
     temporary_password: Text
     role: Role
 
@@ -213,9 +220,14 @@ def update_user(userId: str, body: UserUpdate, admin: Admin, db: DbSession = Dep
             "계정 삭제는 [삭제]로 처리해 주세요.",
             field_errors=[{"field": "status", "code": "INVALID"}],
         )
+    if body.role is None and body.status is None:
+        raise ApiError(422, "VALIDATION_ERROR", "변경할 항목을 입력해 주세요.")
     u = lock_user(db, userId)
     deactivate = body.status == "INACTIVE" and u.status != "INACTIVE"
     role_change = body.role is not None and body.role != u.role
+    status_change = body.status is not None and body.status != u.status
+    if not (role_change or status_change):
+        return admin_row(u)  # 지금과 같은 값: 바꿀 게 없으니 저장·로그 없이 현재 상태만 돌려준다
     if deactivate or role_change:
         protect(db, admin, u)
         check_handover(db, u)
@@ -288,48 +300,44 @@ def handover(
 
 
 @router.delete("/{userId}", status_code=204, summary="계정 삭제 [삭제]")
-def delete_user(
-    userId: str,
-    admin: Admin,
-    db: DbSession = Depends(get_db),
-    mode: Literal["anonymize"] | None = None,
-):
+def delete_user(userId: str, admin: Admin, db: DbSession = Depends(get_db)) -> Response:
+    """퇴사 등으로 계정을 지운다. 기록이 있어도 막지 않는다 (팀 합의: 비활성화 유도 없음).
+
+    - 기록 없음: 계정 행과 딸린 데이터를 통째로 삭제 (USER_DELETED)
+    - 기록 있음: 개인정보만 지우고 '삭제된 사용자'로 바꿈. 보고서·검토·법무 기록은 남김 (USER_ANONYMIZED)
+    - 어느 경우든 204. 되돌릴 수 없으므로 확인창은 프론트에서 띄운다.
+    """
     u = lock_user(db, userId)
     protect(db, admin, u)
     check_handover(db, u)
-    records = record_counts(db, u.id)
 
-    if not any(records.values()):
-        # 기록 없음: 딸린 데이터와 계정 행 삭제
-        delete_personal_data(db, u.id, with_activity_logs=True)
-        db.delete(u)
-        log_activity(db, admin.id, "USER_DELETED", userId)
+    if not any(record_counts(db, u.id).values()):
         try:
-            db.commit()
+            with db.begin_nested():  # 임시 저장 지점: 실패하면 이 삭제만 취소
+                delete_personal_data(db, u.id, with_activity_logs=True)
+                db.delete(u)
+                db.flush()
         except IntegrityError:
-            # 검사 뒤 기록이 생겨 외래키 오류가 나도 USER_HAS_RECORDS로 돌려준다
-            db.rollback()
-            raise ApiError(409, "USER_HAS_RECORDS", _HAS_RECORDS_MSG, details=record_counts(db, userId))
-        return Response(status_code=204)
+            pass  # 확인한 뒤 그사이 기록이 생겼다 → 아래 '삭제된 사용자'로 처리
+        else:
+            log_activity(db, admin.id, "USER_DELETED", userId)
+            db.commit()
+            return Response(status_code=204)
 
-    if mode != "anonymize":
-        raise ApiError(409, "USER_HAS_RECORDS", _HAS_RECORDS_MSG, details=records)
+    anonymize_user(db, u)
+    log_activity(db, admin.id, "USER_ANONYMIZED", u.id)
+    db.commit()
+    return Response(status_code=204)
 
-    # '삭제된 사용자'로 변경: 개인정보만 지우고 userId만 남긴다. 보고서·법무 기록·활동 로그는 남긴다.
+
+def anonymize_user(db: DbSession, u: User) -> None:
+    """'삭제된 사용자'로 변경: 개인정보만 지우고 userId만 남긴다. 보고서·법무 기록·활동 로그는 남긴다."""
     u.name = DELETED_NAME
     u.email = f"deleted+{u.id}@invalid"
     u.password_hash = UNUSABLE_PASSWORD + secrets.token_hex(16)  # 로그인할 수 없는 값 (NOT NULL)
     u.last_login_at = None
     u.status = "DELETED"
     delete_personal_data(db, u.id, with_activity_logs=False)
-    log_activity(db, admin.id, "USER_ANONYMIZED", u.id)
-    db.commit()
-    return JSONResponse(jsonable_encoder(admin_row(u)), status_code=200)
-
-
-_HAS_RECORDS_MSG = (
-    "보고서 생성 기록이 있어 비활성화로 변경 부탁드립니다. 그래도 삭제하시겠습니까? 개인정보가 지워지며 되돌릴 수 없습니다."
-)
 
 
 @router.get("/{userId}/activity", summary="사용자 활동 로그 (AD-10~AD-17)")

@@ -11,8 +11,14 @@ from app.agent.completion import router as agent_completion_router
 from app.auth.router import router as auth_router
 from app.core.config import settings
 from app.core.errors import register_error_handlers
+from app.legal.router import router as legal_router
+from app.notifications.router import router as notifications_router
+from app.reviews.actions import router as review_actions_router
 from app.reviews.attachments import internal_router as attachment_download_router
 from app.reviews.attachments import router as attachments_router
+from app.reviews.dashboard import router as dashboard_router
+from app.reviews.lists import router as lists_router
+from app.reviews.pdf import router as pdf_router
 from app.reviews.router import router as reviews_router
 
 API_PREFIX = "/api/v1"
@@ -36,5 +42,11 @@ app.include_router(auth_router, prefix=API_PREFIX, tags=["인증"])
 app.include_router(admin_users_router, prefix=API_PREFIX, tags=["관리자"])
 app.include_router(reviews_router, prefix=API_PREFIX, tags=["검토 흐름"])
 app.include_router(attachments_router, prefix=API_PREFIX, tags=["검토 흐름"])
+app.include_router(review_actions_router, prefix=API_PREFIX, tags=["검토 흐름"])
+app.include_router(lists_router, prefix=API_PREFIX, tags=["검토함 목록"])
+app.include_router(legal_router, prefix=API_PREFIX, tags=["법무 검토"])
+app.include_router(notifications_router, prefix=API_PREFIX, tags=["알림"])
+app.include_router(pdf_router, prefix=API_PREFIX, tags=["PDF"])
+app.include_router(dashboard_router, prefix=API_PREFIX, tags=["대시보드"])
 app.include_router(agent_completion_router, prefix=INTERNAL_PREFIX, tags=["Agent 연동 (내부)"])
 app.include_router(attachment_download_router, prefix=INTERNAL_PREFIX, tags=["Agent 연동 (내부)"])

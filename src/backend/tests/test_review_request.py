@@ -12,7 +12,7 @@ from app.models import ActivityLog, IdempotencyKey, Review, ReviewAttachment, Re
 from app.reviews import router as reviews_router
 from tests.helpers import API
 
-BODY = {"title": "면역력 강화 음료 광고", "productCategory": "GENERAL_FOOD", "text": "하루 한 포로 면역력 개선"}
+BODY = {"title": "면역력 강화 음료 광고", "productCategory": "GENERAL_FOOD", "channel": "DETAIL_PAGE", "text": "하루 한 포로 면역력 개선"}
 
 
 def _count(model) -> int:

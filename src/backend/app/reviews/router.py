@@ -18,7 +18,7 @@ from fastapi.responses import Response
 from sqlalchemy.orm import Session as DbSession
 
 from app.core.activity import log_activity
-from app.core.deps import Marketer, Staff, get_db
+from app.core.deps import Marketer, Staff, get_db, lock_actor
 from app.core.errors import ApiError
 from app.core.idempotency import IdemKey, run_idempotent
 from app.core.ids import new_id
@@ -79,6 +79,7 @@ def create_review(
     idempotency_key: IdemKey = None,
 ):
     def work():
+        lock_actor(db, user, "MARKETING")  # 지금도 ACTIVE 마케팅 담당자인지 (users 행 공유 잠금)
         attachment_ids = check_review_attachments(db, user, body.attachment_ids)
         now = utcnow()
         review = Review(
@@ -86,6 +87,8 @@ def create_review(
             author_id=user.id,
             title=body.title,
             product_category=body.product_category,
+            channel=body.channel,
+            main_ingredients=body.main_ingredients,
             text=body.text,
             created_at=now,
             updated_at=now,
@@ -142,6 +145,7 @@ def request_suggestion(
     idempotency_key: IdemKey = None,
 ):
     def work():
+        lock_actor(db, user, "MARKETING")  # 지금도 ACTIVE 마케팅 담당자인지 (users 행 공유 잠금)
         review = get_review_or_404(db, reviewId)
         state = load_state(db, review)
         expire_if_timed_out(db, state.run)
@@ -184,10 +188,11 @@ def recheck_suggestion(
     idempotency_key: IdemKey = None,
 ):
     def work():
+        lock_actor(db, user, "MARKETING")  # 지금도 ACTIVE 마케팅 담당자인지 (users 행 공유 잠금)
         review, sug_run = _pending_suggestion_run(db, reviewId, runId, user, C.RECHECK_SUGGESTION)
         sug_run.suggestion = {**sug_run.suggestion, "status": C.SUGGESTION_RECHECKED}
         sug_run.updated_at = utcnow()
-        run = create_run(db, review, C.RA_RECHECK, background)
+        run = create_run(db, review, C.RA_RECHECK, background, input_text=sug_run.suggestion["text"])
         log_activity(db, user.id, "SUGGESTION_RECHECKED", review.title)
         db.flush()
         return 202, accepted_view(run)
@@ -247,6 +252,7 @@ def retry_run(
     idempotency_key: IdemKey = None,
 ):
     def work():
+        lock_actor(db, user, "MARKETING")  # 지금도 ACTIVE 마케팅 담당자인지 (users 행 공유 잠금)
         run = get_run_or_404(db, runId)
         review = get_review_or_404(db, run.review_id)
         state = load_state(db, review)

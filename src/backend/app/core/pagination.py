@@ -61,3 +61,34 @@ def keyset_page(
         key = [_to_json(getattr(rows[-1], c.key)) for c in cols]
         next_cursor = base64.urlsafe_b64encode(json.dumps({"k": key, "h": fhash}).encode()).decode()
     return rows, next_cursor
+
+
+def memory_page(
+    items: list,
+    key,
+    *,
+    limit: int,
+    cursor: str | None,
+    filters: dict[str, Any],
+) -> tuple[list, str | None]:
+    """화면에서 계산하는 값(단계·결과·버튼 등)으로 거르는 목록용. 파이썬에서 거른 뒤 같은 커서 규칙으로 자른다.
+
+    key(item) → (정렬 시각, 행 ID). 최신순(내림차순) 고정. 커서 형식·오류는 keyset_page와 같다.
+    """
+    fhash = _filters_hash(filters)
+    items = sorted(items, key=key, reverse=True)
+    if cursor:
+        try:
+            data = json.loads(base64.urlsafe_b64decode(cursor.encode()))
+            if data["h"] != fhash:
+                raise ValueError("필터가 바뀜")
+            last = (datetime.fromisoformat(data["k"][0]), data["k"][1])
+        except Exception:
+            raise ApiError(400, "INVALID_CURSOR", "목록 위치가 만료되었습니다. 첫 페이지부터 다시 조회해 주세요.")
+        items = [it for it in items if key(it) < last]
+    page = items[:limit]
+    next_cursor = None
+    if len(items) > limit:
+        k = key(page[-1])
+        next_cursor = base64.urlsafe_b64encode(json.dumps({"k": [k[0].isoformat(), k[1]], "h": fhash}).encode()).decode()
+    return page, next_cursor

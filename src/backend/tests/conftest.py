@@ -166,5 +166,26 @@ def legal() -> TestClient:
 
 
 @pytest.fixture
+def legal_b() -> TestClient:
+    return _login_client("LEGAL", "법무B")
+
+
+@pytest.fixture
 def admin() -> TestClient:
     return _login_client("ADMIN", "관리자A")
+
+
+# ---------- 인증·관리자 테스트용 ----------
+
+
+@pytest.fixture
+def db():
+    """DB에 직접 데이터를 넣거나 확인할 때 쓰는 세션."""
+    with SessionLocal() as session:
+        yield session
+
+
+@pytest.fixture
+def client() -> TestClient:
+    """로그인하지 않은 브라우저. 로그인 API를 직접 호출해 쿠키를 받는다."""
+    return TestClient(app)

@@ -83,3 +83,16 @@ def verify_agent_token(authorization: Annotated[str | None, Header()] = None) ->
     expected = f"Bearer {settings.agent_token}" if settings.agent_token else None
     if expected is None or not hmac.compare_digest(authorization or "", expected):
         raise ApiError(401, "UNAUTHENTICATED", "서비스 인증에 실패했습니다.")
+
+
+def lock_actor(db: DbSession, user: User, role: str) -> User:
+    """일을 만드는 API(검토 요청·AI 추천·재심의·재시도·법무 요청·검토 시작·의견 전송)의 첫 단계 (설계서 3장).
+
+    같은 트랜잭션에서 요청한 사람의 users 행을 공유 잠금(FOR SHARE)으로 다시 읽어, 지금도 ACTIVE이고 역할이 맞는지 확인한다.
+    관리자가 같은 사람을 비활성화·이관·삭제하는 중이면(FOR UPDATE) 그쪽이 끝날 때까지 기다린 뒤 다시 확인한다.
+    잠금 순서는 항상 users → 업무 테이블이다. 비활성·삭제·역할 변경이면 403 FORBIDDEN.
+    """
+    locked = db.get(User, user.id, with_for_update={"read": True}, populate_existing=True)
+    if locked is None or locked.status != "ACTIVE" or locked.role != role:
+        raise ApiError(403, "FORBIDDEN", "이 작업을 할 수 있는 계정 상태가 아닙니다.")
+    return locked
