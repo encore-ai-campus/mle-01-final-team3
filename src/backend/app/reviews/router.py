@@ -146,7 +146,8 @@ def request_suggestion(
 ):
     def work():
         lock_actor(db, user, "MARKETING")  # 지금도 ACTIVE 마케팅 담당자인지 (users 행 공유 잠금)
-        review = get_review_or_404(db, reviewId)
+        # 검토 건 행 잠금: 동시에 두 번 요청해도 뒤 요청은 앞 요청이 끝난 뒤 상태를 보고 409가 된다 (실행 중인 건은 하나)
+        review = get_review_or_404(db, reviewId, lock=True)
         state = load_state(db, review)
         expire_if_timed_out(db, state.run)
         require_action(state, user, C.RUN_RA)
@@ -159,7 +160,7 @@ def request_suggestion(
 
 
 def _pending_suggestion_run(db: DbSession, reviewId: str, runId: str, user, action: str):
-    review = get_review_or_404(db, reviewId)
+    review = get_review_or_404(db, reviewId, lock=True)  # 검토 건 → 실행 순서로 잠근다
     run = db.get(ReviewRun, runId, with_for_update=True)
     if run is None or run.review_id != reviewId or run.stage != C.RA_SUGGEST or not run.suggestion:
         raise ApiError(404, "NOT_FOUND", "추천 문구를 찾을 수 없습니다.")
@@ -254,7 +255,8 @@ def retry_run(
     def work():
         lock_actor(db, user, "MARKETING")  # 지금도 ACTIVE 마케팅 담당자인지 (users 행 공유 잠금)
         run = get_run_or_404(db, runId)
-        review = get_review_or_404(db, run.review_id)
+        # 검토 건 행 잠금: 같은 실패 실행을 동시에 두 번 재시도해도 새 실행은 하나만 생긴다 (뒤 요청은 409)
+        review = get_review_or_404(db, run.review_id, lock=True)
         state = load_state(db, review)
         expire_if_timed_out(db, state.run)
         require_author(state, user)

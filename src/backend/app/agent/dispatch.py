@@ -14,7 +14,7 @@ from app.core.db import SessionLocal
 from app.core.security import utcnow
 from app.models import ReviewRun
 from app.reviews import codes as C
-from app.reviews.runs import UNAVAILABLE_MESSAGE, build_job, fail_run
+from app.reviews.runs import UNAVAILABLE_MESSAGE, build_job, fail_run, lock_review_then_run
 
 logger = logging.getLogger(__name__)
 
@@ -41,7 +41,8 @@ def dispatch_run(run_id: str) -> None:
         break
 
     with SessionLocal() as db:
-        run = db.get(ReviewRun, run_id, with_for_update=True)
+        # 검토 건 → 실행 순서로 잠근다 (실패로 확정하면 reviews.updated_at도 바뀐다)
+        run = lock_review_then_run(db, run_id)
         if run is None:
             return
         if accepted:
