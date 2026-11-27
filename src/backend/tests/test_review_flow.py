@@ -10,7 +10,8 @@ from tests.helpers import API, SUGGESTION, complete, detail, finish, new_review,
 
 
 def test_create_review_returns_202_and_dispatches_job(mkt, agent):
-    r = mkt.post(f"{API}/reviews", json={"title": "면역력 음료", "productCategory": "GENERAL_FOOD", "text": "면역력 쑥쑥"})
+    r = mkt.post(f"{API}/reviews", json={"title": "면역력 음료", "productCategory": "GENERAL_FOOD", "channel": "SNS",
+                                          "mainIngredients": ["홍삼", "비타민C"], "text": "면역력 쑥쑥"})  # fmt: skip
     assert r.status_code == 202
     body = r.json()
     assert body["stage"] == "AI_SCREENING" and body["runStatus"] == "QUEUED"
@@ -20,7 +21,8 @@ def test_create_review_returns_202_and_dispatches_job(mkt, agent):
     job = agent.last()
     assert job == {
         "schemaVersion": "1.0", "runId": body["runId"], "reviewId": body["reviewId"], "stage": "AI_SCREENING",
-        "title": "면역력 음료", "productCategory": "GENERAL_FOOD", "text": "면역력 쑥쑥", "attachments": [],
+        "title": "면역력 음료", "productCategory": "GENERAL_FOOD", "channel": "SNS", "mainIngredients": ["홍삼", "비타민C"],
+        "text": "면역력 쑥쑥", "attachments": [],
         "baseReportRunId": None, "baseReport": None, "legalOpinion": None,
     }  # fmt: skip
     run = run_of(mkt, body["runId"])
@@ -37,11 +39,23 @@ def test_blank_fields_are_422(mkt):
     r = mkt.post(f"{API}/reviews", json={"title": " ", "productCategory": "GENERAL_FOOD"})
     assert r.status_code == 422
     fields = {(e["field"], e["code"]) for e in r.json()["error"]["fieldErrors"]}
-    assert fields == {("title", "REQUIRED"), ("text", "REQUIRED")}
+    assert fields == {("title", "REQUIRED"), ("text", "REQUIRED"), ("channel", "REQUIRED")}
+
+
+def test_channel_and_ingredients_rules(mkt):
+    body = {"title": "t", "productCategory": "GENERAL_FOOD", "text": "x"}
+    r = mkt.post(f"{API}/reviews", json={**body, "channel": "TV"})  # DETAIL_PAGE·SNS·BANNER만
+    assert r.status_code == 422 and r.json()["error"]["fieldErrors"][0]["field"] == "channel"
+    r = mkt.post(f"{API}/reviews", json={**body, "channel": "SNS", "mainIngredients": ["홍삼", " "]})
+    assert r.status_code == 422 and r.json()["error"]["fieldErrors"][0]["field"] == "mainIngredients[1]"
+    # 주요 원료는 생략하면 빈 배열
+    rid = mkt.post(f"{API}/reviews", json={**body, "channel": "SNS"}).json()["reviewId"]
+    d = detail(mkt, rid)
+    assert d["channel"] == "SNS" and d["mainIngredients"] == []
 
 
 def test_title_over_200_is_422(mkt):
-    body = {"productCategory": "GENERAL_FOOD", "text": "문구"}
+    body = {"productCategory": "GENERAL_FOOD", "channel": "DETAIL_PAGE", "text": "문구"}
     r = mkt.post(f"{API}/reviews", json={**body, "title": "가" * 201})
     assert r.status_code == 422
     assert [(e["field"], e["code"]) for e in r.json()["error"]["fieldErrors"]] == [("title", "INVALID")]
@@ -209,7 +223,7 @@ def test_legal_opinion_actions_and_suggest_payload(mkt, agent, agent_http):
 
 
 def test_idempotency_key_returns_same_run(mkt, agent):
-    body = {"title": "중복 클릭 광고", "productCategory": "GENERAL_FOOD", "text": "문구"}
+    body = {"title": "중복 클릭 광고", "productCategory": "GENERAL_FOOD", "channel": "BANNER", "text": "문구"}
     h = {"Idempotency-Key": "k-1"}
     a = mkt.post(f"{API}/reviews", json=body, headers=h)
     b = mkt.post(f"{API}/reviews", json=body, headers=h)

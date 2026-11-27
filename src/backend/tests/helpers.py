@@ -43,7 +43,7 @@ INPUT_ERROR = {"code": "INVALID_INPUT", "message": "첨부 파일을 읽을 수 
 
 
 def new_review(c: TestClient, title: str = "면역력 강화 음료 광고", **kw) -> tuple[str, str]:
-    body = {"title": title, "productCategory": "GENERAL_FOOD", "text": "하루 한 포로 면역력 개선에 도움을 줄 수 있습니다.", **kw}
+    body = {"title": title, "productCategory": "GENERAL_FOOD", "channel": "DETAIL_PAGE", "text": "하루 한 포로 면역력 개선에 도움을 줄 수 있습니다.", **kw}
     r = c.post(f"{API}/reviews", json=body)
     assert r.status_code == 202, r.text
     return r.json()["reviewId"], r.json()["runId"]

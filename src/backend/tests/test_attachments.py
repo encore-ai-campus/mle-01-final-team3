@@ -20,7 +20,7 @@ def test_upload_and_attach_to_review(mkt, agent):
     att = r.json()
     assert att["filename"] == "근거자료.pdf" and att["size"] == len(PDF)
 
-    rv = mkt.post(f"{API}/reviews", json={"title": "첨부 광고", "productCategory": "GENERAL_FOOD", "text": "문구",
+    rv = mkt.post(f"{API}/reviews", json={"title": "첨부 광고", "productCategory": "GENERAL_FOOD", "channel": "SNS", "text": "문구",
                                          "attachmentIds": [att["attachmentId"]]})  # fmt: skip
     assert rv.status_code == 202
     job_att = agent.last()["attachments"]
@@ -56,7 +56,7 @@ def test_file_over_10mb_413(mkt):
 def test_total_over_10mb_413(mkt):
     a = upload(mkt, "a.pdf", b"0" * (6 * 1024 * 1024)).json()["attachmentId"]
     b = upload(mkt, "b.pdf", b"0" * (6 * 1024 * 1024)).json()["attachmentId"]
-    r = mkt.post(f"{API}/reviews", json={"title": "t", "productCategory": "GENERAL_FOOD", "text": "x",
+    r = mkt.post(f"{API}/reviews", json={"title": "t", "productCategory": "GENERAL_FOOD", "channel": "SNS", "text": "x",
                                         "attachmentIds": [a, b]})  # fmt: skip
     assert r.status_code == 413
 
@@ -64,7 +64,7 @@ def test_total_over_10mb_413(mkt):
 def test_unknown_or_foreign_or_used_attachment_422(mkt, mkt_b):
     mine = upload(mkt).json()["attachmentId"]
     other = upload(mkt_b).json()["attachmentId"]
-    body = {"title": "t", "productCategory": "GENERAL_FOOD", "text": "x"}
+    body = {"title": "t", "productCategory": "GENERAL_FOOD", "channel": "SNS", "text": "x"}
     r = mkt.post(f"{API}/reviews", json={**body, "attachmentIds": [mine, other, "att_none"]})
     assert r.status_code == 422
     assert [e["field"] for e in r.json()["error"]["fieldErrors"]] == ["attachmentIds[1]", "attachmentIds[2]"]
