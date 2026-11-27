@@ -1,9 +1,9 @@
 # 백엔드 검토 흐름·Agent 연동
 
 - 담당: 검토 흐름·AI 연동 담당
-- 기준: API 설계서 v5.2 (3장 실행 상태, 6장 검토 흐름·연동 방향·결과 보고서 조회, 7장 실행 상태와 공통 오류)
+- 기준: API 설계서 v5.3 (3장 실행 상태, 6장 검토 흐름·연동 방향·결과 보고서 조회, 7장 실행 상태와 공통 오류) + Agent 담당과 정한 것(9장)
 - 코드: `src/backend/app/reviews/`, `src/backend/app/agent/`
-- 테스트: `src/backend/tests/` (가짜 Agent 기준 70개 통과)
+- 테스트: `src/backend/tests/` (가짜 Agent 기준 88개 통과)
 
 ## 1. API 목록
 
@@ -17,13 +17,13 @@
 | 프론트 → 백엔드 | `POST /api/v1/reviews/{reviewId}/ra-runs/{runId}/dismiss` | 추천 문구 [닫기] | 200 |
 | 프론트 → 백엔드 | `GET /api/v1/review-runs/{runId}` | 실행 상태 (폴링) | 200 |
 | 프론트 → 백엔드 | `POST /api/v1/review-runs/{runId}/retry` | 실패한 실행 [다시 검토] | 202 |
-| 백엔드 → Agent | `POST {AGENT_URL}/internal/v1/review-jobs` | 작업 요청 | 202 |
+| 백엔드 → Agent | `POST {AGENT_URL}/internal/v1/review-jobs` | 작업 요청 | 202 (이미 끝난 runId는 200) |
 | Agent → 백엔드 | `POST /internal/v1/review-runs/{runId}/completion` | 완료 통지 | 200 |
 | Agent → 백엔드 | `GET /internal/v1/attachments/{attachmentId}?expires=..&sig=..` | 첨부 내려받기 (서명 URL, 10분) | 200 |
 
 - 202 응답에는 `Location: /api/v1/review-runs/{runId}` 헤더가 붙는다.
 - 실행을 만드는 API(reviews, ra-runs, recheck, retry)는 `Idempotency-Key`를 받는다. 같은 키로 다시 보내면 처음 응답을 그대로 돌려주고 Agent에도 한 번만 보낸다.
-- 백엔드 ↔ Agent 사이 인증은 양쪽 모두 `Authorization: Bearer {AGENT_TOKEN}`이다.
+- 백엔드 ↔ Agent 사이 인증은 양쪽 모두 `Authorization: Bearer {AGENT_TOKEN}`이다. 토큰을 바꾸는 동안에는 `AGENT_TOKEN_EXTRA`도 받는다 (7장 '서비스 토큰 교체').
 - 길이 제한(DB 칼럼 길이): 제목 200자, 첨부 파일 이름 255자, 완료 통지 `error.code` 50자. 넘으면 422 VALIDATION_ERROR (`title`·`file`·`error.code` INVALID).
 - 응답 시각은 한국시간 ISO 8601, 초 단위다 (예: `2026-11-27T09:45:16+09:00`). 모든 API 공통 규칙으로, `app/core/times.py`의 `to_kst()`로 바꾼다. 저장은 UTC 그대로이고, 오프셋 없이 받은 요청 시각은 한국시간으로 본다.
 
@@ -33,7 +33,7 @@
 POST /reviews · ra-runs · recheck · retry
         │  (202, QUEUED)
         ▼
-     QUEUED ──(Agent가 작업 요청을 202로 접수)──▶ RUNNING ──(완료 통지)──▶ SUCCEEDED / FAILED
+     QUEUED ──(Agent가 작업 요청을 202·200으로 접수)──▶ RUNNING ──(완료 통지)──▶ SUCCEEDED / FAILED
         │                                           │
         └─(작업 요청 3번 모두 실패)─▶ FAILED          └─(실행을 만든 뒤 180초)─▶ FAILED
               AGENT_UNAVAILABLE                          RUN_TIMEOUT
@@ -62,7 +62,32 @@ POST /reviews · ra-runs · recheck · retry
 
 ## 3. 백엔드 → Agent 작업 요청 예시
 
-`POST {AGENT_URL}/internal/v1/review-jobs`, `Authorization: Bearer {AGENT_TOKEN}`. Agent는 접수하면 **202**를 준다.
+`POST {AGENT_URL}/internal/v1/review-jobs`, `Authorization: Bearer {AGENT_TOKEN}`.
+
+### Agent 응답 (Agent 담당과 합의)
+
+같은 runId가 다시 와도 Agent는 작업을 두 번 실행하지 않는다. 앞 요청의 응답이 중간에 끊기면 백엔드가 같은 runId로 다시 보내기 때문이다.
+
+| Agent 쪽 상황 | Agent 응답 | 백엔드 처리 |
+|---|---|---|
+| 처음 받음, 또는 같은 runId를 이미 진행 중 | **202** | 접수. QUEUED → RUNNING |
+| 이미 성공·실패했고 완료 통지도 보냄 | **200** + 현재 상태. 다시 실행하지 않음 | 접수로 보고 다시 보내지 않음. 200 본문은 쓰지 않음 (결과는 완료 통지로만 받는다) |
+| 실행은 끝났는데 완료 통지를 못 보냄 | **200**, 저장해 둔 같은 결과를 완료 통지로 다시 보냄 | 위와 같음. 완료 통지가 오면 정상 저장 |
+| 그 밖의 응답, 연결 오류, 10초 안에 응답 없음 | - | 같은 runId로 다시 보냄 (모두 3번). 3번 다 실패하면 FAILED / `AGENT_UNAVAILABLE` |
+
+### 필드
+
+| 필드 | 값 |
+|---|---|
+| `schemaVersion`, `runId`, `reviewId`, `stage` | 실행 정보. stage는 AI_SCREENING·RA_SUGGEST·RA_RECHECK |
+| `title`, `productCategory` | 제품명, 제품 분류 (HEALTH_FUNCTIONAL_FOOD·GENERAL_FOOD·CHILDREN_PREFERRED_FOOD) |
+| `channel` | 게시 채널: DETAIL_PAGE·SNS·BANNER (필수) |
+| `mainIngredients` | 주요 원료명 배열. 없으면 `[]` |
+| `text` | 이번에 심의할 문구. AI 심의·AI 추천은 원문, 재심의는 [재심의]한 추천 문구 |
+| `attachments[]` | `attachmentId`, `filename`, `url`(서명 URL, 10분) |
+| `baseReportRunId`, `baseReport` | RA_SUGGEST·RA_RECHECK: 최신 보고서 (응답의 `report`와 같은 형식). AI 심의는 null |
+| `initialReport` | RA_SUGGEST만: 최초 AI 심의 보고서(v1, `baseReport`와 같은 형식). 최신 보고서가 v1이면(재심의 전) null. 다른 단계는 null |
+| `legalOpinion` | RA_SUGGEST만: 최신 보고서로 법무 검토 의견을 받았으면 그 내용, 아니면 null |
 
 ### AI_SCREENING
 
@@ -74,6 +99,8 @@ POST /reviews · ra-runs · recheck · retry
   "stage": "AI_SCREENING",
   "title": "면역력 강화 음료 광고",
   "productCategory": "GENERAL_FOOD",
+  "channel": "DETAIL_PAGE",
+  "mainIngredients": ["홍삼", "비타민C"],
   "text": "하루 한 포로 면역력 개선에 도움을 줄 수 있습니다.",
   "attachments": [
     {"attachmentId": "att_001", "filename": "근거자료.pdf",
@@ -81,37 +108,42 @@ POST /reviews · ra-runs · recheck · retry
   ],
   "baseReportRunId": null,
   "baseReport": null,
+  "initialReport": null,
   "legalOpinion": null
 }
 ```
 
 ### RA_SUGGEST
 
-`text`는 원문이다. `baseReportRunId`·`baseReport`(최신 보고서, 응답의 `report`와 같은 형식)와 `legalOpinion`(최신 보고서에 검토 의견을 받았으면 그 내용, 아니면 null)을 함께 보낸다.
+`text`는 원문이다. 최신 보고서(`baseReport`)에 직전 검토 문구(`reviewedText`)와 그 리젝 근거(`findings[]`)가 있다. 재심의를 한 번 이상 거친 뒤(최신이 v2 이상)에는 최초 원문의 리젝 근거를 볼 수 있게 `initialReport`(v1)도 보낸다.
 
 ```json
 {
-  "schemaVersion": "1.0", "runId": "run_002", "reviewId": "revw_001", "stage": "RA_SUGGEST",
+  "schemaVersion": "1.0", "runId": "run_004", "reviewId": "revw_001", "stage": "RA_SUGGEST",
   "title": "면역력 강화 음료 광고", "productCategory": "GENERAL_FOOD",
+  "channel": "DETAIL_PAGE", "mainIngredients": ["홍삼", "비타민C"],
   "text": "하루 한 포로 면역력 개선에 도움을 줄 수 있습니다.",
   "attachments": [],
-  "baseReportRunId": "run_001",
-  "baseReport": {"runId": "run_001", "stage": "AI_SCREENING", "version": 1,
-                 "reviewedText": "하루 한 포로 면역력 개선에 도움을 줄 수 있습니다.",
+  "baseReportRunId": "run_003",
+  "baseReport": {"runId": "run_003", "stage": "RA_RECHECK", "version": 2,
+                 "reviewedText": "하루 한 포, 맛있게 즐기는 건강한 습관.",
                  "decision": "UNSUITABLE", "summary": "...", "improvementNote": "...", "findings": ["..."]},
+  "initialReport": {"runId": "run_001", "stage": "AI_SCREENING", "version": 1,
+                    "reviewedText": "하루 한 포로 면역력 개선에 도움을 줄 수 있습니다.",
+                    "decision": "UNSUITABLE", "summary": "...", "improvementNote": "...", "findings": ["..."]},
   "legalOpinion": null
 }
 ```
 
 ### RA_RECHECK
 
-`text` 자리에 마케팅 담당자가 [재심의]한 추천 문구가 들어간다. 이 실행을 재시도해도 같은 추천 문구를 보낸다.
+`text` 자리에 마케팅 담당자가 [재심의]한 추천 문구가 들어간다 (`review_runs.input_text`에 저장). 이 실행을 재시도해도 같은 추천 문구를 보낸다.
 
 ```json
 {
   "schemaVersion": "1.0", "runId": "run_003", "reviewId": "revw_001", "stage": "RA_RECHECK",
   "text": "하루 한 포, 맛있게 즐기는 건강한 습관.",
-  "baseReportRunId": "run_001", "baseReport": {"...": "..."}, "legalOpinion": null
+  "baseReportRunId": "run_001", "baseReport": {"...": "..."}, "initialReport": null, "legalOpinion": null
 }
 ```
 
@@ -168,6 +200,13 @@ POST /reviews · ra-runs · recheck · retry
 - `retryable=true`: 일시적 문제. 화면에 [다시 검토]가 나온다.
 - `retryable=false`: 입력 문제라 다시 해도 같은 결과. [심의 취소]만 나오고 retry는 409다.
 
+실패 코드는 Agent가 정한다 (설계서 7장: 백엔드가 정하는 코드는 `RUN_TIMEOUT`·`AGENT_UNAVAILABLE`뿐). 첨부 관련 코드는 Agent 담당과 이렇게 정했다.
+
+| error.code | 언제 | retryable |
+|---|---|---|
+| `ATTACHMENT_DOWNLOAD_FAILED` | 내려받기의 일시적 실패: 서명 URL 만료, 네트워크 오류, 파일 서버 5xx | `true` (다시 검토하면 새 실행·새 URL) |
+| `INVALID_INPUT` | 파일 자체의 문제: 손상, 지원하지 않는 형식, 내용을 읽을 수 없음 | `false` |
+
 ### 응답 (200)
 
 실행 상태 조회(`GET /review-runs/{runId}`)와 같은 모양이다.
@@ -193,7 +232,7 @@ POST /reviews · ra-runs · recheck · retry
 
 - 추천 문구 생성(RA_SUGGEST)은 보고서를 만들지 않는다. `review_runs.suggestion`에 `{text, rationale, status}`를 저장한다. status는 PENDING → RECHECKED(재심의) 또는 DISMISSED(닫기)로 바뀐다.
 - Agent가 `version`·`reviewedText`를 보내도 무시한다.
-- 재심의 문구: `review_runs`에 입력 문구 칼럼이 아직 없어서, 재시도 사슬의 최초 RA_RECHECK 실행 직전에 [재심의] 처리된 RA_SUGGEST 실행의 `suggestion.text`를 쓴다. 칼럼(`review_runs.input_text`)은 추가하기로 합의했고, 인증·공통 기반 담당이 추가하면 그 값을 쓰도록 바꾼다.
+- 재심의 문구: [재심의]할 때 추천 문구를 `review_runs.input_text`에 저장하고, 재시도하면 그대로 복사한다. 재심의 보고서의 `reviewed_text`도 이 값이다. 다른 단계는 null.
 - `attachments.content_type`: 파일 종류 `pdf`·`xlsx`·`docx`. Agent가 내려받을 때 MIME 타입(`application/pdf` 등)으로 바꿔 응답한다.
 
 ## 6. 완료 통지 검증 규칙
@@ -226,7 +265,8 @@ POST /reviews · ra-runs · recheck · retry
 
 | 상황 | 백엔드 처리 |
 |---|---|
-| 작업 요청이 연결 오류·응답 없음·202가 아님 | 같은 runId로 다시 보낸다 (1초 간격, 모두 3번). 3번 다 실패하면 FAILED / `AGENT_UNAVAILABLE` (retryable=true) |
+| 작업 요청이 연결 오류·응답 없음·202·200이 아님 | 같은 runId로 다시 보낸다 (1초 간격, 모두 3번). 3번 다 실패하면 FAILED / `AGENT_UNAVAILABLE` (retryable=true) |
+| 작업 요청에 Agent가 200 (이미 끝난 runId) | 접수로 보고 다시 보내지 않는다. 결과는 완료 통지로 받는다 |
 | 실행을 만든 뒤 180초 안에 완료 통지 없음 | FAILED / `RUN_TIMEOUT` (retryable=true). QUEUED도 포함 |
 | 완료 통지의 토큰이 없거나 틀림 | 401 UNAUTHENTICATED |
 | 없는 runId, 또는 reviewId가 실행과 다름 | 404 NOT_FOUND |
@@ -242,17 +282,41 @@ POST /reviews · ra-runs · recheck · retry
 - 시간 초과는 따로 돌아가는 작업 없이, 실행·보고서를 조회하거나 완료 통지를 받을 때 확인해서 확정한다. 상태는 API로만 보이므로 결과는 같다.
 - 목록·대시보드처럼 여러 건을 보여 주는 API는 조회 전에 `app/reviews/runs.py`의 `expire_overdue_runs(db)`를 한 번 부른다. 그래야 180초가 지난 실행이 "검토 중"으로 남지 않는다.
 
+### 서비스 토큰 교체
+
+같은 토큰을 양방향으로 쓰므로, 서비스를 멈추지 않고 바꾸려면 교체하는 동안 이전 토큰과 새 토큰을 둘 다 받는다. 토큰은 양쪽 서버의 `.env`에만 두고 git·메신저에 올리지 않는다. 노출이 의심되면 바로 이 절차로 바꾼다.
+
+| 단계 | 백엔드 `.env` | Agent |
+|---|---|---|
+| 평소 | `AGENT_TOKEN=이전`, `AGENT_TOKEN_EXTRA=` (비움) | 이전 토큰으로 보내고 받음 |
+| 1. 새 토큰을 받는 토큰에 추가 | `AGENT_TOKEN=이전`, `AGENT_TOKEN_EXTRA=새` | 이전·새 토큰 모두 받음 |
+| 2. 보내는 토큰을 새 토큰으로 | `AGENT_TOKEN=새`, `AGENT_TOKEN_EXTRA=이전` | 새 토큰으로 보냄 |
+| 3. 이전 토큰 지우기 (2단계 뒤 10분 이상 지나서) | `AGENT_TOKEN=새`, `AGENT_TOKEN_EXTRA=` (비움) | 이전 토큰을 받지 않음 |
+
+- 백엔드는 `.env`를 바꾼 뒤 서버를 다시 시작해야 적용된다.
+- 백엔드: `AGENT_TOKEN`으로 작업 요청을 보내고 첨부 URL에 서명한다. 완료 통지와 첨부 다운로드는 `AGENT_TOKEN`·`AGENT_TOKEN_EXTRA` 둘 다 받는다.
+- 3단계를 10분 뒤에 하는 이유: 2단계 직전에 이전 토큰으로 서명한 첨부 URL이 10분 동안 유효하기 때문이다.
+- 다음 단계로 넘어가기 전에 양쪽이 이전 단계를 마쳤는지 확인한다.
+
+### 서명 URL과 로그
+
+- 서버 접속 로그(uvicorn)는 첨부 다운로드 주소의 서명을 `sig=***`로 가려서 남긴다 (`app/reviews/attachments.py`의 `HideSignature`, `app/main.py`에서 붙임).
+- Agent도 로그와 오류 메시지에 전체 URL 대신 `attachmentId`만 남긴다.
+
 ## 8. 확인 결과
 
-### 가짜 Agent 테스트 (`uv run pytest tests`, 70개 통과)
+### 가짜 Agent 테스트 (`uv run pytest tests`, 88개 통과)
 
 진짜 Agent 대신 작업 요청을 기록만 하는 가짜 Agent를 끼우고, 완료 통지는 테스트가 Agent 대신 보낸다.
 
 | 구분 | 확인한 것 | 파일 |
 |---|---|---|
-| 정상 완료 | 202 + Location, 작업 요청 본문, QUEUED → RUNNING → SUCCEEDED, 보고서 v1, 버튼, REPORT_VIEWED 로그 | test_review_flow.py |
-| AI 추천·재심의 | 추천 문구 저장·팝업 버튼, [재심의] 시 추천 문구로 작업 요청, v2·reviewedText·previousReport, 알림 RA_SUGGESTED·RA_COMPLETED, [닫기] 후 버튼 복귀, 검토 의견이 legalOpinion으로 전달 | test_review_flow.py |
-| 실패 | retryable=true → RETRY_RUN, false → CANCEL만, AI 추천 실패 시 보고서 유지 | test_run_failures.py |
+| 정상 완료 | 202 + Location, 작업 요청 본문(channel·mainIngredients 포함), QUEUED → RUNNING → SUCCEEDED, 보고서 v1, 버튼, REPORT_VIEWED 로그 | test_review_flow.py |
+| AI 추천·재심의 | 추천 문구 저장·팝업 버튼, [재심의] 시 추천 문구로 작업 요청, v2·reviewedText·previousReport, 알림 RA_SUGGESTED·RA_COMPLETED, [닫기] 후 버튼 복귀, 검토 의견이 legalOpinion으로 전달, 재심의 뒤 AI 추천에 initialReport(v1) 전달 | test_review_flow.py |
+| 실패 | retryable=true(SEARCH_FAILED·ATTACHMENT_DOWNLOAD_FAILED) → RETRY_RUN, false(INVALID_INPUT) → CANCEL만, AI 추천 실패 시 보고서 유지 | test_run_failures.py |
+| Agent 응답 | 작업 요청에 202·200 → 접수(다시 보내지 않음, RUNNING), 400·401·409·500·503 → 실패로 보고 재전송 | test_agent_integration.py |
+| 토큰 교체 | AGENT_TOKEN_EXTRA가 있으면 두 토큰 모두 200, 모르는 토큰 401, 토큰이 없으면 모두 401, 보내는 토큰을 바꿔도 이전 토큰으로 서명한 첨부 URL은 유효(EXTRA를 비우면 401) | test_agent_integration.py |
+| 로그 | 접속 로그의 `sig=` 값 → `***`, 다른 주소는 그대로, uvicorn.access 로거에 필터가 붙어 있음 | test_agent_integration.py |
 | 재시도 | 새 runId·attempt+1, 최초 실행별 2회 한도(409 RETRY_LIMIT_REACHED), 최신 실패 실행만, 재심의 재시도는 같은 추천 문구 | test_run_failures.py |
 | Agent 연결 불가 | 같은 runId로 3번 보낸 뒤 AGENT_UNAVAILABLE, 재시도하면 정상 | test_run_failures.py |
 | 시간 초과 | 179초 RUNNING, 181초 RUN_TIMEOUT (실행 조회·보고서 조회 둘 다), 목록용 `expire_overdue_runs` | test_run_failures.py |
@@ -271,7 +335,20 @@ POST /reviews · ra-runs · recheck · retry
 - AI 심의(부적합 v1) → AI 추천 → 재심의(적합 v2)가 끝까지 동작했다.
 - 작업 요청(`httpx`)과 완료 통지가 서버 사이에서 실제로 오갔다.
 - Agent가 서명 URL로 첨부 파일을 내려받았다.
+- 실제 uvicorn 접속 로그에 첨부 다운로드 주소가 `...&sig=*** HTTP/1.1" 401`처럼 서명이 가려져서 남았다.
 
 ### 아직 못 한 것
 
 - **진짜 Agent와의 연동 확인**: Agent 서버가 준비되면 같은 시나리오를 다시 돌린다.
+
+## 9. Agent 담당과 정한 것 (2026-11-27)
+
+| 주제 | 정한 내용 | 반영 |
+|---|---|---|
+| 첨부 실패 코드 | 일시적 실패 `ATTACHMENT_DOWNLOAD_FAILED`(retryable=true), 파일 자체 문제 `INVALID_INPUT`(retryable=false) | 4장. 백엔드는 받은 값을 그대로 저장 |
+| 같은 runId 재수신 | Agent는 다시 실행하지 않는다. 처음·진행 중 202, 이미 끝남 200(현재 상태), 완료 통지를 못 보냈으면 같은 결과를 다시 보냄 | 3장. 백엔드는 202·200을 모두 접수로 처리 |
+| 토큰 교체 | 교체하는 동안 이전·새 토큰을 모두 받는다 | 7장 '서비스 토큰 교체'. `AGENT_TOKEN_EXTRA` |
+| AI 추천 입력 | 최초 AI 심의 보고서를 `initialReport`로 보낸다 | 3장 |
+| 서명 URL 로그 | 백엔드는 접속 로그에서 서명을 가리고, Agent는 `attachmentId`만 남긴다 | 7장 '서명 URL과 로그' |
+
+- 설계서 v5.3 7장 실패 코드 표의 `AGENT_UNAVAILABLE` 설명("202가 아닌 응답")은 이 합의에 맞춰 "202·200이 아닌 응답"으로 고쳐야 한다.

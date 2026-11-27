@@ -78,10 +78,12 @@ Staff = Annotated[User, Depends(require_roles("MARKETING", "LEGAL"))]
 def verify_agent_token(authorization: Annotated[str | None, Header()] = None) -> None:
     """Agent → 백엔드 완료 통지용 서비스 인증. 헤더 `Authorization: Bearer {AGENT_TOKEN}`.
 
-    AGENT_TOKEN이 설정되지 않았으면 모든 요청을 거절한다.
+    토큰을 바꾸는 동안에는 AGENT_TOKEN_EXTRA도 받는다. 설정된 토큰이 없으면 모든 요청을 거절한다.
     """
-    expected = f"Bearer {settings.agent_token}" if settings.agent_token else None
-    if expected is None or not hmac.compare_digest(authorization or "", expected):
+    given = authorization or ""
+    # 첫 번째가 맞아도 나머지와 모두 비교한다 (어느 토큰이 맞았는지 응답 시간으로 드러나지 않게)
+    matches = [hmac.compare_digest(given, f"Bearer {t}") for t in settings.accepted_agent_tokens]
+    if not any(matches):
         raise ApiError(401, "UNAUTHENTICATED", "서비스 인증에 실패했습니다.")
 
 

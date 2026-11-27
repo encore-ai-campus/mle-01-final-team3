@@ -54,6 +54,7 @@ _ensure_database(TEST_DATABASE_URL)
 # app을 import하기 전에 설정을 바꿔 둔다 (환경 변수가 .env보다 우선).
 os.environ["DATABASE_URL"] = TEST_DATABASE_URL
 os.environ["AGENT_TOKEN"] = AGENT_TOKEN
+os.environ["AGENT_TOKEN_EXTRA"] = ""  # .env에 교체용 토큰이 있어도 테스트는 토큰 하나로 시작한다
 os.environ["AGENT_SEND_RETRY_SECONDS"] = "0"
 os.environ["ATTACHMENT_DIR"] = tempfile.mkdtemp(prefix="adguard_att_")
 

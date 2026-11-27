@@ -39,6 +39,9 @@ def report(decision: str = "UNSUITABLE", findings: list[dict] | None = None, **k
 
 SUGGESTION = {"text": "하루 한 포, 맛있게 즐기는 건강한 습관.", "rationale": "기능성 표현을 빼고 섭취 습관 중심으로 바꿨습니다."}
 TEMP_ERROR = {"code": "SEARCH_FAILED", "message": "검색 서버 응답이 없습니다.", "retryable": True}
+# Agent 담당과 정한 첨부 오류: 내려받기의 일시적 실패(URL 만료·네트워크·파일 서버 5xx)는 다시 하면 되고,
+# 파일 자체의 문제(손상·지원하지 않는 형식·내용을 읽을 수 없음)는 다시 해도 같다.
+DOWNLOAD_ERROR = {"code": "ATTACHMENT_DOWNLOAD_FAILED", "message": "첨부 파일을 내려받지 못했습니다.", "retryable": True}
 INPUT_ERROR = {"code": "INVALID_INPUT", "message": "첨부 파일을 읽을 수 없습니다.", "retryable": False}
 
 

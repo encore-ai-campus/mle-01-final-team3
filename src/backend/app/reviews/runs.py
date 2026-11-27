@@ -1,6 +1,6 @@
 """실행(review_runs) 만들기·실패 처리·시간 초과·Agent 작업 내용 만들기. 설계서 3장 '실행 상태'.
 
-QUEUED → (Agent가 202로 접수) RUNNING → (완료 통지) SUCCEEDED / FAILED
+QUEUED → (Agent가 202·200으로 접수) RUNNING → (완료 통지) SUCCEEDED / FAILED
 QUEUED → (작업 요청 3번 실패) FAILED / AGENT_UNAVAILABLE
 QUEUED·RUNNING → (실행을 만든 뒤 180초) FAILED / RUN_TIMEOUT
 
@@ -22,7 +22,7 @@ from app.core.security import utcnow
 from app.models import Attachment, Review, ReviewAttachment, ReviewRun
 from app.reviews import codes as C
 from app.reviews.attachments import signed_url
-from app.reviews.state import current_report, latest_legal, report_view
+from app.reviews.state import current_report, latest_legal, report_of_version, report_view
 
 TIMEOUT_MESSAGE = "검토 시간이 초과되었습니다. 다시 검토해 주세요."
 UNAVAILABLE_MESSAGE = "AI 검토 서버에 연결하지 못했습니다. 다시 검토해 주세요."
@@ -121,10 +121,13 @@ def build_job(db: DbSession, run: ReviewRun) -> dict:
 
     base = current_report(db, review.id) if run.stage in (C.RA_SUGGEST, C.RA_RECHECK) else None
     legal_opinion = None
+    initial = None  # RA_SUGGEST: 최초 AI 심의 보고서(v1). 최신이 v1이면 baseReport와 같으므로 null
     if run.stage == C.RA_SUGGEST and base is not None:
         legal = latest_legal(db, review.id)
         if legal is not None and legal.report_run_id == base.run_id and legal.status == C.OPINION_SENT:
             legal_opinion = legal.reason
+        if base.version > 1:
+            initial = report_of_version(db, review.id, 1)
 
     return {
         "schemaVersion": "1.0",
@@ -141,5 +144,6 @@ def build_job(db: DbSession, run: ReviewRun) -> dict:
         ],
         "baseReportRunId": base.run_id if base else None,
         "baseReport": report_view(base) if base else None,
+        "initialReport": report_view(initial) if initial else None,
         "legalOpinion": legal_opinion,
     }
