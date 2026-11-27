@@ -1,7 +1,6 @@
 """ID 생성. 모든 테이블의 ID는 이 함수 하나로 만든다.
 
-지금(개발 중): 접두어_순번  예) usr_001, revw_001
-배포 전: DB를 초기화하고 접두어_랜덤(예: usr_reil4lk)으로 바꾼다. 그때 이 파일만 고치면 된다.
+형식: 접두어_순번  예) usr_001, revw_001 (팀 결정: 배포 후에도 순번을 그대로 쓴다)
 
 접두어 (팀 합의): usr(users), revw(reviews), run(review_runs),
                att(attachments), sub(legal_submissions), ntf(notifications), log(activity_logs)

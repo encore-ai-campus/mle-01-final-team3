@@ -10,13 +10,6 @@ from app.core.security import hash_password, utcnow
 from app.models import User
 
 ROLES = ("ADMIN", "MARKETING", "LEGAL")
-# 이메일 형식: 공백 없이 "아이디@도메인.끝" 모양이면 통과 (간단 검사)
-EMAIL_PATTERN = r"^[^@\s]+@[^@\s]+\.[^@\s]+$"
-
-
-def normalize_email(email: str) -> str:
-    """이메일은 앞뒤 공백을 빼고 소문자로 저장·비교한다. Admin@A.com과 admin@a.com은 같은 계정."""
-    return email.strip().lower()
 
 
 def _duplicate_email() -> ApiError:
@@ -39,7 +32,6 @@ def create_user(
 ) -> User:
     if role not in ROLES:
         raise ValueError(f"알 수 없는 역할: {role}")
-    email = normalize_email(email)
     if db.scalar(select(User).where(User.email == email)) is not None:
         raise _duplicate_email()
     user = User(
