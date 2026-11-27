@@ -24,6 +24,7 @@ from app.core.errors import ApiError
 from app.core.idempotency import IdemKey, run_idempotent
 from app.core.pagination import keyset_page
 from app.core.schemas import CamelModel, Text
+from app.core.times import assume_kst, to_kst
 from app.core.security import UNUSABLE_PASSWORD, is_valid_password
 from app.models import (
     ActivityLog,
@@ -78,7 +79,7 @@ def admin_row(u: User) -> dict:
         "email": u.email,
         "role": u.role,
         "status": u.status,
-        "lastLoginAt": u.last_login_at,
+        "lastLoginAt": to_kst(u.last_login_at),
     }
 
 
@@ -345,6 +346,7 @@ def activity(
     u = db.get(User, userId)
     if u is None or u.status == "DELETED":
         raise ApiError(404, "NOT_FOUND", "사용자를 찾을 수 없습니다.")
+    from_, to = assume_kst(from_), assume_kst(to)  # 오프셋이 없으면 한국시간
     ops = sorted(set(operation.split(","))) if operation else []
     if not set(ops) <= OPERATIONS:
         raise ApiError(400, "INVALID_QUERY", "작업 종류를 확인해 주세요.")
@@ -363,7 +365,7 @@ def activity(
     return {
         "user": admin_row(u),
         "items": [
-            {"activityId": a.id, "operation": a.operation, "targetLabel": a.target_label, "occurredAt": a.occurred_at}
+            {"activityId": a.id, "operation": a.operation, "targetLabel": a.target_label, "occurredAt": to_kst(a.occurred_at)}
             for a in rows
         ],
         "nextCursor": next_cursor,

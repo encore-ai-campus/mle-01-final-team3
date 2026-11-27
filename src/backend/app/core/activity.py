@@ -1,4 +1,4 @@
-"""활동 로그 기록 (activity_logs). 기표님 쪽 API에서도 이 함수로 남긴다."""
+"""활동 로그 기록 (activity_logs). 검토 흐름 API에서도 이 함수로 남긴다."""
 
 from sqlalchemy.orm import Session as DbSession
 

@@ -1,6 +1,6 @@
 """API에서 공통으로 쓰는 의존성: DB 세션, 로그인 사용자 확인, 역할별 접근 제어, Agent 서비스 인증.
 
-사용 예 (기표님 샘플과 같은 이름):
+사용 예 (검토 흐름·AI 연동 담당 샘플과 같은 이름):
 
     @router.post("/reviews")
     def create_review(user: Marketer, db: DbSession = Depends(get_db)): ...

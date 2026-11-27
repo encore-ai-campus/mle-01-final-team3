@@ -1,4 +1,4 @@
-"""개발용 테스트 계정 만들기. 운영(APP_ENV=production)에서는 실행되지 않는다.
+"""개발용 테스트 계정 만들기. 로컬 개발(APP_ENV=local)에서만 실행된다.
 
 실행 (src/backend 에서):
     uv run python -m app.seed_dev
@@ -38,8 +38,8 @@ def seed() -> list[str]:
 
 
 def main() -> int:
-    if settings.app_env == "production":
-        print("운영 환경(APP_ENV=production)에서는 개발용 시드를 실행할 수 없습니다.", file=sys.stderr)
+    if settings.app_env != "local":  # 운영·스테이징 등 local이 아니면 모두 막는다
+        print(f"개발용 시드는 APP_ENV=local에서만 실행할 수 있습니다. (지금: {settings.app_env})", file=sys.stderr)
         return 1
     created = seed()
     for email in created:

@@ -227,7 +227,6 @@ __marimo__/
 # raw 데이터 github 업로드 안함
 docs/superpowers
 tmp
-tests
 data/data_chunking/*
 !data/data_chunking/chunk_schema.json
 !data/data_chunking/chunking_quality_log.jsonl

@@ -1,4 +1,4 @@
-"""알림 만들기. 기표님 쪽(AI 추천 완료 등)도 이 함수로 알림을 만든다."""
+"""알림 만들기. 검토 흐름(AI 추천 완료 등)도 이 함수로 알림을 만든다."""
 
 from sqlalchemy.orm import Session as DbSession
 
