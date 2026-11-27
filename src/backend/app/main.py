@@ -3,6 +3,8 @@
 각 기능의 router는 여기에 한 줄씩 등록한다.
 """
 
+import logging
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -14,6 +16,7 @@ from app.core.errors import register_error_handlers
 from app.legal.router import router as legal_router
 from app.notifications.router import router as notifications_router
 from app.reviews.actions import router as review_actions_router
+from app.reviews.attachments import HideSignature
 from app.reviews.attachments import internal_router as attachment_download_router
 from app.reviews.attachments import router as attachments_router
 from app.reviews.dashboard import router as dashboard_router
@@ -26,6 +29,9 @@ INTERNAL_PREFIX = "/internal/v1"  # Agent 연동 (서비스 인증)
 
 app = FastAPI(title="AdGuard AI 백엔드", version="5.0")
 register_error_handlers(app)
+
+# 서버 접속 로그에 첨부 다운로드 주소의 서명(sig)이 남지 않게 가린다
+logging.getLogger("uvicorn.access").addFilter(HideSignature())
 
 # CORS: 프론트(다른 주소)에서 오는 요청과 로그인 쿠키를 허용한다.
 app.add_middleware(

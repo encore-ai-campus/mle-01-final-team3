@@ -2,6 +2,7 @@
 
 from datetime import timedelta
 
+import pytest
 from sqlalchemy import select, update
 
 from app.core.db import SessionLocal
@@ -9,6 +10,7 @@ from app.models import Report, ReviewRun
 from app.reviews.runs import expire_overdue_runs
 from tests.helpers import (
     API,
+    DOWNLOAD_ERROR,
     INPUT_ERROR,
     SUGGESTION,
     TEMP_ERROR,
@@ -35,10 +37,11 @@ def age_run(run_id: str, seconds: int = 181) -> None:
 # ---------- 실패 ----------
 
 
-def test_failed_retryable_shows_retry(mkt, agent_http):
+@pytest.mark.parametrize("error", [TEMP_ERROR, DOWNLOAD_ERROR], ids=["search", "attachment_download"])
+def test_failed_retryable_shows_retry(mkt, agent_http, error):
     rev, run = new_review(mkt)
-    res = fail(agent_http, run, rev, TEMP_ERROR)
-    assert res["runStatus"] == "FAILED" and res["error"] == TEMP_ERROR and res["finishedAt"]
+    res = fail(agent_http, run, rev, error)
+    assert res["runStatus"] == "FAILED" and res["error"] == error and res["finishedAt"]
     d = detail(mkt, rev)
     assert d["runStatus"] == "FAILED" and d["report"] is None and d["latestRunId"] == run
     assert d["allowedActions"] == ["RETRY_RUN"]

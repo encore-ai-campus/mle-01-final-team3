@@ -1,7 +1,7 @@
 """실행을 Agent에 보낸다. 202 응답을 보낸 뒤 백그라운드에서 돈다 (설계서 3장 '실행 상태').
 
-- Agent가 202로 접수하면 QUEUED → RUNNING (startedAt 기록)
-- 연결 오류·응답 없음·202가 아니면 같은 runId로 다시 보낸다. 모두 3번 보내고도 안 되면 FAILED / AGENT_UNAVAILABLE
+- Agent가 202(접수·진행 중) 또는 200(이미 끝남)으로 답하면 QUEUED → RUNNING (startedAt 기록). 응답 규칙은 client.py
+- 연결 오류·응답 없음·그 밖의 응답이면 같은 runId로 다시 보낸다. 모두 3번 보내고도 안 되면 FAILED / AGENT_UNAVAILABLE
 - 그 사이 완료 통지나 시간 초과로 이미 확정된 실행은 건드리지 않는다
 """
 

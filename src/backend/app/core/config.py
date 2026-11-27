@@ -25,8 +25,13 @@ class Settings(BaseSettings):
     # 요청을 허용할 프론트 주소 (CORS). .env에서는 JSON 배열로 쓴다: CORS_ORIGINS=["http://localhost:5173"]
     cors_origins: list[str] = ["http://localhost:5173"]
 
-    # Agent가 완료 통지를 보낼 때 쓰는 서비스 토큰 (Authorization: Bearer {AGENT_TOKEN}). 비어 있으면 모두 거절.
+    # 백엔드 ↔ Agent 서비스 토큰 (Authorization: Bearer {AGENT_TOKEN}). 작업 요청을 보낼 때·첨부 URL에 서명할 때 쓰고,
+    # 완료 통지·첨부 다운로드에서 받는다. 비어 있으면 모두 거절.
     agent_token: str = ""
+
+    # 토큰을 바꾸는 동안에만 AGENT_TOKEN과 함께 받는 토큰. 보낼 때는 쓰지 않는다. 평소에는 비워 둔다.
+    # 교체 절차: docs/백엔드_검토흐름_Agent연동.md '서비스 토큰 교체'
+    agent_token_extra: str = ""
 
     # ----- 검토 흐름·Agent 연동 (API 설계서 3장·6장·7장) -----
     # 백엔드 → Agent 작업 요청 주소. POST {AGENT_URL}/internal/v1/review-jobs
@@ -43,6 +48,11 @@ class Settings(BaseSettings):
 
     # Agent가 첨부 파일을 내려받을 백엔드 주소 (서명 URL 앞부분)
     public_base_url: str = "http://localhost:8000"
+
+    @property
+    def accepted_agent_tokens(self) -> list[str]:
+        """Agent에게서 받을 때 인정하는 토큰: AGENT_TOKEN과 AGENT_TOKEN_EXTRA 중 비어 있지 않은 것."""
+        return [t for t in (self.agent_token, self.agent_token_extra) if t]
 
 
 settings = Settings()
