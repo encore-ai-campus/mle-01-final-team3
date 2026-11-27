@@ -160,7 +160,7 @@ def request_suggestion(
 
 
 def _pending_suggestion_run(db: DbSession, reviewId: str, runId: str, user, action: str):
-    review = get_review_or_404(db, reviewId)
+    review = get_review_or_404(db, reviewId, lock=True)  # 검토 건 → 실행 순서로 잠근다
     run = db.get(ReviewRun, runId, with_for_update=True)
     if run is None or run.review_id != reviewId or run.stage != C.RA_SUGGEST or not run.suggestion:
         raise ApiError(404, "NOT_FOUND", "추천 문구를 찾을 수 없습니다.")

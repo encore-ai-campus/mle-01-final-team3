@@ -8,6 +8,9 @@ QUEUED·RUNNING → (실행을 만든 뒤 180초) FAILED / RUN_TIMEOUT
 상태는 API로만 보이므로 결과는 같다.
 - 실행 하나를 볼 때: expire_if_timed_out(db, run)
 - 목록·대시보드처럼 여러 건을 볼 때: 조회 전에 expire_overdue_runs(db) 한 번
+
+잠금 순서 (설계서 3장): users → reviews → review_runs. 실행을 바꾸면 reviews.updated_at도 바뀌므로,
+실행 행을 잠그기 전에 그 검토 건 행을 먼저 잠근다. 순서가 엇갈리면 두 요청이 서로를 기다리는 교착이 생긴다.
 """
 
 from datetime import timedelta
@@ -72,6 +75,15 @@ def fail_run(db: DbSession, run: ReviewRun, code: str, message: str, retryable: 
         review.updated_at = now
 
 
+def lock_review_then_run(db: DbSession, run_id: str) -> ReviewRun | None:
+    """잠금 순서대로 실행의 검토 건 행을 먼저 잠그고, 그다음 실행 행을 잠가 최신 값으로 읽는다. 없는 실행이면 None."""
+    run = db.get(ReviewRun, run_id)
+    if run is None:
+        return None
+    db.get(Review, run.review_id, with_for_update=True)
+    return db.get(ReviewRun, run_id, with_for_update=True, populate_existing=True)
+
+
 def expire_if_timed_out(db: DbSession, run: ReviewRun | None) -> bool:
     """실행을 만든 뒤 180초가 지나도 끝나지 않았으면 FAILED / RUN_TIMEOUT으로 확정한다. commit은 호출한 쪽에서."""
     if run is None or run.status not in C.ACTIVE:
@@ -79,7 +91,9 @@ def expire_if_timed_out(db: DbSession, run: ReviewRun | None) -> bool:
     deadline = timedelta(seconds=settings.run_timeout_seconds)
     if utcnow() - run.created_at < deadline:
         return False
-    db.refresh(run, with_for_update=True)  # 완료 통지와 동시에 처리되지 않도록 잠그고 다시 확인
+    # 완료 통지와 동시에 처리되지 않도록 잠그고 다시 확인한다. 검토 건 → 실행 순서 (호출한 쪽이 이미 잠갔으면 그대로)
+    db.get(Review, run.review_id, with_for_update=True)
+    db.refresh(run, with_for_update=True)
     if run.status not in C.ACTIVE:
         return False
     fail_run(db, run, C.RUN_TIMEOUT, TIMEOUT_MESSAGE, True)
@@ -90,13 +104,26 @@ def expire_overdue_runs(db: DbSession, review_ids: list[str] | None = None) -> i
     """목록·대시보드용. 180초가 지난 QUEUED·RUNNING 실행을 한꺼번에 FAILED / RUN_TIMEOUT으로 확정한다.
 
     목록을 조회하기 전에 한 번 부른다. review_ids를 주면 그 검토 건들만 본다. commit은 호출한 쪽에서.
-    완료 통지가 처리 중이라 잠긴 실행은 건너뛴다 (완료 통지 쪽에서 시간 초과를 직접 확인한다).
+    다른 요청이 처리 중이라 잠긴 검토 건은 기다리지 않고 건너뛴다 (그 요청이 시간 초과를 직접 확인한다).
     """
     deadline = utcnow() - timedelta(seconds=settings.run_timeout_seconds)
-    stmt = select(ReviewRun).where(ReviewRun.status.in_(list(C.ACTIVE)), ReviewRun.created_at <= deadline)
+    overdue = (ReviewRun.status.in_(list(C.ACTIVE)), ReviewRun.created_at <= deadline)
+    stmt = select(ReviewRun.review_id).where(*overdue).distinct()
     if review_ids is not None:
         stmt = stmt.where(ReviewRun.review_id.in_(review_ids))
-    runs = db.scalars(stmt.with_for_update(skip_locked=True)).all()
+    candidates = db.scalars(stmt).all()
+    if not candidates:
+        return 0
+    # 검토 건 → 실행 순서로 잠근다. 실행도 잠근 뒤 다시 조건을 확인한다 (그사이 완료 통지가 처리됐을 수 있음)
+    locked = db.scalars(select(Review.id).where(Review.id.in_(candidates)).with_for_update(skip_locked=True)).all()
+    if not locked:
+        return 0
+    runs = db.scalars(
+        select(ReviewRun)
+        .where(ReviewRun.review_id.in_(locked), *overdue)
+        .with_for_update(skip_locked=True)
+        .execution_options(populate_existing=True)
+    ).all()
     for run in runs:
         fail_run(db, run, C.RUN_TIMEOUT, TIMEOUT_MESSAGE, True)
     return len(runs)

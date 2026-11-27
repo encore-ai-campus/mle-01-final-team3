@@ -3,7 +3,7 @@
 - 담당: 검토 흐름·AI 연동 담당
 - 기준: API 설계서 v5.3 (3장 실행 상태, 6장 검토 흐름·연동 방향·결과 보고서 조회, 7장 실행 상태와 공통 오류) + Agent 담당과 정한 것(9장)
 - 코드: `src/backend/app/reviews/`, `src/backend/app/agent/`
-- 테스트: `src/backend/tests/` (가짜 Agent 기준 96개 통과)
+- 테스트: `src/backend/tests/` (가짜 Agent 기준 103개 통과)
 
 ## 1. API 목록
 
@@ -305,7 +305,7 @@ POST /reviews · ra-runs · recheck · retry
 
 ## 8. 확인 결과
 
-### 가짜 Agent 테스트 (`uv run pytest tests`, 96개 통과)
+### 가짜 Agent 테스트 (`uv run pytest tests`, 103개 통과)
 
 진짜 Agent 대신 작업 요청을 기록만 하는 가짜 Agent를 끼우고, 완료 통지는 테스트가 Agent 대신 보낸다.
 
@@ -327,6 +327,7 @@ POST /reviews · ra-runs · recheck · retry
 | 시각 형식 | 검토·실행·관리자 API 모두 `+09:00` 초 단위 (테스트 DB를 UTC로 두고 확인), 오프셋 없는 `from`/`to`는 한국시간 | test_times.py |
 | 중복 클릭 | 같은 Idempotency-Key → 같은 runId, 작업 요청 1번 / 다른 내용 → 409 | test_review_flow.py |
 | 동시 요청 | 다른 세션이 검토 건 행을 잠근 동안 AI 추천 요청·재시도 2개가 잠금을 기다리고, 풀린 뒤 202 하나·409 하나, 실행은 하나만 생김 | test_review_locks.py |
+| 잠금 순서 | 완료 통지·실행 조회 중 시간 초과·Agent 작업 요청 실패 처리·[닫기]가 실행 행보다, 법무 [검토 시작]·의견 전송이 법무 요청 행보다 검토 건 행을 먼저 기다림(그동안 뒤의 행은 비어 있음), 목록용 시간 초과는 잠긴 검토 건을 건너뜀 | test_review_locks.py |
 | 검토 접수 | 미로그인·비활성 계정 401, 잘못된 제품 분류 422, 저장 중 오류 시 검토 건·첨부 연결·실행·활동 로그·멱등성 키 모두 롤백(Agent 요청 없음, 같은 키로 다시 보내면 정상 접수) | test_review_request.py |
 | 정리 명령 | 24시간 지난 중복 방지 키 삭제(지운 키는 새 요청으로 처리), 24시간 지나도록 검토 건에 안 붙은 첨부 삭제(최근 파일·붙은 파일은 남김, 지운 첨부로 요청하면 422), DB에 없는 파일은 1시간 지난 것만 삭제, 폴더 밖 경로 거부, `--dry-run`은 아무것도 지우지 않음 | test_maintenance.py |
 
