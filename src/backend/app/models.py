@@ -12,6 +12,7 @@ from sqlalchemy import (
     Boolean,
     DateTime,
     ForeignKey,
+    Index,
     Integer,
     PrimaryKeyConstraint,
     String,
@@ -87,6 +88,15 @@ class ReviewRun(Base):
     """실행 1번. 재시도는 최초 실행별 최대 2회."""
 
     __tablename__ = "review_runs"
+    __table_args__ = (
+        # 광고 건 하나에 실행 중(QUEUED·RUNNING)인 실행은 최대 1개 (설계서 3장)
+        Index(
+            "uq_review_runs_one_active",
+            "review_id",
+            unique=True,
+            postgresql_where=text("status IN ('QUEUED', 'RUNNING')"),
+        ),
+    )
 
     id: Mapped[str] = mapped_column(ID, primary_key=True)  # 예: run_001
     review_id: Mapped[str | None] = mapped_column(ForeignKey("reviews.id"))
