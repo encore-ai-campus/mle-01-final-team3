@@ -25,7 +25,7 @@ from app.notifications.service import notify
 
 router = APIRouter()
 
-# 문구는 기표님 샘플(backend-test v5.2)과 같게 맞춘다.
+# 문구는 검토 흐름·AI 연동 담당의 샘플(backend-test v5.2)과 같게 맞춘다.
 PASSWORD_NOTICE = "처음 로그인하셨습니다. 현재 비밀번호는 임시 비밀번호이니 마이페이지에서 새 비밀번호로 변경 바랍니다."
 
 

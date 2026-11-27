@@ -4,7 +4,7 @@
 - 키가 없으면: 중복 방지 없이 평소처럼 처리 (팀 합의)
 - 같은 키 + 다른 내용: 409 STATE_CONFLICT (팀 합의. 다른 충돌과 구분이 필요해지면 IDEMPOTENCY_KEY_REUSED로 바꿈)
 
-사용 예 (기표님 API도 같은 방식):
+사용 예 (검토 흐름 API도 같은 방식):
 
     @router.post("/reviews")
     def create_review(body: ReviewCreate, user: Marketer, db=Depends(get_db), idempotency_key: IdemKey = None):
