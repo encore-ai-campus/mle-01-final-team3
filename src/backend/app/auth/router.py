@@ -11,6 +11,7 @@ from app.core.activity import log_activity
 from app.core.config import settings
 from app.core.deps import SESSION_COOKIE, Auth, get_auth, get_current_user, get_db
 from app.core.errors import ApiError
+from app.admin_users.service import normalize_email
 from app.core.schemas import CamelModel
 from app.core.security import (
     hash_password,
@@ -46,7 +47,7 @@ def user_body(user: User) -> dict:
 
 @router.post("/auth/login")
 def login(body: LoginRequest, response: Response, db: DbSession = Depends(get_db)) -> dict:
-    user = db.scalar(select(User).where(User.email == body.email))
+    user = db.scalar(select(User).where(User.email == normalize_email(body.email)))  # 대소문자 구분 없이
     # '삭제된 사용자'는 없는 계정과 같이 처리한다.
     if user is None or user.status == "DELETED":
         raise ApiError(401, "USER_NOT_FOUND", "등록되지 않은 아이디입니다.")

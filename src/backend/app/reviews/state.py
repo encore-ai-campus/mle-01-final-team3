@@ -98,8 +98,9 @@ def load_state(db: DbSession, review: Review) -> ReviewState:
     )
 
 
-def get_review_or_404(db: DbSession, review_id: str) -> Review:
-    review = db.get(Review, review_id)
+def get_review_or_404(db: DbSession, review_id: str, *, lock: bool = False) -> Review:
+    """lock=True면 행을 잠근다(FOR UPDATE). 같은 검토 건의 상태를 바꾸는 요청이 동시에 오면 차례로 처리한다."""
+    review = db.get(Review, review_id, with_for_update=lock or None, populate_existing=lock)
     if review is None:
         raise ApiError(404, "NOT_FOUND", "보고서를 찾을 수 없습니다.")
     return review
@@ -213,6 +214,8 @@ def detail_view(db: DbSession, state: ReviewState, user: User) -> dict:
         "reviewId": review.id,
         "title": review.title,
         "productCategory": review.product_category,
+        "channel": review.channel,
+        "mainIngredients": review.main_ingredients or [],
         "text": review.text,
         "author": user_ref(state.author),
         "createdAt": to_kst(review.created_at),

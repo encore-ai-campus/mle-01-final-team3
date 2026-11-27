@@ -15,6 +15,7 @@ from pydantic import AfterValidator, Field
 from app.core.schemas import CamelModel, Text
 
 ProductCategory = Literal["HEALTH_FUNCTIONAL_FOOD", "GENERAL_FOOD", "CHILDREN_PREFERRED_FOOD"]
+Channel = Literal["DETAIL_PAGE", "SNS", "BANNER"]  # 게시 채널: 상세페이지·SNS·배너
 Decision = Literal["SUITABLE", "UNSUITABLE"]
 
 # DB 칼럼 길이를 넘는 값은 저장 단계에서 500이 나므로 입력에서 422(INVALID)로 막는다.
@@ -38,6 +39,8 @@ OptText = Annotated[str | None, AfterValidator(_no_blank)]
 class ReviewCreate(CamelModel):
     title: Annotated[Text, Field(max_length=TITLE_MAX)]  # 제품명
     product_category: ProductCategory
+    channel: Channel  # 게시 채널 (필수)
+    main_ingredients: list[Text] = []  # 주요 원료명 (선택). 빈 문자열 원료는 422
     text: Text  # 광고 문구 원문
     attachment_ids: list[str] = []  # POST /attachments로 올린 파일 ID
 

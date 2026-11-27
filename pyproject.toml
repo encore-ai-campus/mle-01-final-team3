@@ -151,6 +151,8 @@ dependencies = [
     "fastapi>=0.163.2",
     "sqlalchemy>=2.1.9",
     "alembic>=1.20.1",
+    # 백엔드 [PDF 저장] (검토 보고서 PDF). 한글은 내장 CID 글꼴(HYGothic)을 써서 글꼴 파일이 필요 없다.
+    "reportlab>=4.2",
 ]
 
 [tool.uv]

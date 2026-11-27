@@ -1,4 +1,4 @@
-"""DB 테이블 정의. 기준: docs/ERD_v0.4.dbml
+"""DB 테이블 정의. 기준: ERD v0.5 (API 설계서 v5.3 부록 A)
 
 - 테이블을 바꾸려면 이 파일을 고친 뒤 새 마이그레이션을 만든다 (README 참고).
 - 시각은 모두 timezone 포함(timestamptz)으로 저장한다.
@@ -54,6 +54,8 @@ class Review(Base):
     author_id: Mapped[str | None] = mapped_column(ForeignKey("users.id"))
     title: Mapped[str] = mapped_column(String(200))
     product_category: Mapped[str] = mapped_column(CODE)  # HEALTH_FUNCTIONAL_FOOD, GENERAL_FOOD, CHILDREN_PREFERRED_FOOD
+    channel: Mapped[str] = mapped_column(CODE)  # 게시 채널: DETAIL_PAGE, SNS, BANNER
+    main_ingredients: Mapped[list[str]] = mapped_column(JSONB, server_default=text("'[]'::jsonb"))  # 주요 원료명
     text: Mapped[str] = mapped_column(Text)  # 처음 입력한 원문
     closed_type: Mapped[str | None] = mapped_column(CODE)  # ENDED, PUBLISHED, CANCELED
     closed_at: Mapped[datetime | None] = mapped_column(TS)
@@ -100,6 +102,7 @@ class ReviewRun(Base):
     started_at: Mapped[datetime | None] = mapped_column(TS)
     finished_at: Mapped[datetime | None] = mapped_column(TS)
     suggestion: Mapped[dict[str, Any] | None] = mapped_column(JSONB)  # RA_SUGGEST만 {text, rationale, status}
+    input_text: Mapped[str | None] = mapped_column(Text)  # RA_RECHECK만: [재심의]한 추천 문구. 재시도하면 그대로 복사
 
 
 class Report(Base):

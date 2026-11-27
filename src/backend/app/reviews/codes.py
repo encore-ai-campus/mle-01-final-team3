@@ -22,8 +22,15 @@ SUGGESTION_PENDING = "PENDING"  # 확인 대기
 SUGGESTION_RECHECKED = "RECHECKED"  # [재심의]
 SUGGESTION_DISMISSED = "DISMISSED"  # [닫기]
 
-# 법무 처리 상태 (legal_submissions.status)
-OPINION_SENT = "OPINION_SENT"
+# 법무 처리 상태 (legal_submissions.status). 요청 행이 없으면 목록에서 NOT_SENT로 계산
+PENDING = "PENDING"  # 검토 대기
+IN_REVIEW = "IN_REVIEW"  # 검토 중 ([검토 시작]으로 담당자 지정)
+OPINION_SENT = "OPINION_SENT"  # 검토 의견 전송
+
+# 끝 처리 (reviews.closed_type)
+ENDED = "ENDED"  # 요청 안 함(종료, 법무 검토 없음)
+PUBLISHED = "PUBLISHED"  # 게시 및 완료
+CANCELED = "CANCELED"  # 심의 취소
 
 # 화면 버튼 (allowedActions)
 RUN_RA = "RUN_RA"
@@ -34,6 +41,11 @@ PUBLISH = "PUBLISH"
 CANCEL = "CANCEL"
 RECHECK_SUGGESTION = "RECHECK_SUGGESTION"
 DISMISS_SUGGESTION = "DISMISS_SUGGESTION"
+START_LEGAL_REVIEW = "START_LEGAL_REVIEW"  # 법무 [검토 시작]
+SEND_OPINION = "SEND_OPINION"  # 법무 검토 의견 [전송]
+
+# 끝 처리 종류 → 필요한 버튼
+CLOSE_ACTION = {ENDED: END, PUBLISHED: PUBLISH, CANCELED: CANCEL}
 
 # 재시도: 최초 실행별 최대 2회 → attempt는 최대 3
 MAX_ATTEMPT = 3
