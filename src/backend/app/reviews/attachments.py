@@ -28,6 +28,7 @@ router = APIRouter()
 internal_router = APIRouter()
 
 LIMIT_BYTES = 10 * 1024 * 1024  # 제출당 합계 10MB
+FILENAME_MAX = 255  # attachments.filename String(255)
 # attachments.content_type에는 파일 종류(pdf·xlsx·docx)를 저장하고, 내려받을 때 MIME 타입으로 바꾼다.
 MEDIA_TYPES = {
     "pdf": "application/pdf",
@@ -63,6 +64,11 @@ def upload_attachment(
     file_type = ext.removeprefix(".")
     if file_type not in MEDIA_TYPES:
         raise ApiError(415, "UNSUPPORTED_FILE_TYPE", "PDF, Excel, Word 파일만 첨부할 수 있습니다.")
+    if len(filename) > FILENAME_MAX:
+        raise ApiError(
+            422, "VALIDATION_ERROR", f"파일 이름은 {FILENAME_MAX}자까지 쓸 수 있습니다.",
+            field_errors=[{"field": "file", "code": "INVALID"}],
+        )  # fmt: skip
 
     attachment_id = new_id(db, "att")
     storage_key = f"{attachment_id}{ext}"

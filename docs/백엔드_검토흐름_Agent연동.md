@@ -3,7 +3,7 @@
 - 담당: 검토 흐름·AI 연동 담당
 - 기준: API 설계서 v5.2 (3장 실행 상태, 6장 검토 흐름·연동 방향·결과 보고서 조회, 7장 실행 상태와 공통 오류)
 - 코드: `src/backend/app/reviews/`, `src/backend/app/agent/`
-- 테스트: `src/backend/tests/` (가짜 Agent 기준 63개 통과)
+- 테스트: `src/backend/tests/` (가짜 Agent 기준 66개 통과)
 
 ## 1. API 목록
 
@@ -24,6 +24,7 @@
 - 202 응답에는 `Location: /api/v1/review-runs/{runId}` 헤더가 붙는다.
 - 실행을 만드는 API(reviews, ra-runs, recheck, retry)는 `Idempotency-Key`를 받는다. 같은 키로 다시 보내면 처음 응답을 그대로 돌려주고 Agent에도 한 번만 보낸다.
 - 백엔드 ↔ Agent 사이 인증은 양쪽 모두 `Authorization: Bearer {AGENT_TOKEN}`이다.
+- 길이 제한(DB 칼럼 길이): 제목 200자, 첨부 파일 이름 255자, 완료 통지 `error.code` 50자. 넘으면 422 VALIDATION_ERROR (`title`·`file`·`error.code` INVALID).
 - 응답 시각은 한국시간 ISO 8601, 초 단위다 (예: `2026-11-27T09:45:16+09:00`). 모든 API 공통 규칙으로, `app/core/times.py`의 `to_kst()`로 바꾼다. 저장은 UTC 그대로이고, 오프셋 없이 받은 요청 시각은 한국시간으로 본다.
 
 ## 2. 실행 상태
@@ -211,6 +212,7 @@ POST /reviews · ra-runs · recheck · retry
 | 출처 필수: title, reference / 참고 사례 필수: title, summary | `report.findings[0].sources[0].reference` REQUIRED |
 | suggestion 필수: text, rationale | `suggestion.rationale` REQUIRED |
 | error 필수: code, message, retryable | `error.retryable` REQUIRED |
+| error.code는 50자까지 (message는 500자에서 자름) | `error.code` INVALID |
 | 전체 판정: 한 문장이라도 UNSUITABLE이면 UNSUITABLE | `report.decision` INVALID |
 | 부적합 문장은 sources 1개 이상 | `report.findings[0].sources` REQUIRED |
 | 부적합 문장은 violationCode 필수, 부록 D 코드만 | `report.findings[0].violationCode` REQUIRED / INVALID |
@@ -242,7 +244,7 @@ POST /reviews · ra-runs · recheck · retry
 
 ## 8. 확인 결과
 
-### 가짜 Agent 테스트 (`uv run pytest tests`, 63개 통과)
+### 가짜 Agent 테스트 (`uv run pytest tests`, 66개 통과)
 
 진짜 Agent 대신 작업 요청을 기록만 하는 가짜 Agent를 끼우고, 완료 통지는 테스트가 Agent 대신 보낸다.
 
@@ -256,8 +258,8 @@ POST /reviews · ra-runs · recheck · retry
 | 시간 초과 | 179초 RUNNING, 181초 RUN_TIMEOUT (실행 조회·보고서 조회 둘 다), 목록용 `expire_overdue_runs` | test_run_failures.py |
 | 지연 완료 통지 | 시간 초과 뒤 SUCCEEDED → 409, 보고서 저장 안 됨 / FAILED → 200 무시 | test_run_failures.py |
 | 중복 완료 통지 | 같은 상태 → 200, 처음 결과 유지 / 다른 상태 → 409 / 추천 문구 중복도 처음 것 유지 | test_run_failures.py |
-| 검증 규칙 | 6장 표의 모든 규칙과 fieldErrors 경로, 토큰 401, runId·reviewId 404 | test_completion_validation.py |
-| 첨부 | 업로드 201·415·413, 합계 10MB, 남의 파일·없는 파일·이미 쓴 파일 422, 서명 URL 다운로드(MIME 응답)·위조 401 | test_attachments.py |
+| 검증 규칙 | 6장 표의 모든 규칙과 fieldErrors 경로, 토큰 401, runId·reviewId 404, 제목 200자 초과 422 | test_completion_validation.py, test_review_flow.py |
+| 첨부 | 업로드 201·415·413, 파일 이름 255자 초과 422, 합계 10MB, 남의 파일·없는 파일·이미 쓴 파일 422, 서명 URL 다운로드(MIME 응답)·위조 401 | test_attachments.py |
 | 시각 형식 | 검토·실행·관리자 API 모두 `+09:00` 초 단위 (테스트 DB를 UTC로 두고 확인), 오프셋 없는 `from`/`to`는 한국시간 | test_times.py |
 | 중복 클릭 | 같은 Idempotency-Key → 같은 runId, 작업 요청 1번 / 다른 내용 → 409 | test_review_flow.py |
 

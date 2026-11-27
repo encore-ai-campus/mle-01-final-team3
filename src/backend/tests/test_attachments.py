@@ -41,6 +41,13 @@ def test_unsupported_type_415(mkt):
     assert r.status_code == 415 and r.json()["error"]["code"] == "UNSUPPORTED_FILE_TYPE"
 
 
+def test_filename_over_255_is_422(mkt):
+    r = upload(mkt, "가" * 252 + ".pdf")  # 256자
+    assert r.status_code == 422
+    assert r.json()["error"]["fieldErrors"] == [{"field": "file", "code": "INVALID"}]
+    assert upload(mkt, "가" * 251 + ".pdf").status_code == 201  # 255자
+
+
 def test_file_over_10mb_413(mkt):
     r = upload(mkt, "big.pdf", b"0" * (10 * 1024 * 1024 + 1))
     assert r.status_code == 413 and r.json()["error"]["code"] == "ATTACHMENT_LIMIT_EXCEEDED"

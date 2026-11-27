@@ -17,6 +17,10 @@ from app.core.schemas import CamelModel, Text
 ProductCategory = Literal["HEALTH_FUNCTIONAL_FOOD", "GENERAL_FOOD", "CHILDREN_PREFERRED_FOOD"]
 Decision = Literal["SUITABLE", "UNSUITABLE"]
 
+# DB 칼럼 길이를 넘는 값은 저장 단계에서 500이 나므로 입력에서 422(INVALID)로 막는다.
+TITLE_MAX = 200  # reviews.title String(200)
+ERROR_CODE_MAX = 50  # review_runs.error_code String(50)
+
 
 def _no_blank(v: str | None) -> str | None:
     if v is not None and not v.strip():
@@ -32,7 +36,7 @@ OptText = Annotated[str | None, AfterValidator(_no_blank)]
 
 
 class ReviewCreate(CamelModel):
-    title: Text  # 제품명
+    title: Annotated[Text, Field(max_length=TITLE_MAX)]  # 제품명
     product_category: ProductCategory
     text: Text  # 광고 문구 원문
     attachment_ids: list[str] = []  # POST /attachments로 올린 파일 ID
@@ -92,7 +96,7 @@ class SuggestionBody(CamelModel):
 
 
 class RunError(CamelModel):
-    code: Text
+    code: Annotated[Text, Field(max_length=ERROR_CODE_MAX)]
     message: Text
     retryable: bool
 

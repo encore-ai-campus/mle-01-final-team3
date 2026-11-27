@@ -168,3 +168,10 @@ def test_valid_after_rejections(mkt, agent_http, started):
     multi = report(findings=[finding("SUITABLE", sentenceId="s1"), finding("UNSUITABLE", sentenceId="s2")])
     assert complete(agent_http, run, rev, report=multi).status_code == 200
     assert [f["sentenceId"] for f in detail(mkt, rev)["report"]["findings"]] == ["s1", "s2"]
+
+
+def test_error_code_over_50_is_invalid(agent_http, started):
+    rev, run = started
+    r = complete(agent_http, run, rev, "FAILED", error={**TEMP_ERROR, "code": "E" * 51})
+    assert fields(r) == {("error.code", "INVALID")}
+    assert complete(agent_http, run, rev, "FAILED", error={**TEMP_ERROR, "code": "E" * 50}).status_code == 200

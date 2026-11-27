@@ -40,6 +40,14 @@ def test_blank_fields_are_422(mkt):
     assert fields == {("title", "REQUIRED"), ("text", "REQUIRED")}
 
 
+def test_title_over_200_is_422(mkt):
+    body = {"productCategory": "GENERAL_FOOD", "text": "문구"}
+    r = mkt.post(f"{API}/reviews", json={**body, "title": "가" * 201})
+    assert r.status_code == 422
+    assert [(e["field"], e["code"]) for e in r.json()["error"]["fieldErrors"]] == [("title", "INVALID")]
+    assert mkt.post(f"{API}/reviews", json={**body, "title": "가" * 200}).status_code == 202
+
+
 def test_only_marketing_can_request(legal):
     r = legal.post(f"{API}/reviews", json={"title": "a", "productCategory": "GENERAL_FOOD", "text": "b"})
     assert r.status_code == 403
