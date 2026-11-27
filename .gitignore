@@ -227,8 +227,11 @@ __marimo__/
 # raw 데이터 github 업로드 안함
 docs/superpowers
 tmp
+
 tests
 data/data_chunking
 output
 .vercel/
 .env.local
+data/data_chunking/*
+output
