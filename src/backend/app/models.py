@@ -30,7 +30,7 @@ TS = DateTime(timezone=True)
 
 
 class User(Base):
-    """사용자. 삭제 2가지: 기록 없으면 행 삭제, 기록 있으면 개인정보만 덮어씀(status=DELETED)."""
+    """사용자. 삭제하면 행은 남기고 개인정보만 덮어씀(status=DELETED, '삭제된 사용자')."""
 
     __tablename__ = "users"
 
