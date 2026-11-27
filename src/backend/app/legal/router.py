@@ -6,6 +6,9 @@ POST /legal-submissions/{submissionId}/opinion  검토 의견 [전송] (IN_REVIE
 
 법무 상태: 검토 대기(PENDING) → 검토 중(IN_REVIEW) → 검토 의견 전송(OPINION_SENT).
 먼저 [검토 시작]을 누른 사람만 담당자가 되고, 담당자만 의견을 보낸다. 다른 법무 담당자는 읽기만 한다.
+
+잠금 순서 (설계서 3장): users → reviews → legal_submissions. 상태를 바꾸면 reviews.updated_at도 바뀌므로
+법무 요청 행보다 검토 건 행을 먼저 잠근다. 담당 건 이관(reviews → legal_submissions)과 순서가 같아야 교착이 없다.
 """
 
 from fastapi import APIRouter, Depends
@@ -35,6 +38,13 @@ def get_submission_or_404(db: DbSession, submission_id: str, *, lock: bool = Fal
     if sub is None:
         raise ApiError(404, "NOT_FOUND", "보고서를 찾을 수 없습니다.")
     return sub
+
+
+def lock_review_then_submission(db: DbSession, submission_id: str) -> LegalSubmission:
+    """잠금 순서대로 검토 건 행을 먼저 잠그고, 그다음 법무 요청 행을 잠가 최신 값으로 읽는다. 없으면 404."""
+    sub = get_submission_or_404(db, submission_id)
+    db.get(Review, sub.review_id, with_for_update=True)
+    return get_submission_or_404(db, submission_id, lock=True)
 
 
 def detail_actions(sub: LegalSubmission, user: User) -> list[str]:
@@ -104,7 +114,7 @@ def get_submission(submissionId: str, user: Lawyer, db: DbSession = Depends(get_
 )
 def start_review(submissionId: str, user: Lawyer, db: DbSession = Depends(get_db)):
     lock_actor(db, user, "LEGAL")
-    sub = get_submission_or_404(db, submissionId, lock=True)  # 동시에 눌러도 한 명만 지정되도록 잠근다
+    sub = lock_review_then_submission(db, submissionId)  # 동시에 눌러도 한 명만 지정되도록 잠근다 (검토 건 → 법무 요청)
     if sub.status == C.PENDING:
         now = utcnow()
         sub.status, sub.reviewer_id, sub.started_at = C.IN_REVIEW, user.id, now
@@ -130,7 +140,7 @@ def send_opinion(
 ):
     def work():
         lock_actor(db, user, "LEGAL")
-        sub = get_submission_or_404(db, submissionId, lock=True)
+        sub = lock_review_then_submission(db, submissionId)  # 검토 건 → 법무 요청 순서로 잠근다
         if sub.status != C.IN_REVIEW:
             raise ApiError(409, "STATE_CONFLICT", "검토 중인 건에만 의견을 보낼 수 있습니다. 최신 상태를 다시 조회해 주세요.")
         if sub.reviewer_id != user.id:

@@ -16,8 +16,8 @@ class Settings(BaseSettings):
     # local(개발) 또는 production(운영). 개발용 시드는 production에서 실행되지 않는다.
     app_env: str = "local"
 
-    # 로그인 세션 만료: 로그인 시점부터 고정 10시간 (요청해도 연장하지 않음)
-    session_hours: int = 10
+    # 로그인 세션 만료: 로그인 시점부터 고정 8시간 (요청해도 연장하지 않음, 팀 결정)
+    session_hours: int = 8
 
     # 세션 쿠키를 HTTPS에서만 보낼지. 배포(HTTPS)에서는 true로 둔다.
     cookie_secure: bool = False

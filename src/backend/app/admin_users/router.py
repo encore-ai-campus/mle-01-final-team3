@@ -11,11 +11,10 @@ from typing import Annotated, Literal
 
 from fastapi import APIRouter, Depends, Query, Response
 from pydantic import StringConstraints
-from sqlalchemy import delete, func, or_, select, update
-from sqlalchemy.exc import IntegrityError
+from sqlalchemy import delete, or_, select, update
 from sqlalchemy.orm import Session as DbSession
 
-from app.admin_users.service import EMAIL_PATTERN, create_user
+from app.admin_users.service import create_user
 from app.auth.sessions import revoke_user_sessions
 from app.core.activity import log_activity
 from app.core.deps import Admin, get_db
@@ -27,7 +26,6 @@ from app.core.times import assume_kst, to_kst
 from app.core.security import UNUSABLE_PASSWORD, is_valid_password
 from app.models import (
     ActivityLog,
-    Attachment,
     IdempotencyKey,
     LegalSubmission,
     MenuSeen,
@@ -45,7 +43,7 @@ DELETED_NAME = "삭제된 사용자"
 OPERATIONS = {
     "LOGIN", "LOGOUT", "REVIEW_REQUESTED", "RA_RECHECK_REQUESTED", "SUGGESTION_RECHECKED",
     "SUGGESTION_DISMISSED", "RUN_RETRIED", "LEGAL_SENT", "REPORT_VIEWED", "LEGAL_OPINION_SENT",
-    "REVIEW_CLOSED", "USER_CREATED", "USER_UPDATED", "WORK_HANDED_OVER", "USER_DELETED", "USER_ANONYMIZED",
+    "REVIEW_CLOSED", "USER_CREATED", "USER_UPDATED", "WORK_HANDED_OVER", "USER_DELETED",
 }  # fmt: skip
 
 
@@ -54,10 +52,8 @@ OPERATIONS = {
 
 # 길이 상한은 DB 칸 크기와 같다 (name 100자, email 255자). 넘으면 500 대신 422.
 Name = Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=100)]
-# 이메일은 소문자로 바꿔 받는다. 형식이 틀리면 422 (fieldErrors email INVALID)
-Email = Annotated[
-    str, StringConstraints(strip_whitespace=True, to_lower=True, min_length=1, max_length=255, pattern=EMAIL_PATTERN)
-]
+# 이메일은 회사 메일 주소를 그대로 받는다 (형식 검사·소문자 변환 없음, 팀 결정)
+Email = Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=255)]
 
 
 class UserCreate(CamelModel):
@@ -138,27 +134,8 @@ def check_handover(db: DbSession, u: User) -> None:
         )
 
 
-def record_counts(db: DbSession, user_id: str) -> dict:
-    """기록: 보고서 작성·첨부·법무 요청·법무 검토. 활동 로그와 알림은 기록이 아니다."""
-
-    def count(stmt) -> int:
-        return db.scalar(select(func.count()).select_from(stmt.subquery())) or 0
-
-    return {
-        "reviews": count(select(Review.id).where(Review.author_id == user_id)),
-        "attachments": count(select(Attachment.id).where(Attachment.uploaded_by == user_id)),
-        "legalSubmissions": count(
-            select(LegalSubmission.id).where(
-                or_(LegalSubmission.sender_id == user_id, LegalSubmission.reviewer_id == user_id)
-            )
-        ),
-    }
-
-
-def delete_personal_data(db: DbSession, user_id: str, *, with_activity_logs: bool) -> None:
-    """본인만 쓰던 데이터 삭제 (자식 테이블 먼저)."""
-    if with_activity_logs:
-        db.execute(delete(ActivityLog).where(ActivityLog.user_id == user_id))
+def delete_personal_data(db: DbSession, user_id: str) -> None:
+    """본인만 쓰던 데이터 삭제. 보고서·법무 기록·활동 로그는 감사 기록이라 남긴다."""
     db.execute(delete(Notification).where(Notification.user_id == user_id))
     db.execute(delete(MenuSeen).where(MenuSeen.user_id == user_id))
     db.execute(delete(IdempotencyKey).where(IdempotencyKey.user_id == user_id))
@@ -301,43 +278,24 @@ def handover(
 
 @router.delete("/{userId}", status_code=204, summary="계정 삭제 [삭제]")
 def delete_user(userId: str, admin: Admin, db: DbSession = Depends(get_db)) -> Response:
-    """퇴사 등으로 계정을 지운다. 기록이 있어도 막지 않는다 (팀 합의: 비활성화 유도 없음).
+    """퇴사 등으로 계정을 지운다 (팀 합의: 기록이 있든 없든 삭제, 비활성화 유도 없음).
 
-    - 기록 없음: 계정 행과 딸린 데이터를 통째로 삭제 (USER_DELETED)
-    - 기록 있음: 개인정보만 지우고 '삭제된 사용자'로 바꿈. 보고서·검토·법무 기록은 남김 (USER_ANONYMIZED)
-    - 어느 경우든 204. 되돌릴 수 없으므로 확인창은 프론트에서 띄운다.
+    users 행은 지우지 않고 개인정보만 덮어써 '삭제된 사용자'로 바꾼다. userId만 남으므로
+    보고서 작성자 등은 '삭제된 사용자'로 보인다. 204. 되돌릴 수 없으므로 확인창은 프론트에서 띄운다.
     """
     u = lock_user(db, userId)
     protect(db, admin, u)
     check_handover(db, u)
 
-    if not any(record_counts(db, u.id).values()):
-        try:
-            with db.begin_nested():  # 임시 저장 지점: 실패하면 이 삭제만 취소
-                delete_personal_data(db, u.id, with_activity_logs=True)
-                db.delete(u)
-                db.flush()
-        except IntegrityError:
-            pass  # 확인한 뒤 그사이 기록이 생겼다 → 아래 '삭제된 사용자'로 처리
-        else:
-            log_activity(db, admin.id, "USER_DELETED", userId)
-            db.commit()
-            return Response(status_code=204)
-
-    anonymize_user(db, u)
-    log_activity(db, admin.id, "USER_ANONYMIZED", u.id)
-    db.commit()
-    return Response(status_code=204)
-
-
-def anonymize_user(db: DbSession, u: User) -> None:
-    """'삭제된 사용자'로 변경: 개인정보만 지우고 userId만 남긴다. 보고서·법무 기록·활동 로그는 남긴다."""
     u.name = DELETED_NAME
-    u.email = f"deleted+{u.id}@invalid"
+    u.email = f"deleted+{u.id}@invalid"  # 같은 이메일로 다시 등록할 수 있게
     u.password_hash = UNUSABLE_PASSWORD + secrets.token_hex(16)  # 로그인할 수 없는 값 (NOT NULL)
     u.last_login_at = None
     u.status = "DELETED"
-    delete_personal_data(db, u.id, with_activity_logs=False)
+    delete_personal_data(db, u.id)
+    log_activity(db, admin.id, "USER_DELETED", u.id)
+    db.commit()
+    return Response(status_code=204)
 
 
 @router.get("/{userId}/activity", summary="사용자 활동 로그 (AD-10~AD-17)")

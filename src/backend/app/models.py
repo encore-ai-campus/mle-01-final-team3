@@ -12,6 +12,7 @@ from sqlalchemy import (
     Boolean,
     DateTime,
     ForeignKey,
+    Index,
     Integer,
     PrimaryKeyConstraint,
     String,
@@ -30,7 +31,7 @@ TS = DateTime(timezone=True)
 
 
 class User(Base):
-    """사용자. 삭제 2가지: 기록 없으면 행 삭제, 기록 있으면 개인정보만 덮어씀(status=DELETED)."""
+    """사용자. 삭제하면 행은 남기고 개인정보만 덮어씀(status=DELETED, '삭제된 사용자')."""
 
     __tablename__ = "users"
 
@@ -87,6 +88,15 @@ class ReviewRun(Base):
     """실행 1번. 재시도는 최초 실행별 최대 2회."""
 
     __tablename__ = "review_runs"
+    __table_args__ = (
+        # 광고 건 하나에 실행 중(QUEUED·RUNNING)인 실행은 최대 1개 (설계서 3장)
+        Index(
+            "uq_review_runs_one_active",
+            "review_id",
+            unique=True,
+            postgresql_where=text("status IN ('QUEUED', 'RUNNING')"),
+        ),
+    )
 
     id: Mapped[str] = mapped_column(ID, primary_key=True)  # 예: run_001
     review_id: Mapped[str | None] = mapped_column(ForeignKey("reviews.id"))
@@ -174,7 +184,7 @@ class ActivityLog(Base):
 
 
 class Session(Base):
-    """로그인 세션. 로그인 1번 = 행 1개. 만료는 로그인 시점 + 10시간 고정."""
+    """로그인 세션. 로그인 1번 = 행 1개. 만료는 로그인 시점 + 8시간 고정."""
 
     __tablename__ = "sessions"
 

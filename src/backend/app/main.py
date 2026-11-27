@@ -13,6 +13,7 @@ from app.agent.completion import router as agent_completion_router
 from app.auth.router import router as auth_router
 from app.core.config import settings
 from app.core.errors import register_error_handlers
+from app.core.origin import add_origin_check
 from app.legal.router import router as legal_router
 from app.notifications.router import router as notifications_router
 from app.reviews.actions import router as review_actions_router
@@ -28,6 +29,8 @@ API_PREFIX = "/api/v1"
 INTERNAL_PREFIX = "/internal/v1"  # Agent 연동 (서비스 인증)
 
 app = FastAPI(title="AdGuard AI 백엔드", version="5.0")
+# 순서 주의: 나중에 등록한 미들웨어가 먼저 실행된다. CORS → 요청 ID → Origin 검사 순으로 돈다.
+add_origin_check(app)  # 허용되지 않은 주소에서 온 POST·PATCH·DELETE는 403 (CSRF 보완)
 register_error_handlers(app)
 
 # 서버 접속 로그에 첨부 다운로드 주소의 서명(sig)이 남지 않게 가린다

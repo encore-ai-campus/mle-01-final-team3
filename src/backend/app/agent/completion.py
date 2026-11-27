@@ -3,7 +3,7 @@
 처리 순서
 1. 서비스 인증 (Authorization: Bearer {AGENT_TOKEN}) → 401
 2. 형식 검사 (필수·빈 값·타입) → 422 VALIDATION_ERROR
-3. 실행 ID·검토 건 일치 → 없거나 다르면 404
+3. 검토 건 → 실행 순서로 행 잠금. 실행 ID·검토 건 일치 → 없거나 다르면 404
 4. 180초가 지났으면 RUN_TIMEOUT으로 먼저 확정
 5. 이미 확정된 실행: 같은 runStatus면 200(다시 처리하지 않음), 다르면 409 STATE_CONFLICT
 6. 내용 검사 (성공·실패 짝, 전체 판정, 부적합 문장 출처, 위반 유형 코드, schemaVersion) → 422
@@ -19,7 +19,7 @@ from app.core.security import utcnow
 from app.models import Report, Review, ReviewRun
 from app.notifications.service import notify
 from app.reviews import codes as C
-from app.reviews.runs import expire_if_timed_out, fail_run, run_input_text
+from app.reviews.runs import expire_if_timed_out, fail_run, lock_review_then_run, run_input_text
 from app.reviews.schemas import ReportBody, RunCompletion
 from app.reviews.state import current_report, run_view
 
@@ -73,13 +73,14 @@ def check_report(report: ReportBody) -> None:
     "확정된 실행은 늦게 온 다른 결과로 덮어쓰지 않는다(409). 저장되면 200과 실행 상태",
 )
 def complete_run(runId: str, body: RunCompletion, db: DbSession = Depends(get_db)):
-    run = db.get(ReviewRun, runId, with_for_update=True)
+    # 검토 건 → 실행 순서로 잠근다 (보고서를 저장하면 reviews.updated_at도 바뀌므로, 요청 API와 같은 순서여야 교착이 없다)
+    run = lock_review_then_run(db, runId)
     if run is None or run.review_id != body.review_id:
         raise ApiError(404, "NOT_FOUND", "실행을 찾을 수 없습니다.")
 
     if expire_if_timed_out(db, run):  # 180초가 지났으면 먼저 RUN_TIMEOUT으로 확정 (늦은 결과는 아래에서 409)
         db.commit()
-        run = db.get(ReviewRun, runId, with_for_update=True)
+        run = lock_review_then_run(db, runId)
 
     if run.status in (C.SUCCEEDED, C.FAILED):
         if run.status == body.run_status:
