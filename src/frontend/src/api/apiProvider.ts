@@ -1,5 +1,6 @@
 import { ContractApiClient } from "./client";
 import { createApiError, toApiError, type ApiError } from "./errors";
+import type { RestClient } from "./restClient";
 import type { ApiProviderOptions, DataProvider, ReviewQuery } from "../types/api";
 import type {
   Account,
@@ -25,9 +26,15 @@ const notConfiguredMessage = "검증된 API 연결이 설정되지 않았습니�
 
 export class ApiProvider implements DataProvider {
   private readonly client: ContractApiClient | null;
+  private readonly restClient: RestClient | null;
+  private readonly authApi: ApiProviderOptions["authApi"];
+  public readonly reviewFlow: NonNullable<ApiProviderOptions["reviewFlow"]> | undefined;
 
   public constructor(options: ApiProviderOptions = {}) {
     this.client = options.contract ? new ContractApiClient(options.contract) : null;
+    this.restClient = options.restClient ?? null;
+    this.reviewFlow = options.reviewFlow ?? undefined;
+    this.authApi = options.authApi ?? null;
   }
 
   public getDashboard(): Promise<DataState<DashboardSummary>> {
@@ -55,12 +62,21 @@ export class ApiProvider implements DataProvider {
   }
 
   public getAccount(): Promise<DataState<Account>> {
+    if (this.authApi) return this.run("getAccount", () => this.authApi?.me(), parseAccount, true);
     return this.run("getAccount", () => this.client?.getAccount(), parseAccount);
   }
 
   public updatePassword(
     input: PasswordUpdateInput,
   ): Promise<DataState<PasswordUpdateResult>> {
+    if (this.authApi) {
+      return this.run(
+        "updatePassword",
+        async () => ({ account: await this.authApi?.changePassword(input), message: "비밀번호가 변경되었습니다." }),
+        parsePasswordUpdateResult,
+        true,
+      );
+    }
     return this.run(
       "updatePassword",
       () => this.client?.updatePassword(input),
@@ -97,8 +113,9 @@ export class ApiProvider implements DataProvider {
     operation: string,
     request: () => Promise<unknown> | undefined,
     parse: (payload: unknown) => T,
+    configured = this.client !== null,
   ): Promise<DataState<T>> {
-    if (!this.client) {
+    if (!configured) {
       return { status: "not-configured", message: `${operation}: ${notConfiguredMessage}` };
     }
 

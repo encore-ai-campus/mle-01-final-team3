@@ -1,4 +1,6 @@
 import { FixtureCheckProvider } from "./checkFixtureProvider";
+import { createRestClient } from "./apiConfig";
+import type { RestClient } from "./restClient";
 import type { CheckDataProvider } from "../types/api";
 import type {
   CheckDraftResult,
@@ -16,6 +18,12 @@ import type { FixtureWorkflowStore } from "./fixtureWorkflowStore";
 const notConfiguredMessage = "검증된 광고 검사 API 연결이 설정되지 않았습니다.";
 
 export class ApiCheckProvider implements CheckDataProvider {
+  private readonly restClient: RestClient | null;
+
+  public constructor(restClient: RestClient | null = null) {
+    this.restClient = restClient;
+  }
+
   public getResult(checkId: string): Promise<DataState<CheckResult>> {
     return Promise.resolve(this.notConfigured(`getResult(${checkId})`));
   }
@@ -54,7 +62,9 @@ export class ApiCheckProvider implements CheckDataProvider {
 }
 
 export function createCheckProvider(scenarioId: ArtifactScenarioId = "LG-1", useFixtures = import.meta.env.VITE_USE_FIXTURES === "true", store?: FixtureWorkflowStore): CheckDataProvider {
-  return useFixtures ? new FixtureCheckProvider(scenarioId, store) : new ApiCheckProvider();
+  return useFixtures
+    ? new FixtureCheckProvider(scenarioId, store)
+    : new ApiCheckProvider(createRestClient());
 }
 
 export { FixtureCheckProvider } from "./checkFixtureProvider";

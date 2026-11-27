@@ -22,6 +22,9 @@ import type {
   ReviewWorkflowActionInput,
   MarketingWorkflowActionInput,
 } from "./domain";
+import type { RestClient } from "../api/restClient";
+import type { ReviewFlowApi } from "../api/reviewFlowApi";
+import type { AuthApi } from "../auth/authApi";
 
 export interface ReviewQuery {
   search?: string;
@@ -52,9 +55,13 @@ export interface ApiContract {
 
 export interface ApiProviderOptions {
   contract?: ApiContract;
+  restClient?: RestClient | null;
+  reviewFlow?: ReviewFlowApi | null;
+  authApi?: AuthApi | null;
 }
 
 export interface DataProvider {
+  reviewFlow?: ReviewFlowApi;
   getDashboard(): Promise<import("./domain").DataState<DashboardSummary>>;
   listReviews(query: ReviewQuery): Promise<import("./domain").DataState<ReviewTask[]>>;
   getReviewDetail(reviewId: string): Promise<import("./domain").DataState<ReviewDetail>>;

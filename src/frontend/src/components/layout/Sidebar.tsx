@@ -15,6 +15,7 @@ interface SidebarProps {
   open: boolean;
   onNavigate: (path: string) => void;
   onClose: () => void;
+  onLogout?: () => void;
 }
 
 interface NavigationItem {
@@ -53,7 +54,7 @@ function SidebarLink({ item, active, currentSearch, onNavigate, onClose, classNa
   );
 }
 
-export function Sidebar({ currentPath, currentSearch, user, open, onNavigate, onClose }: SidebarProps) {
+export function Sidebar({ currentPath, currentSearch, user, open, onNavigate, onClose, onLogout }: SidebarProps) {
   const isCurrent = (path: string) => path === "/" ? currentPath === path : currentPath === path || currentPath.startsWith(`${path}/`);
   return (
     <aside className={`sidebar ${open ? "sidebar--open" : ""}`} aria-label="사이드바">
@@ -79,6 +80,7 @@ export function Sidebar({ currentPath, currentSearch, user, open, onNavigate, on
           <small>{user.department}</small>
         </span>
       </a>
+      {onLogout ? <button type="button" className="sidebar__logout" onClick={onLogout}>로그아웃</button> : null}
     </aside>
   );
 }

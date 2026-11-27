@@ -227,9 +227,11 @@ __marimo__/
 # raw 데이터 github 업로드 안함
 docs/superpowers
 tmp
+
+tests
+data/data_chunking
+output
+.vercel/
+.env.local
 data/data_chunking/*
-!data/data_chunking/chunk_schema.json
-!data/data_chunking/chunking_quality_log.jsonl
-!data/data_chunking/document_registry.csv
-!data/data_chunking/manifest.json
 output
