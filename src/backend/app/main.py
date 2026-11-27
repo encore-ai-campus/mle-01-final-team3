@@ -7,11 +7,16 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.admin_users.router import router as admin_users_router
+from app.agent.completion import router as agent_completion_router
 from app.auth.router import router as auth_router
 from app.core.config import settings
 from app.core.errors import register_error_handlers
+from app.reviews.attachments import internal_router as attachment_download_router
+from app.reviews.attachments import router as attachments_router
+from app.reviews.router import router as reviews_router
 
 API_PREFIX = "/api/v1"
+INTERNAL_PREFIX = "/internal/v1"  # Agent 연동 (서비스 인증)
 
 app = FastAPI(title="AdGuard AI 백엔드", version="5.0")
 register_error_handlers(app)
@@ -29,3 +34,7 @@ app.add_middleware(
 
 app.include_router(auth_router, prefix=API_PREFIX, tags=["인증"])
 app.include_router(admin_users_router, prefix=API_PREFIX, tags=["관리자"])
+app.include_router(reviews_router, prefix=API_PREFIX, tags=["검토 흐름"])
+app.include_router(attachments_router, prefix=API_PREFIX, tags=["검토 흐름"])
+app.include_router(agent_completion_router, prefix=INTERNAL_PREFIX, tags=["Agent 연동 (내부)"])
+app.include_router(attachment_download_router, prefix=INTERNAL_PREFIX, tags=["Agent 연동 (내부)"])

@@ -28,5 +28,21 @@ class Settings(BaseSettings):
     # Agent가 완료 통지를 보낼 때 쓰는 서비스 토큰 (Authorization: Bearer {AGENT_TOKEN}). 비어 있으면 모두 거절.
     agent_token: str = ""
 
+    # ----- 검토 흐름·Agent 연동 (API 설계서 3장·6장·7장) -----
+    # 백엔드 → Agent 작업 요청 주소. POST {AGENT_URL}/internal/v1/review-jobs
+    agent_url: str = "http://localhost:9000"
+
+    # 작업 요청이 실패하면 같은 runId로 다시 보내기 전에 기다리는 시간(초). 모두 3번 보낸다.
+    agent_send_retry_seconds: float = 1.0
+
+    # 실행을 만든 뒤 이 시간 안에 완료 통지가 없으면 FAILED / RUN_TIMEOUT
+    run_timeout_seconds: int = 180
+
+    # 첨부 파일 저장 폴더 (git에 올리지 않음)
+    attachment_dir: Path = BACKEND_DIR / "storage" / "attachments"
+
+    # Agent가 첨부 파일을 내려받을 백엔드 주소 (서명 URL 앞부분)
+    public_base_url: str = "http://localhost:8000"
+
 
 settings = Settings()
