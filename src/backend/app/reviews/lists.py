@@ -59,7 +59,7 @@ class Snapshot:
     reports: dict[str, Report] = field(default_factory=dict)  # run_id → 보고서
     legal: list[LegalSubmission] = field(default_factory=list)
     latest_legal: dict[str, LegalSubmission] = field(default_factory=dict)  # 검토 건별 가장 최근 요청
-    has_ra: set[str] = field(default_factory=set)  # AI 추천 요청(RA_SUGGEST·RA_RECHECK) 실행이 있는 검토 건
+    ra_runs: list[ReviewRun] = field(default_factory=list)  # AI 추천 요청(RA_SUGGEST·RA_RECHECK) 실행 (대시보드 집계용)
 
 
 def load_snapshot(db: DbSession) -> Snapshot:
@@ -72,7 +72,7 @@ def load_snapshot(db: DbSession) -> Snapshot:
     for run in db.scalars(select(ReviewRun).order_by(ReviewRun.created_at, ReviewRun.id)).all():
         snap.latest_run[run.review_id] = run  # 뒤에 온 것(최근)이 남는다
         if run.stage in (C.RA_SUGGEST, C.RA_RECHECK):
-            snap.has_ra.add(run.review_id)
+            snap.ra_runs.append(run)
     for rep in db.scalars(select(Report).order_by(Report.version)).all():
         snap.reports[rep.run_id] = rep
         snap.current_report[rep.review_id] = rep

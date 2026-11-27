@@ -4,7 +4,7 @@ GET /dashboard?recentLimit=5 → {role, asOf, summary, tasks, recentReports}
 
 - 할 일 카드 건수는 연결된 검토함 목록과 같은 함수·같은 조건으로 센다(lists.py). 그래서 카드 숫자와 목록 건수가 같다.
 - 최근 결과(recentReports)는 각 검토함의 기본 정렬·행 형식 그대로 앞에서 recentLimit건.
-- '이번 달'·'오늘'은 한국시간 기준.
+- 윗칸(summary)은 마케팅·법무 모두 팀 전체의 이번 달(한국시간 1일 0시부터) 건수. 할 일 카드는 개인 기준.
 """
 
 from typing import Annotated
@@ -35,15 +35,21 @@ def _recent(rows: list[Row], limit: int) -> list[dict]:
     return [r.data for r in sorted(rows, key=Row.key, reverse=True)[:limit]]
 
 
+def month_start():
+    """한국시간 이번 달 1일 0시."""
+    return kst_day_start(utcnow()).replace(day=1)
+
+
 def marketing_dashboard(snap: Snapshot, user: User, limit: int) -> dict:
     rows = review_rows(snap, user)
     count = lambda **f: len(filter_review_rows(rows, user, author="ME", **f))  # noqa: E731
+    since = month_start()
     return {
         "summary": {
-            # 팀 전체 검토 건 단위
-            "completedReviews": len(snap.current_report),  # 성공 보고서가 있는 건
-            "raReviews": len(snap.has_ra),  # 재심의(AI 추천) 실행이 있는 건
-            "legalSentReviews": len(snap.latest_legal),  # 법무 검토 요청이 있는 건
+            # 팀 전체 검토 건 단위, 이번 달(한국시간). 화면: 이번 달 심의 · 이번 달 AI 추천 · 이번 달 검토 요청
+            "completedReviews": len({r.review_id for r in snap.reports.values() if r.created_at >= since}),  # 보고서가 나온 건
+            "raReviews": len({r.review_id for r in snap.ra_runs if r.created_at >= since}),  # AI 추천을 요청한 건
+            "legalSentReviews": len({s.review_id for s in snap.legal if s.sent_at >= since}),  # 법무 검토를 요청한 건
         },
         "tasks": {
             "sendToLegal": count(decision=C.SUITABLE, legal_status="NOT_SENT", action=C.SEND_TO_LEGAL),  # M-5
@@ -58,12 +64,12 @@ def marketing_dashboard(snap: Snapshot, user: User, limit: int) -> dict:
 def legal_dashboard(snap: Snapshot, user: User, limit: int) -> dict:
     rows = legal_rows(snap, user)
     count = lambda **f: len(filter_legal_rows(rows, snap, user, **f))  # noqa: E731
-    month_start = kst_day_start(utcnow()).replace(day=1)
+    since = month_start()
     return {
         "summary": {
             # 요청 건 단위, 이번 달(한국시간)
-            "receivedThisMonth": sum(1 for s in snap.legal if s.sent_at >= month_start),
-            "opinionSentThisMonth": sum(1 for s in snap.legal if s.decided_at and s.decided_at >= month_start),
+            "receivedThisMonth": sum(1 for s in snap.legal if s.sent_at >= since),
+            "opinionSentThisMonth": sum(1 for s in snap.legal if s.decided_at and s.decided_at >= since),
         },
         "tasks": {
             "pending": count(status="PENDING"),  # LG-5
