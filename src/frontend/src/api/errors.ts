@@ -5,6 +5,10 @@ export interface ApiError {
   message: string;
   statusCode?: number;
   details?: unknown;
+  code?: string;
+  retryable?: boolean;
+  requestId?: string;
+  fieldErrors?: unknown[];
 }
 
 export function createApiError(
@@ -13,7 +17,21 @@ export function createApiError(
   details?: unknown,
   statusCode?: number,
 ): ApiError {
-  return { kind, message, details, statusCode };
+  const metadata = isRecord(details) ? details : {};
+  return {
+    kind,
+    message,
+    details,
+    statusCode,
+    code: typeof metadata.code === "string" ? metadata.code : undefined,
+    retryable: typeof metadata.retryable === "boolean" ? metadata.retryable : undefined,
+    requestId: typeof metadata.requestId === "string" ? metadata.requestId : undefined,
+    fieldErrors: Array.isArray(metadata.fieldErrors) ? metadata.fieldErrors : undefined,
+  };
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null;
 }
 
 export function toApiError(error: unknown): ApiError {

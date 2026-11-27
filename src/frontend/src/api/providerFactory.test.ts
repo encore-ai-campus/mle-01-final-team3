@@ -19,4 +19,28 @@ describe("Provider factory", () => {
     await expect(dataProvider.getDashboard()).resolves.toMatchObject({ status: "not-configured" });
     await expect(checkProvider.getResult("check-1")).resolves.toMatchObject({ status: "not-configured" });
   });
+
+  it("uses the shared auth contract for account pages", async () => {
+    const account = {
+      userId: "usr_001",
+      name: "마케팅 담당자",
+      email: "marketing@adguard.local",
+      department: "marketing" as const,
+      role: "reviewer" as const,
+      needsPasswordChange: true,
+    };
+    const authApi = {
+      login: async () => account,
+      me: async () => account,
+      changePassword: async () => ({ ...account, needsPasswordChange: false }),
+      logout: async () => undefined,
+    };
+    const provider = new ApiProvider({ authApi });
+
+    await expect(provider.getAccount()).resolves.toMatchObject({ status: "ready", data: account });
+    await expect(provider.updatePassword({ currentPassword: "old", newPassword: "new", confirmation: "new" })).resolves.toMatchObject({
+      status: "ready",
+      data: { account: { needsPasswordChange: false } },
+    });
+  });
 });

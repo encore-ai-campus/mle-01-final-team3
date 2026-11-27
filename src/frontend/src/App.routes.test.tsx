@@ -53,12 +53,12 @@ describe("App routes", () => {
     expect(screen.getByRole("link", { name: "신규직원등록" })).toHaveAttribute("href", "/employees/new?demo=true&role=admin");
   });
 
-  it("keeps employee routes reachable in API mode without a role query", async () => {
+  it("requires a server session before reaching employee routes in API mode", async () => {
     vi.stubEnv("VITE_USE_FIXTURES", "false");
     window.history.pushState({}, "", "/employees");
     render(<App />);
 
-    expect(await screen.findByRole("heading", { name: "직원 관리" })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: "로그인" })).toBeInTheDocument();
   });
 
   it("shows legal outcome actions regardless of the team query in the default access mode", async () => {
@@ -85,13 +85,13 @@ describe("App routes", () => {
     expect(screen.queryByRole("button", { name: "보완 필요" })).not.toBeInTheDocument();
   });
 
-  it("keeps the existing admin query context in gated API mode", async () => {
+  it("does not grant admin access from a query parameter in API mode", async () => {
     vi.stubEnv("VITE_ROLE_GATING", "true");
     vi.stubEnv("VITE_USE_FIXTURES", "false");
     window.history.pushState({}, "", "/employees?role=admin");
     render(<App />);
 
-    expect(await screen.findByRole("heading", { name: "직원 관리" })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: "로그인" })).toBeInTheDocument();
   });
 
   it("keeps the existing legal default when gated review URLs omit a team", async () => {

@@ -9,6 +9,6 @@ describe("App", () => {
     render(<App />);
 
     expect(screen.getByRole("main")).toBeInTheDocument();
-    expect(await screen.findByText(/API 연결 설정이 필요합니다/i)).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: "로그인" })).toBeInTheDocument();
   });
 });

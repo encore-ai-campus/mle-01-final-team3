@@ -26,17 +26,23 @@ import type { ReviewWorkflowRole } from "./types/domain";
 function AppRoutes() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { isAuthenticated, department: workDepartment } = useAuth();
+  const { isAuthenticated, isLoading: authLoading, department: workDepartment, user, logout } = useAuth();
   const [searchParams] = useSearchParams();
   const scenarioValue = searchParams.get("scenario");
   const scenario = isArtifactScenarioId(scenarioValue) ? scenarioValue : "LG-1";
   const useFixtures = import.meta.env.VITE_USE_FIXTURES !== "false" || searchParams.get("demo") === "true";
   const roleGatingEnabled = import.meta.env.VITE_ROLE_GATING === "true";
-  const isAdmin = !roleGatingEnabled || searchParams.get("role") === "admin";
-  const workflowRole: ReviewWorkflowRole = roleGatingEnabled && searchParams.get("team") === "marketing" ? "marketing" : "legal";
+  const isAdmin = useFixtures ? (!roleGatingEnabled || searchParams.get("role") === "admin") : user?.role === "admin";
+  const workflowRole: ReviewWorkflowRole = useFixtures
+    ? roleGatingEnabled && searchParams.get("team") === "marketing" ? "marketing" : "legal"
+    : workDepartment ?? "unknown";
   const workflowStore = useMemo(() => createFixtureWorkflowStore(), [scenario]);
   const provider = useMemo(() => createDataProvider(scenario, useFixtures, workflowStore), [scenario, useFixtures, workflowStore]);
   const checkProvider = useMemo(() => createCheckProvider(scenario, useFixtures, workflowStore), [scenario, useFixtures, workflowStore]);
+
+  if (authLoading) {
+    return <section className="state-panel"><h1>세션을 확인하고 있습니다.</h1></section>;
+  }
 
   if (!isAuthenticated) {
     const from = `${location.pathname}${location.search}${location.hash}`;
@@ -46,7 +52,8 @@ function AppRoutes() {
   if (location.pathname === "/login") return <Navigate to="/" replace />;
 
   const department = isAdmin ? "관리자" : workflowRole === "legal" ? "법무팀" : workflowRole === "marketing" ? "마케팅팀" : "소속 확인 필요";
-  return <AppShell currentPath={location.pathname} currentSearch={location.search} user={{ name: isAdmin ? "관리자" : "로그인 사용자", department, role: isAdmin ? "admin" : "reviewer" }} onNavigate={(path) => navigate(path)} provider={provider} workDepartment={workDepartment}><Routes><Route path="/" element={<DashboardPage provider={provider} />} /><Route path="/checks/new" element={<CheckFormPage provider={checkProvider} />} /><Route path="/checks/:checkId" element={<CheckResultPage provider={checkProvider} />} /><Route path="/progress" element={<ProgressPage provider={checkProvider} />} /><Route path="/progress/:checkId" element={<ProgressPage provider={checkProvider} />} /><Route path="/reviews" element={<ReviewsPage provider={provider} />} /><Route path="/reviews/:reviewId" element={<ReviewDetailPage provider={provider} workflowRole={workflowRole} />} /><Route path="/reviews/:reviewId/reports/:reportStage" element={<ReviewReportPage provider={provider} />} /><Route path="/workflow" element={isAdmin ? <WorkflowPage /> : <AccessDeniedPage />} /><Route path="/employees" element={isAdmin ? <EmployeesPage provider={provider} /> : <AccessDeniedPage />} /><Route path="/employees/new" element={isAdmin ? <EmployeeFormPage provider={provider} /> : <AccessDeniedPage />} /><Route path="/employees/:employeeId" element={isAdmin ? <EmployeeDetailPage provider={provider} canDelete /> : <AccessDeniedPage />} /><Route path="/account" element={<AccountPage provider={provider} />} /><Route path="/notifications" element={<NotificationsPage provider={provider} />} /><Route path="*" element={<NotFoundPage />} /></Routes></AppShell>;
+  const shellRole = useFixtures ? (isAdmin ? "admin" : "reviewer") : user?.role;
+  return <AppShell currentPath={location.pathname} currentSearch={location.search} user={{ name: user?.name ?? (isAdmin ? "관리자" : "로그인 사용자"), department, role: shellRole }} onNavigate={(path) => navigate(path)} onLogout={() => { void logout(); }} provider={provider} workDepartment={workDepartment ?? undefined}><Routes><Route path="/" element={<DashboardPage provider={provider} />} /><Route path="/checks/new" element={<CheckFormPage provider={checkProvider} />} /><Route path="/checks/:checkId" element={<CheckResultPage provider={checkProvider} />} /><Route path="/progress" element={<ProgressPage provider={checkProvider} />} /><Route path="/progress/:checkId" element={<ProgressPage provider={checkProvider} />} /><Route path="/reviews" element={<ReviewsPage provider={provider} />} /><Route path="/reviews/:reviewId" element={<ReviewDetailPage provider={provider} workflowRole={workflowRole} />} /><Route path="/reviews/:reviewId/reports/:reportStage" element={<ReviewReportPage provider={provider} />} /><Route path="/workflow" element={isAdmin ? <WorkflowPage /> : <AccessDeniedPage />} /><Route path="/employees" element={isAdmin ? <EmployeesPage provider={provider} /> : <AccessDeniedPage />} /><Route path="/employees/new" element={isAdmin ? <EmployeeFormPage provider={provider} /> : <AccessDeniedPage />} /><Route path="/employees/:employeeId" element={isAdmin ? <EmployeeDetailPage provider={provider} canDelete /> : <AccessDeniedPage />} /><Route path="/account" element={<AccountPage provider={provider} />} /><Route path="/notifications" element={<NotificationsPage provider={provider} />} /><Route path="*" element={<NotFoundPage />} /></Routes></AppShell>;
 }
 
 function AccessDeniedPage() {

@@ -113,6 +113,7 @@ describe("RestClient", () => {
       new Response(JSON.stringify({
         error: {
           code: "VALIDATION_ERROR",
+          retryable: false,
           message: "검토 문구를 입력해 주세요.",
           fieldErrors: [{ field: "text", code: "REQUIRED" }],
         },
@@ -127,6 +128,9 @@ describe("RestClient", () => {
       kind: "http",
       statusCode: 422,
       message: "검토 문구를 입력해 주세요.",
+      code: "VALIDATION_ERROR",
+      retryable: false,
+      fieldErrors: [{ field: "text", code: "REQUIRED" }],
       details: { code: "VALIDATION_ERROR", fieldErrors: [{ field: "text", code: "REQUIRED" }] },
     });
   });

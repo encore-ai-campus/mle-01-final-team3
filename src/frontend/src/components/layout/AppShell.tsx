@@ -10,11 +10,12 @@ interface AppShellProps {
   currentSearch?: string;
   user: ShellUser;
   onNavigate: (path: string) => void;
+  onLogout?: () => void;
   provider?: DataProvider;
   workDepartment?: WorkDepartment;
 }
 
-export function AppShell({ children, currentPath, currentSearch = "", user, onNavigate, provider, workDepartment }: AppShellProps) {
+export function AppShell({ children, currentPath, currentSearch = "", user, onNavigate, onLogout, provider, workDepartment }: AppShellProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -38,6 +39,7 @@ export function AppShell({ children, currentPath, currentSearch = "", user, onNa
         open={sidebarOpen}
         onNavigate={onNavigate}
         onClose={() => setSidebarOpen(false)}
+        onLogout={onLogout}
       />
       <div className="shell__content">
         <header className="shell__header">
