@@ -228,7 +228,6 @@ __marimo__/
 docs/superpowers
 tmp
 
-tests
 data/data_chunking
 output
 .vercel/
