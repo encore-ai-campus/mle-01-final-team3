@@ -1,4 +1,4 @@
-"""7단계: 관리자 사용자 관리 API. 기표님 샘플 테스트 J1~J5를 우리 DB 구조로 옮긴 것 포함."""
+"""7단계: 관리자 사용자 관리 API. 검토 흐름 및 Agent 연동 담당의 샘플 테스트 J1~J5를 우리 DB 구조로 옮긴 것 포함."""
 
 import pytest
 from fastapi.testclient import TestClient
@@ -10,7 +10,7 @@ from app.core.errors import ApiError
 from app.core.ids import new_id
 from app.core.security import utcnow
 from app.main import app
-from app.models import ActivityLog, LegalSubmission, Notification, Review, Session, User
+from app.models import ActivityLog, IdempotencyKey, LegalSubmission, Notification, Review, Session, User
 
 API = "/api/v1"
 PW = "password123"
@@ -280,6 +280,88 @@ def test_delete_user_with_records(db, admin):
     # 같은 이메일로 다시 등록 가능
     body = {"name": "재입사", "email": "left@test.com", "temporaryPassword": "temp1234", "role": "MARKETING"}
     assert admin.post(f"{API}/admin/users", json=body).status_code == 201
+
+
+# ---------- 롤백: 처리 중 오류가 나면 아무것도 바뀌지 않는다 (설계서 3장 '관리자 계정 처리 트랜잭션') ----------
+
+
+@pytest.fixture
+def broken_admin(admin, monkeypatch):
+    """마지막 단계(활동 로그 기록)에서 일부러 오류가 나는 관리자 브라우저.
+
+    활동 로그는 각 작업에서 저장(commit) 바로 전에 남긴다. 그래서 앞의 변경이 다 끝난 뒤 실패하는 상황이 된다.
+    """
+    from app.admin_users import router as admin_router
+
+    def boom(*args, **kwargs):
+        raise RuntimeError("일부러 낸 오류")
+
+    monkeypatch.setattr(admin_router, "log_activity", boom)
+    c = TestClient(app, raise_server_exceptions=False)  # 오류를 테스트로 던지지 않고 500 응답으로 받는다
+    c.cookies.update(admin.cookies)
+    return c
+
+
+def test_register_rolls_back_on_error(db, broken_admin):
+    body = {"name": "새 사용자", "email": "new@test.com", "temporaryPassword": "temp1234", "role": "MARKETING"}
+    err(broken_admin.post(f"{API}/admin/users", json=body), 500, "INTERNAL_ERROR")
+    db.expire_all()
+    assert db.scalar(select(User).where(User.email == "new@test.com")) is None  # 계정이 만들어지지 않음
+
+
+def test_update_rolls_back_on_error(db, broken_admin):
+    u = make_user(db, "m@test.com")
+    client_for("m@test.com")  # 로그인 세션 1개
+    for body in ({"status": "INACTIVE"}, {"role": "LEGAL"}):
+        err(broken_admin.patch(f"{API}/admin/users/{u.id}", json=body), 500, "INTERNAL_ERROR")
+        db.expire_all()
+        row = db.get(User, u.id)
+        assert (row.status, row.role) == ("ACTIVE", "MARKETING"), body  # 상태·역할 그대로
+        assert db.scalar(select(Session).where(Session.user_id == u.id)), body  # 세션도 그대로 (로그아웃 안 됨)
+
+
+def test_handover_rolls_back_on_error(db, admin, broken_admin, monkeypatch):
+    giver, taker = make_user(db, "giver@test.com"), make_user(db, "taker@test.com")
+    r1, r2 = make_review(db, giver.id, "광고1"), make_review(db, giver.id, "광고2")
+    sub = make_submission(db, r2, giver.id)
+    url, body, h = f"{API}/admin/users/{giver.id}/handover", {"toUserId": taker.id}, {"Idempotency-Key": "k1"}
+
+    err(broken_admin.post(url, json=body, headers=h), 500, "INTERNAL_ERROR")
+    db.expire_all()
+    assert db.get(Review, r1.id).author_id == db.get(Review, r2.id).author_id == giver.id  # 일부 건만 넘어가지 않음
+    assert db.get(LegalSubmission, sub.id).sender_id == giver.id
+    assert db.scalar(select(Notification).where(Notification.user_id == taker.id)) is None  # 알림도 없음
+    assert db.scalar(select(IdempotencyKey)) is None  # 중복 방지 키도 저장되지 않음
+
+    # 오류가 사라진 뒤 같은 키로 다시 보내면 정상 처리된다 (실패한 응답이 저장되지 않았으므로)
+    monkeypatch.undo()
+    res = admin.post(url, json=body, headers=h)
+    assert res.status_code == 200 and res.json() == {"handedOverReviews": 2, "releasedSubmissions": 0}
+
+
+def test_legal_handover_rolls_back_on_error(db, broken_admin):
+    mkt, lawyer = make_user(db, "m@test.com"), make_user(db, "l1@test.com", role="LEGAL")
+    make_user(db, "l2@test.com", role="LEGAL")
+    sub = make_submission(db, make_review(db, mkt.id), mkt.id, reviewer_id=lawyer.id, status="IN_REVIEW")
+
+    err(broken_admin.post(f"{API}/admin/users/{lawyer.id}/handover", json={}), 500, "INTERNAL_ERROR")
+    db.expire_all()
+    s = db.get(LegalSubmission, sub.id)
+    assert (s.status, s.reviewer_id) == ("IN_REVIEW", lawyer.id)  # 검토 대기로 돌아가지 않음
+    assert db.scalar(select(Notification).where(Notification.type == "LEGAL_REASSIGN_NEEDED")) is None
+
+
+def test_delete_rolls_back_on_error(db, broken_admin):
+    u = make_user(db, "left@test.com")
+    make_review(db, u.id, closed=True)
+    client_for("left@test.com")  # 로그인 세션 1개
+
+    err(broken_admin.delete(f"{API}/admin/users/{u.id}"), 500, "INTERNAL_ERROR")
+    db.expire_all()
+    row = db.get(User, u.id)
+    assert (row.name, row.email, row.status) == ("left", "left@test.com", "ACTIVE")  # 개인정보 덮어쓰기 취소
+    assert db.scalar(select(Session).where(Session.user_id == u.id))  # 세션도 그대로
+    client_for("left@test.com")  # 다시 로그인할 수 있음
 
 
 # ---------- 활동 로그 ----------
