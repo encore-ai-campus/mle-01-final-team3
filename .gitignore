@@ -233,5 +233,4 @@ data/data_chunking
 output
 .vercel/
 .env.local
-data/data_chunking/*
 output
