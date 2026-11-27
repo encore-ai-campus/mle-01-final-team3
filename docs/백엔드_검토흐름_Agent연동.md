@@ -3,7 +3,7 @@
 - 담당: 검토 흐름·AI 연동 담당
 - 기준: API 설계서 v5.2 (3장 실행 상태, 6장 검토 흐름·연동 방향·결과 보고서 조회, 7장 실행 상태와 공통 오류)
 - 코드: `src/backend/app/reviews/`, `src/backend/app/agent/`
-- 테스트: `src/backend/tests/` (가짜 Agent 기준 66개 통과)
+- 테스트: `src/backend/tests/` (가짜 Agent 기준 70개 통과)
 
 ## 1. API 목록
 
@@ -244,7 +244,7 @@ POST /reviews · ra-runs · recheck · retry
 
 ## 8. 확인 결과
 
-### 가짜 Agent 테스트 (`uv run pytest tests`, 66개 통과)
+### 가짜 Agent 테스트 (`uv run pytest tests`, 70개 통과)
 
 진짜 Agent 대신 작업 요청을 기록만 하는 가짜 Agent를 끼우고, 완료 통지는 테스트가 Agent 대신 보낸다.
 
@@ -262,6 +262,7 @@ POST /reviews · ra-runs · recheck · retry
 | 첨부 | 업로드 201·415·413, 파일 이름 255자 초과 422, 합계 10MB, 남의 파일·없는 파일·이미 쓴 파일 422, 서명 URL 다운로드(MIME 응답)·위조 401 | test_attachments.py |
 | 시각 형식 | 검토·실행·관리자 API 모두 `+09:00` 초 단위 (테스트 DB를 UTC로 두고 확인), 오프셋 없는 `from`/`to`는 한국시간 | test_times.py |
 | 중복 클릭 | 같은 Idempotency-Key → 같은 runId, 작업 요청 1번 / 다른 내용 → 409 | test_review_flow.py |
+| 검토 접수 | 미로그인·비활성 계정 401, 잘못된 제품 분류 422, 저장 중 오류 시 검토 건·첨부 연결·실행·활동 로그·멱등성 키 모두 롤백(Agent 요청 없음, 같은 키로 다시 보내면 정상 접수) | test_review_request.py |
 
 ### HTTP 연결 확인
 
