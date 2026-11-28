@@ -28,25 +28,31 @@ def law_rows() -> tuple[dict, list[dict]]:
     mapping = json.loads((DATA / "law_violation_mapping.json").read_text(encoding="utf-8"))
     article = next(x for x in law["조문"]["조문단위"] if x.get("조문번호") == str(mapping["article"]) and "항" in x)
     paragraph = next(x for x in article["항"] if x.get("항번호") == "①")
-    source_id = mapping["source_document_id"]
-    source_path = mapping["source_path"]
+    source_id = mapping["law"]["source_document_id"]
+    source_path = mapping["law"]["source_path"]
     rows = []
     clauses = paragraph.get("호", [])
-    for entry in mapping["items"]:
-        index = entry["number"]
-        if index < 1 or index > len(clauses):
-            raise ValueError(f"Mapped law item is missing from source: {index}")
-        clause = clauses[index - 1]
+    code_system = mapping["code_system"]
+    # ViolationType 키 = 고시 별표1 호-목 코드. 여러 코드가 같은 법 호(law_item)를 DEFINED_BY로 공유할 수 있다.
+    for entry in mapping["violation_codes"]:
+        item = entry["law_item"]
+        if item < 1 or item > len(clauses):
+            raise ValueError(f"Mapped law item is missing from source: {item}")
+        clause = clauses[item - 1]
         text = clause.get("호내용", "").strip()
+        code = entry["violation_code"]
         rows.append({
-            "provision": {"provision_id": f"LP-LAW-{mapping['article']}-{mapping['paragraph']}-{index}", "article": mapping["article"],
-                          "paragraph": mapping["paragraph"], "item": index, "text": text,
+            "provision": {"provision_id": f"LP-LAW-{mapping['article']}-{mapping['paragraph']}-{item}", "article": mapping["article"],
+                          "paragraph": mapping["paragraph"], "item": item, "text": text,
                           "effective_from": law["기본정보"]["시행일자"], "data_status": "실제 법령 원문"},
-            "violation": {"violation_code": entry["violation_code"], "name": entry["violation_name"],
-                          "data_status": "법령 조문 의미를 요약한 분류"},
-            "evidence": {"evidence_id": f"EV-LAW-8-1-{index}", "source_id": source_id,
-                         "source_path": source_path, "locator": f"제{mapping['article']}조제{mapping['paragraph']}항제{index}호",
-                         "source_span": f"조문 > 제{mapping['article']}조 > 제{mapping['paragraph']}항 > 제{index}호", "quote": text,
+            "violation": {"violation_code": code, "name": entry["name"], "code_system": code_system,
+                          "law_item": item, "mok": entry.get("mok"), "basis": entry.get("basis"),
+                          "status": entry.get("status", "active"), "deprecated_at": entry.get("deprecated_at"),
+                          "detail_status": entry.get("detail_status", "확정"),
+                          "data_status": "시행령 별표1 호-목 기준 분류(백엔드 부록 D)"},
+            "evidence": {"evidence_id": f"EV-{code}", "source_id": source_id,
+                         "source_path": source_path, "locator": f"제{mapping['article']}조제{mapping['paragraph']}항제{item}호",
+                         "source_span": f"조문 > 제{mapping['article']}조 > 제{mapping['paragraph']}항 > 제{item}호", "quote": text,
                          "review_status": "원문 JSON 대조", "assertion_type": "법령 규칙"},
         })
     meta = law["기본정보"]
@@ -118,7 +124,7 @@ def execute() -> dict:
         "cqs": results, "multihop_query": read_cypher("multihop_product_risk_law.cypher").strip(),
         "multihop_rows": multihop_rows,
         "limitations": [fixture["warning"],
-                        "법령 S-P-O 5개는 저장소 법령 JSON의 제8조제1항제1호~제5호 원문이며, 현재 법령 여부를 별도 검증한 결과는 아닙니다.",
+                        "ViolationType 키는 시행령 별표1 호-목 코드(백엔드 VIOLATION_CODES)이며, 각 코드는 DEFINED_BY로 법 제8조제1항 해당 호 원문에 연결됩니다(1~8호 세부 유형은 시행령 별표1, 9·10호는 법조항 코드 법8-1-N). 폐기 코드는 삭제하지 않고 status/deprecated_at로 구분합니다. 백엔드 코드 집합의 완전성(생략된 목, 법8-1-9 추가)은 부록 D 기준 확인이 필요합니다.",
                         "가상 광고 표현의 위험 유형 연결은 테스트 추론이며 실제 위법 판단이 아닙니다.",
                         "어린이 기호식품 플래그는 테스트 값이며 실제 제품·법령 적용 검증이 아닙니다."],
     }

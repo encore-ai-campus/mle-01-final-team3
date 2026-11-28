@@ -1,0 +1,378 @@
+{
+  "examples_version": "0.1.0",
+  "description": "Examples grounded in the local chunk release. OCR uncertainty is intentionally retained, and empty relationships mean no relationship was extracted from that source chunk.",
+  "examples": [
+    {
+      "scenario": "normal_source_confirmed_relation",
+      "result": {
+        "schema_version": "0.1.0",
+        "extraction_id": "ex-normal-product-ingredient-001",
+        "source": {
+          "document_id": "DOC-D1DABDE9E3",
+          "chunk_id": "DOC-D1DABDE9E3:PRODUCT_WITH_RAW_MATERIALS:1997040105528",
+          "chunk_type": "record",
+          "source_path": "data/data_parsing/02_일반식품/원본 데이터/C002/C002_261123.json",
+          "source_page": null,
+          "source_span": "record 1",
+          "article": null,
+          "paragraph": null,
+          "item": null,
+          "subitem": null
+        },
+        "relationship_result": "found",
+        "entities": [
+          {
+            "entity_id": "product:1997040105528",
+            "entity_type": "Product",
+            "mention": "가시오가피 냉면",
+            "normalized_value": "가시오가피 냉면",
+            "official_id": "1997040105528",
+            "attributes": {"product_category_name": "숙면"},
+            "extraction_status": "source_confirmed",
+            "review_status": "not_reviewed",
+            "evidence": [
+              {
+                "source": {
+                  "document_id": "DOC-D1DABDE9E3",
+                  "chunk_id": "DOC-D1DABDE9E3:PRODUCT_WITH_RAW_MATERIALS:1997040105528",
+                  "chunk_type": "record",
+                  "source_path": "data/data_parsing/02_일반식품/원본 데이터/C002/C002_261123.json",
+                  "source_page": null,
+                  "source_span": "record 1"
+                },
+                "quote": "\"PRDLST_REPORT_NO\": \"1997040105528\", \"PRMS_DT\": \"20020409\", \"PRDLST_NM\": \"가시오가피 냉면\"",
+                "evidence_type": "structured_field",
+                "supports": "entity_mention"
+              }
+            ]
+          },
+          {
+            "entity_id": "ingredient:1997040105528:raw-04",
+            "entity_type": "Ingredient",
+            "mention": "가시오갈피분말",
+            "normalized_value": "가시오갈피분말",
+            "official_id": null,
+            "attributes": {"identity_scope": "product_record_mention"},
+            "extraction_status": "source_confirmed",
+            "review_status": "not_reviewed",
+            "evidence": [
+              {
+                "source": {
+                  "document_id": "DOC-D1DABDE9E3",
+                  "chunk_id": "DOC-D1DABDE9E3:PRODUCT_WITH_RAW_MATERIALS:1997040105528",
+                  "chunk_type": "record",
+                  "source_path": "data/data_parsing/02_일반식품/원본 데이터/C002/C002_261123.json",
+                  "source_page": null,
+                  "source_span": "record 1"
+                },
+                "quote": "\"RAWMTRL_NM\": \"밀가루, 정제수, 타피오카전분, 가시오갈피분말, 알카리제, 정제염\"",
+                "evidence_type": "structured_field",
+                "supports": "entity_mention"
+              }
+            ]
+          }
+        ],
+        "relationships": [
+          {
+            "relationship_id": "rel:contains:1997040105528:raw-04",
+            "subject_id": "product:1997040105528",
+            "predicate": "CONTAINS",
+            "object_id": "ingredient:1997040105528:raw-04",
+            "relationship_status": "source_confirmed",
+            "evidence_type": "structured_field",
+            "extraction_method": "structured_field_mapping",
+            "review_status": "not_reviewed",
+            "evidence": [
+              {
+                "source": {
+                  "document_id": "DOC-D1DABDE9E3",
+                  "chunk_id": "DOC-D1DABDE9E3:PRODUCT_WITH_RAW_MATERIALS:1997040105528",
+                  "chunk_type": "record",
+                  "source_path": "data/data_parsing/02_일반식품/원본 데이터/C002/C002_261123.json",
+                  "source_page": null,
+                  "source_span": "record 1"
+                },
+                "quote": "\"RAWMTRL_NM\": \"밀가루, 정제수, 타피오카전분, 가시오갈피분말, 알카리제, 정제염\"",
+                "evidence_type": "structured_field",
+                "supports": "relationship"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "uncertain_ocr_expression_candidate",
+      "result": {
+        "schema_version": "0.1.0",
+        "extraction_id": "ex-uncertain-case-expression-001",
+        "source": {
+          "document_id": "fc1959b68d6d1e90",
+          "chunk_id": "fc1959b68d6d1e90:PG022:S0055",
+          "chunk_type": "case",
+          "source_path": "data/data_parsing/해설서, 사례/20220406_온라인_식품·건강기능식품·의약외품·화장품_분야_부당광고_사례집-웹게시용(표지수정).json",
+          "source_page": 22,
+          "source_span": "page 22, lines 3-43",
+          "article": null,
+          "paragraph": null,
+          "item": null,
+          "subitem": null
+        },
+        "relationship_result": "partial",
+        "entities": [
+          {
+            "entity_id": "case:fc1959b68d6d1e90:PG022:S0055",
+            "entity_type": "Case",
+            "mention": "사례집 p.22 사례 청크",
+            "normalized_value": null,
+            "official_id": null,
+            "attributes": {"case_identity_basis": "source_chunk"},
+            "extraction_status": "source_confirmed",
+            "review_status": "not_reviewed",
+            "evidence": [
+              {
+                "source": {
+                  "document_id": "fc1959b68d6d1e90",
+                  "chunk_id": "fc1959b68d6d1e90:PG022:S0055",
+                  "chunk_type": "case",
+                  "source_path": "data/data_parsing/해설서, 사례/20220406_온라인_식품·건강기능식품·의약외품·화장품_분야_부당광고_사례집-웹게시용(표지수정).json",
+                  "source_page": 22,
+                  "source_span": "page 22, lines 3-43"
+                },
+                "quote": "제품을\n'체중감소약'\n등으로\n광고",
+                "evidence_type": "direct_text",
+                "supports": "entity_mention"
+              }
+            ]
+          },
+          {
+            "entity_id": "claim:fc1959b68d6d1e90:PG022:S0055:01",
+            "entity_type": "AdvertisementClaim",
+            "mention": "체중감소약",
+            "normalized_value": "체중감소약",
+            "official_id": null,
+            "attributes": {"ocr_quality": "manual_review_required"},
+            "extraction_status": "uncertain",
+            "review_status": "pending",
+            "evidence": [
+              {
+                "source": {
+                  "document_id": "fc1959b68d6d1e90",
+                  "chunk_id": "fc1959b68d6d1e90:PG022:S0055",
+                  "chunk_type": "case",
+                  "source_path": "data/data_parsing/해설서, 사례/20220406_온라인_식품·건강기능식품·의약외품·화장품_분야_부당광고_사례집-웹게시용(표지수정).json",
+                  "source_page": 22,
+                  "source_span": "page 22, lines 3-43"
+                },
+                "quote": "제품을\n'체중감소약'\n등으로\n광고",
+                "evidence_type": "direct_text",
+                "supports": "entity_mention"
+              }
+            ]
+          }
+        ],
+        "relationships": [
+          {
+            "relationship_id": "rel:contains-expression:fc1959b68d6d1e90:PG022:S0055:01",
+            "subject_id": "case:fc1959b68d6d1e90:PG022:S0055",
+            "predicate": "CONTAINS_EXPRESSION",
+            "object_id": "claim:fc1959b68d6d1e90:PG022:S0055:01",
+            "relationship_status": "system_candidate",
+            "evidence_type": "direct_text",
+            "extraction_method": "model_extraction",
+            "review_status": "pending",
+            "evidence": [
+              {
+                "source": {
+                  "document_id": "fc1959b68d6d1e90",
+                  "chunk_id": "fc1959b68d6d1e90:PG022:S0055",
+                  "chunk_type": "case",
+                  "source_path": "data/data_parsing/해설서, 사례/20220406_온라인_식품·건강기능식품·의약외품·화장품_분야_부당광고_사례집-웹게시용(표지수정).json",
+                  "source_page": 22,
+                  "source_span": "page 22, lines 3-43"
+                },
+                "quote": "제품을\n'체중감소약'\n등으로\n광고",
+                "evidence_type": "direct_text",
+                "supports": "candidate_generation"
+              }
+            ]
+          }
+        ],
+        "notes": ["OCR 청크에서 표현을 확인했지만 주변 문구의 일부가 깨져 있어 사람 검토 전에는 확정하지 않습니다."]
+      }
+    },
+    {
+      "scenario": "no_relationship_in_this_chunk",
+      "result": {
+        "schema_version": "0.1.0",
+        "extraction_id": "ex-no-relation-raw-material-001",
+        "source": {
+          "document_id": "3e85ebc3edc60881",
+          "chunk_id": "3e85ebc3edc60881:R0000001",
+          "chunk_type": "record",
+          "source_path": "data/data_parsing/02_일반식품/원본 데이터/식품원료/food_raw_material.jsonl",
+          "source_page": null,
+          "source_span": "record 1",
+          "article": null,
+          "paragraph": null,
+          "item": null,
+          "subitem": null
+        },
+        "relationship_result": "none_found",
+        "entities": [
+          {
+            "entity_id": "ingredient:3e85ebc3edc60881:R0000001:01",
+            "entity_type": "Ingredient",
+            "mention": "Abiu열매",
+            "normalized_value": "Abiu열매",
+            "official_id": null,
+            "attributes": {
+              "english_name": "Yellow star apple, Caimito, Caimo, Luma",
+              "scientific_name": "Pouteria caimito Radlk / Lucuma caimito Roem. & Schult / Achras caimito Ruiz & Pavon",
+              "usable_part": "열매"
+            },
+            "extraction_status": "source_confirmed",
+            "review_status": "not_reviewed",
+            "evidence": [
+              {
+                "source": {
+                  "document_id": "3e85ebc3edc60881",
+                  "chunk_id": "3e85ebc3edc60881:R0000001",
+                  "chunk_type": "record",
+                  "source_path": "data/data_parsing/02_일반식품/원본 데이터/식품원료/food_raw_material.jsonl",
+                  "source_page": null,
+                  "source_span": "record 1"
+                },
+                "quote": "\"RPRSNT_RAWMTRL_NM\":\"Abiu열매\",\"RAWMTRL_NCKNM\":null,\"ENG_NM\":\"Yellow star apple, Caimito, Caimo, Luma\"",
+                "evidence_type": "structured_field",
+                "supports": "entity_mention"
+              }
+            ]
+          }
+        ],
+        "relationships": [],
+        "notes": ["이 결과는 이 원료 레코드에서 Product·FunctionalClaim 관계를 찾지 못했다는 뜻이며, 다른 데이터셋에도 관계가 없다는 뜻은 아닙니다."]
+      }
+    },
+    {
+      "scenario": "one_relationship_with_multiple_evidence_chunks",
+      "result": {
+        "schema_version": "0.1.0",
+        "extraction_id": "ex-multiple-evidence-defined-by-001",
+        "source": {
+          "document_id": "fdb75433e5ba9e14",
+          "chunk_id": "fdb75433e5ba9e14:PG061:S0127",
+          "chunk_type": "case",
+          "source_path": "data/data_parsing/해설서, 사례/합본_식품_등_온라인_부당광고_사례집.json",
+          "source_page": 61,
+          "source_span": "page 61, lines 1-6",
+          "article": null,
+          "paragraph": null,
+          "item": null,
+          "subitem": null
+        },
+        "relationship_result": "found",
+        "entities": [
+          {
+            "entity_id": "violation:local-law-8-1-5",
+            "entity_type": "ViolationType",
+            "mention": "소비자를 기만하는 표시 또는 광고",
+            "normalized_value": "식품 등의 표시·광고에 관한 법률 제8조 제1항 제5호 위반 유형",
+            "official_id": null,
+            "attributes": {"source_code": "5", "code_system": "법 제8조 제1항 호 번호"},
+            "extraction_status": "source_confirmed",
+            "review_status": "not_reviewed",
+            "evidence": [
+              {
+                "source": {
+                  "document_id": "fdb75433e5ba9e14",
+                  "chunk_id": "fdb75433e5ba9e14:PG061:S0127",
+                  "chunk_type": "case",
+                  "source_path": "data/data_parsing/해설서, 사례/합본_식품_등_온라인_부당광고_사례집.json",
+                  "source_page": 61,
+                  "source_span": "page 61, lines 1-6"
+                },
+                "quote": "식품표시광고법 제8조제1항제5호 소비자를 기만하는 표시 또는 광고",
+                "evidence_type": "direct_text",
+                "supports": "entity_mention"
+              }
+            ]
+          },
+          {
+            "entity_id": "provision:7d237411cc7cb62e:A008:P001:I005",
+            "entity_type": "LegalProvision",
+            "mention": "제8조 제1항 제5호",
+            "normalized_value": "식품 등의 표시·광고에 관한 법률 제8조 제1항 제5호",
+            "official_id": null,
+            "attributes": {"article": 8, "paragraph": 1, "item": 5},
+            "extraction_status": "source_confirmed",
+            "review_status": "not_reviewed",
+            "evidence": [
+              {
+                "source": {
+                  "document_id": "7d237411cc7cb62e",
+                  "chunk_id": "7d237411cc7cb62e:A008:P001:I005",
+                  "chunk_type": "item",
+                  "source_path": "data/data_parsing/law/식품등의표시광고에관한법률_본문.json",
+                  "source_page": null,
+                  "source_span": "제8조 제1항 제5호",
+                  "article": 8,
+                  "paragraph": 1,
+                  "item": 5,
+                  "subitem": null
+                },
+                "quote": "5. 소비자를 기만하는 표시 또는 광고",
+                "evidence_type": "direct_text",
+                "supports": "entity_mention"
+              }
+            ]
+          }
+        ],
+        "relationships": [
+          {
+            "relationship_id": "rel:defined-by:local-law-8-1-5:law-8-1-5",
+            "subject_id": "violation:local-law-8-1-5",
+            "predicate": "DEFINED_BY",
+            "object_id": "provision:7d237411cc7cb62e:A008:P001:I005",
+            "relationship_status": "source_confirmed",
+            "evidence_type": "direct_text",
+            "extraction_method": "rule_mapping",
+            "review_status": "not_reviewed",
+            "evidence": [
+              {
+                "source": {
+                  "document_id": "fdb75433e5ba9e14",
+                  "chunk_id": "fdb75433e5ba9e14:PG061:S0127",
+                  "chunk_type": "case",
+                  "source_path": "data/data_parsing/해설서, 사례/합본_식품_등_온라인_부당광고_사례집.json",
+                  "source_page": 61,
+                  "source_span": "page 61, lines 1-6"
+                },
+                "quote": "제8조제1항제5호 소비자를 기만하는 표시 또는 광고",
+                "evidence_type": "direct_text",
+                "supports": "relationship"
+              },
+              {
+                "source": {
+                  "document_id": "7d237411cc7cb62e",
+                  "chunk_id": "7d237411cc7cb62e:A008:P001:I005",
+                  "chunk_type": "item",
+                  "source_path": "data/data_parsing/law/식품등의표시광고에관한법률_본문.json",
+                  "source_page": null,
+                  "source_span": "제8조 제1항 제5호",
+                  "article": 8,
+                  "paragraph": 1,
+                  "item": 5,
+                  "subitem": null
+                },
+                "quote": "5. 소비자를 기만하는 표시 또는 광고",
+                "evidence_type": "direct_text",
+                "supports": "relationship"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
