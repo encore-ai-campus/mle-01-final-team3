@@ -1,0 +1,60 @@
+{
+  "schema_version": "0.3.0-siheng-byeolpyo1",
+  "code_system": "식품 등의 표시·광고에 관한 법률 시행령 별표1 호-목 (백엔드 VIOLATION_CODES / 설계서 부록 D)",
+  "basis_decision": "백엔드 확정(2026-11): 코드 기준은 고시가 아니라 시행령 별표1. 신규 유형은 추가, 폐기 유형은 삭제하지 않고 status/deprecated_at로 표시.",
+  "rules": [
+    "ViolationType 노드의 키 = 시행령 별표1 호-목 코드(예: 5-아). 백엔드 VIOLATION_CODES와 일치시킨다.",
+    "코드 앞 숫자 = 법 제8조1항 호 번호 = 시행령 별표1 호 번호(1~8호 일치). 각 코드는 DEFINED_BY로 법 제8조1항 해당 호에 연결하고, 1~8호의 세부 유형(목) 원문은 시행령 별표1에서 확인한다.",
+    "시행령 별표1에 세부 유형이 없는 법 호(9호·10호)는 법조항 코드 법8-1-N을 사용한다. (결정 2)",
+    "코드 폐기 시 ViolationType 노드를 삭제하지 않는다. status('active'|'deprecated')와 deprecated_at 속성으로 구분해 과거 보고서와 법 조항 연결을 유지한다. (결정 3)"
+  ],
+  "article": 8,
+  "paragraph": 1,
+  "law": {
+    "source_document_id": "7d237411cc7cb62e",
+    "source_path": "data/data_parsing/law/식품등의표시광고에관한법률_본문.json",
+    "title": "식품 등의 표시·광고에 관한 법률",
+    "article": 8,
+    "paragraph": 1
+  },
+  "decree": {
+    "title": "식품 등의 표시·광고에 관한 법률 시행령 별표1",
+    "byeolpyo_title": "부당한 표시 또는 광고의 내용(제3조제1항 관련)",
+    "source_path": "data/data_parsing/law/식품 등의 표시ㆍ광고에 관한 법률 시행령.json",
+    "amended": "2023-12-26",
+    "note": "시행령 제3조제1항이 법 제8조제1항의 구체적 내용을 이 별표1로 위임. 별표1은 법 제8조1항 1~8호의 세부 유형(호-목)만 담고 9·10호는 없다. 각 코드의 목 name은 이 별표1 원문에서 요약했다(백엔드 부록 D 라벨과 표현이 다를 수 있음)."
+  },
+  "backend_completeness_check": {
+    "status": "확인_필요",
+    "note": "백엔드 VIOLATION_CODES는 시행령 별표1 목 전체가 아니라 일부만 담은 큐레이션이다. 생략된 목을 의도/누락 중 무엇인지 백엔드와 확인한다.",
+    "omitted_from_byeolpyo1": ["2-나(의약품에 포함된다는 내용)", "4-다(제2조 각 호 사실과 다른 내용)", "5-가(비공인 제조방법 인용)", "5-마(외국어 남용 혼동)", "5-바(조제유류 유아·여성 사진)", "5-사(조제유류 모유 동등·우수 오인)", "8호는 가·나 목을 코드 8 하나로 통합"],
+    "to_add": "법 제8조1항 9호 추가 결정(결정 1)에 따라 법8-1-9를 포함했다. 백엔드 codes.py VIOLATION_CODES에도 법8-1-9 추가가 필요하다."
+  },
+  "violation_codes": [
+    {"violation_code": "1-가", "law_item": 1, "mok": "가", "basis": "시행령 별표1", "name": "질병·질병군 발생 예방 내용 (별표1 1-가)", "status": "active", "deprecated_at": null, "detail_status": "시행령 별표1 원문 대조"},
+    {"violation_code": "1-나", "law_item": 1, "mok": "나", "basis": "시행령 별표1", "name": "질병·질병군 치료효과 내용 (별표1 1-나)", "status": "active", "deprecated_at": null, "detail_status": "시행령 별표1 원문 대조"},
+    {"violation_code": "1-다", "law_item": 1, "mok": "다", "basis": "시행령 별표1", "name": "질병 징후·증상 예방·치료효과 (별표1 1-다)", "status": "active", "deprecated_at": null, "detail_status": "시행령 별표1 원문 대조"},
+    {"violation_code": "1-라", "law_item": 1, "mok": "라", "basis": "시행령 별표1", "name": "질병정보 활용 질병 연관성 암시 (별표1 1-라)", "status": "active", "deprecated_at": null, "detail_status": "시행령 별표1 원문 대조"},
+    {"violation_code": "2-가", "law_item": 2, "mok": "가", "basis": "시행령 별표1", "name": "의약품 전용 명칭(한약 처방명 포함) 사용 (별표1 2-가)", "status": "active", "deprecated_at": null, "detail_status": "시행령 별표1 원문 대조"},
+    {"violation_code": "2-다", "law_item": 2, "mok": "다", "basis": "시행령 별표1", "name": "의약품 대체 가능 내용 (별표1 2-다)", "status": "active", "deprecated_at": null, "detail_status": "시행령 별표1 원문 대조"},
+    {"violation_code": "2-라", "law_item": 2, "mok": "라", "basis": "시행령 별표1", "name": "의약품 효능·질병치료효과 증대 내용 (별표1 2-라)", "status": "active", "deprecated_at": null, "detail_status": "시행령 별표1 원문 대조"},
+    {"violation_code": "3", "law_item": 3, "mok": null, "basis": "시행령 별표1", "name": "건강기능식품 오인 (별표1 3호)", "status": "active", "deprecated_at": null, "detail_status": "시행령 별표1 원문 대조(호 전체)"},
+    {"violation_code": "4-가", "law_item": 4, "mok": "가", "basis": "시행령 별표1", "name": "허가·신고·보고 사항과 다른 표현 (별표1 4-가)", "status": "active", "deprecated_at": null, "detail_status": "시행령 별표1 원문 대조"},
+    {"violation_code": "4-나", "law_item": 4, "mok": "나", "basis": "시행령 별표1", "name": "미인정 기능성 표현(건기식) (별표1 4-나)", "status": "active", "deprecated_at": null, "detail_status": "시행령 별표1 원문 대조"},
+    {"violation_code": "4-라", "law_item": 4, "mok": "라", "basis": "시행령 별표1", "name": "신체 기능·작용·효과·효능 표현 (별표1 4-라)", "status": "active", "deprecated_at": null, "detail_status": "시행령 별표1 원문 대조"},
+    {"violation_code": "4-마", "law_item": 4, "mok": "마", "basis": "시행령 별표1", "name": "수상·인증·보증·선정·특허 사실과 다른 표현 (별표1 4-마)", "status": "active", "deprecated_at": null, "detail_status": "시행령 별표1 원문 대조"},
+    {"violation_code": "5-나", "law_item": 5, "mok": "나", "basis": "시행령 별표1", "name": "사료·원재료 효능을 식품 효능으로 오인 (별표1 5-나)", "status": "active", "deprecated_at": null, "detail_status": "시행령 별표1 원문 대조"},
+    {"violation_code": "5-다", "law_item": 5, "mok": "다", "basis": "시행령 별표1", "name": "감사장·체험기·한방·특수제법 등 현혹 (별표1 5-다)", "status": "active", "deprecated_at": null, "detail_status": "시행령 별표1 원문 대조"},
+    {"violation_code": "5-라", "law_item": 5, "mok": "라", "basis": "시행령 별표1", "name": "의사·약사·교수 등 보증·추천·사용 표현 (별표1 5-라)", "status": "active", "deprecated_at": null, "detail_status": "시행령 별표1 원문 대조"},
+    {"violation_code": "5-아", "law_item": 5, "mok": "아", "basis": "시행령 별표1", "name": "인정사항 일부 삭제·변경으로 기능·효과 오인 (별표1 5-아)", "status": "active", "deprecated_at": null, "detail_status": "시행령 별표1 원문 대조"},
+    {"violation_code": "5-자", "law_item": 5, "mok": "자", "basis": "시행령 별표1", "name": "미인정 기능성을 인정된 것처럼 표현 (별표1 5-자)", "status": "active", "deprecated_at": null, "detail_status": "시행령 별표1 원문 대조"},
+    {"violation_code": "5-차", "law_item": 5, "mok": "차", "basis": "시행령 별표1", "name": "이온수·생명수·약수 등 추상적 용어 (별표1 5-차)", "status": "active", "deprecated_at": null, "detail_status": "시행령 별표1 원문 대조"},
+    {"violation_code": "5-카", "law_item": 5, "mok": "카", "basis": "시행령 별표1", "name": "금지 식품첨가물 무첨가 강조로 오인 (별표1 5-카)", "status": "active", "deprecated_at": null, "detail_status": "시행령 별표1 원문 대조"},
+    {"violation_code": "6", "law_item": 6, "mok": null, "basis": "시행령 별표1", "name": "다른 업체·제품 비방 (별표1 6호)", "status": "active", "deprecated_at": null, "detail_status": "시행령 별표1 원문 대조(호 전체)"},
+    {"violation_code": "7-가", "law_item": 7, "mok": "가", "basis": "시행령 별표1", "name": "비교대상·기준·방법이 부적정한 비교 (별표1 7-가)", "status": "active", "deprecated_at": null, "detail_status": "시행령 별표1 원문 대조"},
+    {"violation_code": "7-나", "law_item": 7, "mok": "나", "basis": "시행령 별표1", "name": "미사용 원재료·성분 강조로 간접 차별 (별표1 7-나)", "status": "active", "deprecated_at": null, "detail_status": "시행령 별표1 원문 대조"},
+    {"violation_code": "8", "law_item": 8, "mok": null, "basis": "시행령 별표1", "name": "사행심 조장·음란 표현 (별표1 8호)", "status": "active", "deprecated_at": null, "detail_status": "시행령 별표1 원문 대조(가·나 목 통합)"},
+    {"violation_code": "법8-1-9", "law_item": 9, "mok": null, "basis": "법 제8조1항(시행령 별표1 미수록)", "name": "타 물품 상호·상표·용기 오인·혼동 (법 제8조1항 9호)", "status": "active", "deprecated_at": null, "detail_status": "법 조항 원문 대조 — 백엔드 codes.py 추가 필요(결정 1)"},
+    {"violation_code": "법8-1-10", "law_item": 10, "mok": null, "basis": "법 제8조1항(시행령 별표1 미수록)", "name": "심의 미이행 광고 (법 제8조1항 10호)", "status": "active", "deprecated_at": null, "detail_status": "법 조항 원문 대조"}
+  ]
+}

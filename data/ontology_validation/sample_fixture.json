@@ -1,0 +1,41 @@
+{
+  "fixture_id": "MLE-CQ-TEST-01",
+  "warning": "All Company/Product/Ingredient/FunctionalClaim/AllowedPhrase/Advertisement/AdvertisementClaim/ReviewDecision/LegalReview/FollowUpTask values in this file are synthetic test data, not real products, ads, regulatory determinations, or approvals.",
+  "nodes": [
+    {"key":"CO-TEST-001","label":"Company","id_key":"company_id","id":"CO-TEST-001","properties":{"name":"가상 테스트 식품사","data_status":"가상 테스트 데이터"}},
+    {"key":"PRD-TEST-GENERAL-001","label":"Product","id_key":"product_id","id":"PRD-TEST-GENERAL-001","properties":{"name":"가상 일반식품","product_category":"GENERAL_FOOD","legal_product_type":"일반식품","data_status":"가상 테스트 데이터"}},
+    {"key":"PRD-TEST-HFF-001","label":"Product","id_key":"product_id","id":"PRD-TEST-HFF-001","properties":{"name":"가상 홍삼 건강기능식품","product_category":"HEALTH_FUNCTIONAL_FOOD","legal_product_type":"건강기능식품","data_status":"가상 테스트 데이터"}},
+    {"key":"PRD-TEST-CHILD-001","label":"Product","id_key":"product_id","id":"PRD-TEST-CHILD-001","properties":{"name":"가상 어린이 기호식품","product_category":"CHILD_PREFERRED_FOOD","quality_certified":true,"high_calorie_low_nutrition":true,"data_status":"가상 테스트 데이터"}},
+    {"key":"ING-TEST-RED-GINSENG","label":"Ingredient","id_key":"ingredient_id","id":"ING-TEST-RED-GINSENG","properties":{"name":"홍삼","data_status":"가상 테스트 데이터"}},
+    {"key":"FC-TEST-GINSENG-001","label":"FunctionalClaim","id_key":"claim_id","id":"FC-TEST-GINSENG-001","properties":{"claim_text":"면역력 증진 및 피로 개선에 도움을 줄 수 있음","data_status":"가상 테스트 데이터"}},
+    {"key":"AP-TEST-GINSENG-001","label":"AllowedPhrase","id_key":"phrase_id","id":"AP-TEST-GINSENG-001","properties":{"phrase_text":"면역력 증진 및 피로 개선에 도움을 줄 수 있음","conditions":"가상 테스트용 기능성 인정 문구","data_status":"가상 테스트 데이터"}},
+    {"key":"AD-TEST-GENERAL-001","label":"Advertisement","id_key":"advertisement_id","id":"AD-TEST-GENERAL-001","properties":{"medium":"가상 광고","product_id":"PRD-TEST-GENERAL-001","data_status":"가상 테스트 데이터"}},
+    {"key":"AC-TEST-DISEASE-001","label":"AdvertisementClaim","id_key":"claim_id","id":"AC-TEST-DISEASE-001","properties":{"text":"질병을 치료하는 데 도움","data_status":"가상 테스트 데이터"}},
+    {"key":"AD-TEST-HFF-001","label":"Advertisement","id_key":"advertisement_id","id":"AD-TEST-HFF-001","properties":{"medium":"가상 광고","product_id":"PRD-TEST-HFF-001","data_status":"가상 테스트 데이터"}},
+    {"key":"AC-TEST-ALTERED-001","label":"AdvertisementClaim","id_key":"claim_id","id":"AC-TEST-ALTERED-001","properties":{"text":"면역력이 확실히 크게 증가","data_status":"가상 테스트 데이터"}},
+    {"key":"VT-TEST-PHRASE-MODIFIED","label":"ViolationType","id_key":"violation_code","id":"VT-TEST-PHRASE-MODIFIED","properties":{"name":"허용 문구 임의 변형 테스트 분류","data_status":"가상 테스트 분류"}},
+    {"key":"DEC-TEST-GENERAL-001","label":"ReviewDecision","id_key":"decision_id","id":"DEC-TEST-GENERAL-001","properties":{"decision_type":"AI","result":"UNSUITABLE","rationale":"위험 표현 1개 이상 확인(가상 테스트)","data_status":"가상 테스트 결과"}},
+    {"key":"DEC-TEST-HFF-001","label":"ReviewDecision","id_key":"decision_id","id":"DEC-TEST-HFF-001","properties":{"decision_type":"AI","result":"UNSUITABLE","rationale":"허용 문구와 다른 위험 표현 확인(가상 테스트)","data_status":"가상 테스트 결과"}},
+    {"key":"TASK-TEST-RECHECK-001","label":"FollowUpTask","id_key":"task_id","id":"TASK-TEST-RECHECK-001","properties":{"task_type":"문구 수정 및 재심의","status":"OPEN","data_status":"가상 테스트 데이터"}},
+    {"key":"LR-TEST-001","label":"LegalReview","id_key":"legal_review_id","id":"LR-TEST-001","properties":{"result":"APPROVED_WITH_REVISION","reviewer_role":"LEGAL","data_status":"가상 테스트 데이터"}}
+  ],
+  "relationships": [
+    {"from":"CO-TEST-001","to":"PRD-TEST-GENERAL-001","type":"MANUFACTURES","properties":{"data_status":"가상 테스트 데이터"}},
+    {"from":"CO-TEST-001","to":"PRD-TEST-HFF-001","type":"MANUFACTURES","properties":{"data_status":"가상 테스트 데이터"}},
+    {"from":"PRD-TEST-GENERAL-001","to":"ING-TEST-RED-GINSENG","type":"CONTAINS","properties":{"data_status":"가상 테스트 데이터"}},
+    {"from":"PRD-TEST-HFF-001","to":"ING-TEST-RED-GINSENG","type":"CONTAINS","properties":{"data_status":"가상 테스트 데이터"}},
+    {"from":"ING-TEST-RED-GINSENG","to":"FC-TEST-GINSENG-001","type":"HAS_CLAIM","properties":{"data_status":"가상 테스트 데이터"}},
+    {"from":"FC-TEST-GINSENG-001","to":"AP-TEST-GINSENG-001","type":"ALLOWS","properties":{"data_status":"가상 테스트 데이터"}},
+    {"from":"AD-TEST-GENERAL-001","to":"PRD-TEST-GENERAL-001","type":"ADVERTISED_AS","properties":{}},
+    {"from":"AD-TEST-GENERAL-001","to":"AC-TEST-DISEASE-001","type":"HAS_CLAIM","properties":{}},
+    {"from":"AC-TEST-DISEASE-001","to":"1-가","type":"INDICATES_RISK_OF","properties":{"assertion_type":"가상 표현에 대한 테스트 추론","data_status":"가상 테스트 데이터"}},
+    {"from":"AD-TEST-HFF-001","to":"PRD-TEST-HFF-001","type":"ADVERTISED_AS","properties":{}},
+    {"from":"AD-TEST-HFF-001","to":"AC-TEST-ALTERED-001","type":"HAS_CLAIM","properties":{}},
+    {"from":"AC-TEST-ALTERED-001","to":"VT-TEST-PHRASE-MODIFIED","type":"INDICATES_RISK_OF","properties":{"assertion_type":"가상 표현에 대한 테스트 추론","data_status":"가상 테스트 데이터"}},
+    {"from":"DEC-TEST-GENERAL-001","to":"AC-TEST-DISEASE-001","type":"ANALYZES","properties":{}},
+    {"from":"DEC-TEST-HFF-001","to":"AC-TEST-ALTERED-001","type":"ANALYZES","properties":{}},
+    {"from":"DEC-TEST-HFF-001","to":"TASK-TEST-RECHECK-001","type":"GENERATES_TASK","properties":{}},
+    {"from":"DEC-TEST-HFF-001","to":"LR-TEST-001","type":"HAS_LEGAL_REVIEW","properties":{}},
+    {"from":"LR-TEST-001","to":"TASK-TEST-RECHECK-001","type":"REQUIRES_FOLLOW_UP","properties":{}}
+  ]
+}
